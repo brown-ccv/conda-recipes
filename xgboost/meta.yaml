@@ -1,0 +1,32 @@
+package:
+  name: xgboost
+  version: 0.6
+
+source:
+  url: https://github.com/dmlc/xgboost/archive/b4d97d3cb81f72f8967ecd6c4b1e2412e0813239.zip
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - curl
+    - gcc
+    - numpy ==1.11.3
+    - scipy ==0.18.1
+
+  run:
+    - python
+    - setuptools
+    - libgcc
+    - numpy ==1.11.3
+    - scipy ==0.18.1
+
+test:
+  # Python imports
+  imports:
+    - xgboost
+
+about:
+  home: https://github.com/dmlc/xgboost
+  license: Apache
+  summary: eXtreme Gradient Boosting
