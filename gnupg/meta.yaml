@@ -1,0 +1,23 @@
+package:
+  name: gnupg
+  version: 1.4.21
+
+source:
+  fn: gnupg-1.4.21.tar.bz2
+  url: https://gnupg.org/ftp/gcrypt/gnupg/gnupg-1.4.21.tar.bz2
+  sha1: e3bdb585026f752ae91360f45c28e76e4a15d338
+
+requirements:
+  build:
+#    - gcc
+  run:
+#    - libgcc
+
+test:
+  commands:
+    - gpg -h
+
+about:
+  home: https://www.gnupg.org
+  license: GPLv3
+  summary: The GNU Privacy Guard
