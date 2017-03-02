@@ -25,3 +25,4 @@ test:
 about:
   home: https://github.com/Unidata/netcdf-c
   license: MIT
+  summary: "The Unidata network Common Data Form"
