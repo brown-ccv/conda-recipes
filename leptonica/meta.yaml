@@ -1,0 +1,36 @@
+package:
+  name: leptonica
+  version: 1.74.1
+
+source:
+  fn: leptonica-1.74.1.tar.gz
+  url: https://github.com/DanBloomberg/leptonica/archive/1.74.1.tar.gz
+  sha256: 6d40c7318b2b60fec5173475e8a34c1e08799d668a533d1756c9dfeb874a9d8a
+
+requirements:
+  build:
+    - gcc
+    - automake
+    - libtool
+    - pkg-config
+    - jpeg ==8d
+    - libpng ==1.6.27
+    - libtiff ==4.0.6
+    - openjpeg ==2.1.2
+    - zlib ==1.2.8
+  run:
+    - libgcc
+    - jpeg ==8d
+    - libpng ==1.6.27
+    - libtiff ==4.0.6
+    - openjpeg ==2.1.2
+    - zlib ==1.2.8
+
+test:
+  commands:
+    - convertfilestopdf --help 2>&1 | grep 'resolution' &> /dev/null
+
+about:
+  home: https://github.com/DanBloomberg/leptonica
+  summary: "Leptonica image processing library"
+  license: BSD
