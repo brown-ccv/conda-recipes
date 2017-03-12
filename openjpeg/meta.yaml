@@ -1,0 +1,26 @@
+package:
+  name: openjpeg
+  version: 2.1.2
+
+source:
+  fn: openjpeg-2.1.2.tar.gz
+  url: https://github.com/uclouvain/openjpeg/archive/v2.1.2.tar.gz
+  sha256: 4ce77b6ef538ef090d9bde1d5eeff8b3069ab56c4906f083475517c2c023dfa7
+
+requirements:
+  build:
+    - gcc # [linux]
+    - cmake
+  run:
+    - libgcc # [linux]
+
+test:
+  commands:
+    - opj_compress -h | grep "This is the opj_compress utility from the OpenJPEG project"
+    - opj_decompress -h | grep "This is the opj_decompress utility from the OpenJPEG project"
+    - opj_dump -h | grep "This is the opj_dump utility from the OpenJPEG project"
+
+about:
+  home: https://github.com/uclouvain/openjpeg
+  summary: "An open-source JPEG 2000 codec written in C language"
+  license: BSD
