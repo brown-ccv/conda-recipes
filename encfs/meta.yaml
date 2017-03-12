@@ -1,0 +1,28 @@
+package:
+  name: encfs
+  version: 1.9.1
+
+source:
+  fn: encfs-1.9.1.tar.gz
+  url: https://github.com/vgough/encfs/releases/download/v1.9.1/encfs-1.9.1.tar.gz
+  sha256: 67203aeff7a06ce7be83df4948db296be89a00cffe1108a0a41c96d7481106a4
+
+requirements:
+  build:
+    - cmake ==3.2.3
+    - gcc
+    - gettext ==0.19.8 # [osx]
+    - openssl # [osx]
+  run:
+    - libgcc
+    - gettext ==0.19.8 # [osx]
+    - openssl # [osx]
+
+test:
+  commands:
+    - encfs --version
+
+about:
+  home: http://vgough.github.io/encfs/
+  license: LGPL
+  summary: "EncFS: an Encrypted Filesystem for FUSE"
