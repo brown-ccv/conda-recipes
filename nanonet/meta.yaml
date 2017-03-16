@@ -1,0 +1,36 @@
+package:
+  name: nanonet
+  version: 2.0.0
+
+source:
+  fn: nanonet-2.0.0.tar.gz
+  url: https://github.com/nanoporetech/nanonet/archive/v2.0.0.tar.gz
+  sha256: 9896fa8ecf012505a7cc5610afd54323271ec6b966ce0a0ac9fb7be4149da9d9
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - gcc
+    - boost ==1.61.0
+    - h5py ==2.6.0
+    - numpy ==1.11.3
+    - myriad ==0.1.4
+  run:
+    - python
+    - setuptools
+    - libgcc
+    - boost ==1.61.0
+    - h5py ==2.6.0
+    - numpy ==1.11.3
+    - myriad ==0.1.4
+
+test:
+  commands:
+    - nanonetcall -h
+    - nanonet2d -h
+
+about:
+  home: https://github.com/nanoporetech/nanonet
+  license: Mozilla Public License 2.0
+  summary: 'Recurrent neural network basecalling for Oxford Nanopore MinION data'
