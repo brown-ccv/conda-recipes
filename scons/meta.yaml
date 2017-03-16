@@ -1,0 +1,53 @@
+package:
+  name: scons
+  version: "2.5.1"
+
+source:
+  fn: scons-2.5.1.tar.gz
+  url: https://pypi.python.org/packages/2c/ee/a9601b958c94e93410e635a5d67ed95300998ffdc36127b16d322b054ff0/scons-2.5.1.tar.gz
+  md5: 3eac81e5e8206304a9b4683c57665aa4
+
+requirements:
+  build:
+    - python
+
+  run:
+    - python
+
+test:
+  # Python imports
+  imports:
+    - SCons
+    - SCons.Node
+    - SCons.Options
+    - SCons.Platform
+    - SCons.Scanner
+    - SCons.Script
+    - SCons.Tool
+    - SCons.Tool.MSCommon
+    - SCons.Tool.docbook
+    - SCons.Tool.packaging
+    - SCons.Variables
+    - SCons.compat
+
+  # commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: http://www.scons.org/
+  license: MIT License
+  summary: 'Open Source next-generation build tool.'
+  license_family: MIT
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
