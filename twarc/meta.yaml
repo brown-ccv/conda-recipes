@@ -1,0 +1,72 @@
+package:
+  name: twarc
+  version: "1.0.9"
+
+source:
+  fn: twarc-1.0.9.tar.gz
+  url: https://pypi.python.org/packages/b2/2b/ab5131a3078a9bc27fd4a451e659776895a6c1daacdbc6da8fbf777b5ab8/twarc-1.0.9.tar.gz
+  md5: 8c82336a310fb9fca18f377309140cb5
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+# build:
+  # noarch_python: True
+  # preserve_egg_dir: True
+  # entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - twarc = twarc:main
+    #
+    # Would create an entry point called twarc that calls twarc.main()
+
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - pytest-runner
+    - pytest
+    - python-dateutil ==2.6.0
+    - requests-oauthlib ==0.8.0
+    - unicodecsv ==0.14.1
+    - mock ==2.0.0
+
+  run:
+    - python
+    - pytest
+    - python-dateutil ==2.6.0
+    - requests-oauthlib ==0.8.0
+    - unicodecsv ==0.14.1
+    - mock ==2.0.0
+
+# test:
+  # Python imports
+  # imports:
+
+  # commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: http://github.com/docnow/twarc
+  license: Creative Commons CC0
+  summary: 'Archive tweets from the command line'
+  license_family: Other
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
