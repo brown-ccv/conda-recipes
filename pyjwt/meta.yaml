@@ -1,0 +1,69 @@
+package:
+  name: pyjwt
+  version: "1.4.2"
+
+source:
+  fn: PyJWT-1.4.2.tar.gz
+  url: https://pypi.python.org/packages/8f/10/9ce7e91d8ec9d852db6f9f2b076811d9f51ed7b0360602432d95e6ea4feb/PyJWT-1.4.2.tar.gz
+  md5: e08aa1ecc99269248bb02f888c166af1
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # noarch_python: True
+  # preserve_egg_dir: True
+  entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - pyjwt = pyjwt:main
+    #
+    # Would create an entry point called pyjwt that calls pyjwt.main()
+
+    - jwt = jwt.__main__:main
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+    - setuptools
+
+  run:
+    - python
+
+test:
+  # Python imports
+  imports:
+    - jwt
+    - jwt.contrib
+    - jwt.contrib.algorithms
+
+  commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+    - jwt --help
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  requires:
+    - pytest ==2.7.3
+    - pytest-cov
+    - pytest-runner
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: http://github.com/jpadilla/pyjwt
+  license: MIT License
+  summary: 'JSON Web Token implementation in Python'
+  license_family: MIT
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
