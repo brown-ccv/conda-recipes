@@ -1,0 +1,62 @@
+package:
+  name: pympler
+  version: "0.5"
+
+source:
+  fn: Pympler-0.5.tar.gz
+  url: https://pypi.python.org/packages/9e/4b/04c8338a9a2a22645ada1d52c59df2b81d644400f6cca10f63072e5f60cd/Pympler-0.5.tar.gz
+  md5: 831d12beca2ff2ea56407c5ed8ffc4b0
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+# build:
+  # noarch_python: True
+  # preserve_egg_dir: True
+  # entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - pympler = pympler:main
+    #
+    # Would create an entry point called pympler that calls pympler.main()
+
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+
+  run:
+    - python
+
+test:
+  # Python imports
+  imports:
+    - pympler
+    - pympler.util
+
+  # commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: http://pythonhosted.org/Pympler/
+  license: Apache Software License
+  summary: 'A development tool to measure, monitor and analyze the memory behavior of Python objects.'
+  license_family: Apache
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
