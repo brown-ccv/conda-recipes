@@ -1,0 +1,20 @@
+package:
+  name: vim
+  version: 8.0.0586
+
+source:
+  git_url: https://github.com/vim/vim
+  git_tag: v8.0.0586
+
+requirements:
+  build:
+    - python
+    - gettext
+  run:
+    - python
+    - gettext
+
+about:
+  home: http://www.vim.org
+  license: Vim
+  summary: Vim is a greatly improved version of the good old UNIX editor Vi.
