@@ -1,0 +1,87 @@
+{% set version = '1.5-5' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-geosphere
+  version: {{ version|replace("-", "_") }}
+
+source:
+  fn: geosphere_{{ version }}.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/geosphere_{{ version }}.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/geosphere/geosphere_{{ version }}.tar.gz
+
+
+  sha256: 8b6fe012744fc45b88e0ef6f20e60e103ef013e761e99dcff3f9dceeedbdce6d
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: methods, raster
+requirements:
+  build:
+    - r-base 3.1.2
+    - r-sp 1.0_17
+    - posix                # [win]
+    - {{native}}toolchain  # [win]
+    - gcc                  # [not win]
+
+  run:
+    - r-base 3.1.2
+    - r-sp 1.0_17
+    - libgcc # [not win]
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('geosphere')"  # [not win]
+    - "\"%R%\" -e \"library('geosphere')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://CRAN.R-project.org/package=geosphere
+  license: GPL (>= 3)
+  summary: 'Spherical trigonometry for geographic applications. That is, compute distances and
+    related measures for angular (longitude/latitude) locations. '
+
+  license_family: GPL3
+
+# The original CRAN metadata for this package was:
+
+# Package: geosphere
+# Type: Package
+# Title: Spherical Trigonometry
+# Version: 1.5-5
+# Date: 2016-06-14
+# Depends: sp, R (>= 3.0.0)
+# Suggests: methods, raster
+# Authors@R: c( person("Robert J.", "Hijmans", role = c("cre", "aut"),  email = "r.hijmans@gmail.com"), person("Ed", "Williams", role = "ctb"), person("Chris", "Vennes", role = "ctb"))
+# Description: Spherical trigonometry for geographic applications. That is, compute distances and related measures for angular (longitude/latitude) locations.
+# License: GPL (>= 3)
+# LazyLoad: yes
+# NeedsCompilation: yes
+# Packaged: 2016-06-15 03:07:44 UTC; rhijmans
+# Author: Robert J. Hijmans [cre, aut], Ed Williams [ctb], Chris Vennes [ctb]
+# Maintainer: Robert J. Hijmans <r.hijmans@gmail.com>
+# Repository: CRAN
+# Date/Publication: 2016-06-15 12:26:37
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
