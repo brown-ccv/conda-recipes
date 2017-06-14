@@ -1,0 +1,85 @@
+{% set version = '1.4.2' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-lda
+  version: {{ version|replace("-", "_") }}
+
+source:
+  fn: lda_{{ version }}.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/lda_{{ version }}.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/lda/lda_{{ version }}.tar.gz
+
+
+  sha256: 5606a1e1bc24706988853528023f7a004c725791ae1a7309f1aea2fc6681240f
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: Matrix, reshape2, ggplot2 (>= 1.0.0), penalized, nnet
+requirements:
+  build:
+    - r-base
+    - posix                # [win]
+    - {{native}}toolchain  # [win]
+    - gcc                  # [not win]
+
+  run:
+    - r-base
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('lda')"  # [not win]
+    - "\"%R%\" -e \"library('lda')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://CRAN.R-project.org/package=lda
+  license: LGPL
+  summary: Implements latent Dirichlet allocation (LDA) and related models.  This includes (but
+    is not limited to) sLDA, corrLDA, and the mixed-membership stochastic blockmodel.  Inference
+    for all of these models is implemented via a fast collapsed Gibbs sampler written
+    in C.  Utility functions for reading/writing data typically used in topic models,
+    as well as tools for examining posterior distributions are also included.
+  license_family: LGPL
+
+# The original CRAN metadata for this package was:
+
+# Package: lda
+# Type: Package
+# Title: Collapsed Gibbs Sampling Methods for Topic Models
+# Version: 1.4.2
+# Date: 2015-11-22
+# Author: Jonathan Chang
+# Maintainer: Jonathan Chang <slycoder@gmail.com>
+# Description: Implements latent Dirichlet allocation (LDA) and related models.  This includes (but is not limited to) sLDA, corrLDA, and the mixed-membership stochastic blockmodel.  Inference for all of these models is implemented via a fast collapsed Gibbs sampler written in C.  Utility functions for reading/writing data typically used in topic models, as well as tools for examining posterior distributions are also included.
+# License: LGPL
+# LazyLoad: yes
+# Suggests: Matrix, reshape2, ggplot2 (>= 1.0.0), penalized, nnet
+# NeedsCompilation: yes
+# Packaged: 2015-11-22 08:13:39 UTC; jonathanchang
+# Depends: R (>= 2.10)
+# Repository: CRAN
+# Date/Publication: 2015-11-22 11:48:11
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
