@@ -1,0 +1,94 @@
+{% set version = '0.3.1' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-feather
+  version: {{ version|replace("-", "_") }}
+
+source:
+  fn: feather_{{ version }}.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/feather_{{ version }}.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/feather/feather_{{ version }}.tar.gz
+
+
+  sha256: f1069bf920e9bc3da6bf43542a3a7ccc3142544d759945115ecade69dd5ccde0
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # If this is a new build for the same version, increment the build number.
+  number: 1
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: testthat, dplyr
+requirements:
+  build:
+    - r-base 3.3.2
+    - r-rcpp 0.12.8
+    - r-hms 0.3
+    - r-tibble 1.2
+    - posix                # [win]
+    - {{native}}toolchain  # [win]
+    - gcc 5.4.0            # [not win]
+
+  run:
+    - r-base 3.3.2
+    - r-rcpp 0.12.8
+    - r-hms 0.3
+    - r-tibble 1.2
+    - libgcc >=5.4.0       # [not win]
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('feather')"  # [not win]
+    - "\"%R%\" -e \"library('feather')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://github.com/wesm/feather
+  license: Apache License 2.0
+  summary: Read and write feather files, a lightweight binary columnar data store designed for
+    maximum speed.
+  license_family: APACHE
+
+# The original CRAN metadata for this package was:
+
+# Package: feather
+# Title: R Bindings to the Feather 'API'
+# Version: 0.3.1
+# Authors@R: c( person("Hadley", "Wickham", , "hadley@rstudio.com", role = c("aut", "cre")), person("RStudio", role = "cph"), person("Feather developers", role = "ctb", comment = "Bundled feather library"), person("Google", role = "ctb", comment = "Bundled flatbuffers code"), person("LevelDB Authors", role = "ctb") )
+# Description: Read and write feather files, a lightweight binary columnar data store designed for maximum speed.
+# Encoding: UTF-8
+# License: Apache License 2.0
+# LazyData: true
+# URL: https://github.com/wesm/feather
+# BugReports: https://github.com/wesm/feather/issues
+# LinkingTo: Rcpp
+# Imports: Rcpp, tibble, hms
+# Suggests: testthat, dplyr
+# SystemRequirements: little-endian platform
+# RoxygenNote: 5.0.1
+# NeedsCompilation: yes
+# Packaged: 2016-11-08 22:45:11 UTC; kevin
+# Author: Hadley Wickham [aut, cre], RStudio [cph], Feather developers [ctb] (Bundled feather library), Google [ctb] (Bundled flatbuffers code), LevelDB Authors [ctb]
+# Maintainer: Hadley Wickham <hadley@rstudio.com>
+# Repository: CRAN
+# Date/Publication: 2016-11-09 00:35:01
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
