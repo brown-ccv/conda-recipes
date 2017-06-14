@@ -1,0 +1,84 @@
+{% set name = 'slam' %}
+{% set version = '0.1-40' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-{{ name|lower }}
+  version: {{ version|replace("-", "_") }}
+
+source:
+  fn: {{ name }}_{{ version }}.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/{{ name }}_{{ version }}.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/{{ name }}/{{ name }}_{{ version }}.tar.gz
+
+
+  # You can add a hash for the file here, like md5 or sha1
+  # md5: 49448ba4863157652311cc5ea4fea3ea
+  # sha1: 3bcfbee008276084cbb37a2b453963c61176a322
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+
+requirements:
+  build:
+    - r-base 3.3.2
+    - posix                # [win]
+    - {{native}}toolchain  # [win]
+    - gcc                  # [not win]
+
+  run:
+    - r-base 3.3.2
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('slam')"  # [not win]
+    - "\"%R%\" -e \"library('slam')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://CRAN.R-project.org/package=slam
+  license: GPL-2
+  summary: Data structures and algorithms for sparse arrays and matrices, based on index arrays
+    and simple triplet representations, respectively.
+  license_family: GPL2
+
+# The original CRAN metadata for this package was:
+
+# Package: slam
+# Version: 0.1-40
+# Title: Sparse Lightweight Arrays and Matrices
+# Authors@R: c(person("Kurt", "Hornik", role = c("aut", "cre"), email = "Kurt.Hornik@R-project.org"), person("David", "Meyer", role = "aut"), person("Christian", "Buchta", role = "aut"))
+# Description: Data structures and algorithms for sparse arrays and matrices, based on index arrays and simple triplet representations, respectively.
+# Depends: R (>= 3.3.1)
+# Imports: stats
+# Enhances: Matrix, SparseM, spam
+# License: GPL-2
+# NeedsCompilation: yes
+# Packaged: 2016-12-01 07:00:30 UTC; hornik
+# Author: Kurt Hornik [aut, cre], David Meyer [aut], Christian Buchta [aut]
+# Maintainer: Kurt Hornik <Kurt.Hornik@R-project.org>
+# Repository: CRAN
+# Date/Publication: 2016-12-01 16:51:19
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml

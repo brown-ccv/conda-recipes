@@ -1,0 +1,96 @@
+{% set name = 'topicmodels' %}
+{% set version = '0.2-6' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-{{ name|lower }}
+  version: {{ version|replace("-", "_") }}
+
+source:
+  fn: {{ name }}_{{ version }}.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/{{ name }}_{{ version }}.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/{{ name }}/{{ name }}_{{ version }}.tar.gz
+
+
+  # You can add a hash for the file here, like md5 or sha1
+  # md5: 49448ba4863157652311cc5ea4fea3ea
+  # sha1: 3bcfbee008276084cbb37a2b453963c61176a322
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: lasso2, lattice, lda, OAIHarvester, SnowballC, XML, corpus.JSS.papers
+requirements:
+  build:
+    - r-base 3.3.2
+    - r-modeltools 0.2_21
+    - r-slam 0.1_40
+    - r-tm 0.7_1
+    - posix                # [win]
+    - {{native}}toolchain  # [win]
+    - gcc                  # [not win]
+
+  run:
+    - r-base 3.3.2
+    - r-modeltools 0.2_21
+    - r-slam 0.1_40
+    - r-tm 0.7_1
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('topicmodels')"  # [not win]
+    - "\"%R%\" -e \"library('topicmodels')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://CRAN.R-project.org/package=topicmodels
+  license: GPL-2
+  summary: Provides an interface to the C code for Latent Dirichlet Allocation (LDA) models and
+    Correlated Topics Models (CTM) by David M. Blei and co-authors and the C++ code
+    for fitting LDA models using Gibbs sampling by Xuan-Hieu Phan and co-authors.
+  license_family: GPL2
+
+# The original CRAN metadata for this package was:
+
+# Package: topicmodels
+# Type: Package
+# Title: Topic Models
+# Version: 0.2-6
+# Authors@R: c(person("Bettina", "Grun", role = c("aut", "cre"), email = "Bettina.Gruen@jku.at"), person("Kurt", "Hornik", role = "aut"))
+# Description: Provides an interface to the C code for Latent Dirichlet Allocation (LDA) models and Correlated Topics Models (CTM) by David M. Blei and co-authors and the C++ code for fitting LDA models using Gibbs sampling by Xuan-Hieu Phan and co-authors.
+# Depends: R (>= 2.15.0)
+# Imports: stats4, methods, modeltools, slam, tm (>= 0.6)
+# Suggests: lasso2, lattice, lda, OAIHarvester, SnowballC, XML, corpus.JSS.papers
+# Additional_repositories: http://datacube.wu.ac.at
+# SystemRequirements: GNU Scientific Library version >= 1.8, C++11
+# License: GPL-2
+# Encoding: UTF-8
+# LazyLoad: yes
+# NeedsCompilation: yes
+# Packaged: 2017-04-18 07:37:19 UTC; gruen
+# Author: Bettina Grun [aut, cre], Kurt Hornik [aut]
+# Maintainer: Bettina Grun <Bettina.Gruen@jku.at>
+# Repository: CRAN
+# Date/Publication: 2017-04-18 08:29:52 UTC
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
