@@ -9,10 +9,10 @@ source:
 requirements:
   build:
     - python
-    - gettext
+    - ncurses 5.9 [linux]
   run:
     - python
-    - gettext
+    - ncurses 5.9 [linux]
 
 about:
   home: http://www.vim.org

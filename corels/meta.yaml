@@ -1,0 +1,28 @@
+package:
+  name: corels
+  version: 0.0.0
+
+source:
+  git_url: https://github.com/nlarusstone/corels
+  git_tag: kdd-paper-submit
+
+requirements:
+  build:
+    - gmp 6.1.0
+    - mpc 1.0.3
+    - mpfr 3.1.5
+    - gcc 5.4.0
+  run:
+    - gmp 6.1.0
+    - mpc 1.0.3
+    - mpfr 3.1.5
+    - libgcc >=5.4.0
+
+test:
+  commands:
+    - corels 2>&1 | grep "^USAGE:"
+
+about:
+  home: https://github.com/nlarusstone/corels
+  license: GPLv3
+  summary: Certifiably Optimal RulE ListS, a custom branch-and-bound algorithm for optimizing rule lists.

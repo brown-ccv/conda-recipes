@@ -1,0 +1,27 @@
+package:
+  name: treeinterpreter
+  version: "0.2.1"
+
+source:
+  fn: treeinterpreter-0.2.1.zip
+  url: https://files.pythonhosted.org/packages/64/92/fc33fa5a1e7b2e2588ae5640cc755350203f77f298daa29dd209a7c268e8/treeinterpreter-0.2.1.zip
+  sha256: 4efc63b4a5f8aa1aecd7abc83861ddbffd39aa3fbd2dcdec1f460f997c4c5f32
+
+requirements:
+  build:
+    - python
+    - setuptools
+
+  run:
+    - python
+
+test:
+  # Python imports
+  imports:
+    - treeinterpreter
+
+about:
+  home: https://github.com/andosa/treeinterpreter
+  license: BSD License
+  summary: "Package for interpreting scikit-learn's decision tree and random forest predictions."
+  license_family: BSD
