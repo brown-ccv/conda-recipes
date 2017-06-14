@@ -15,14 +15,14 @@ requirements:
     - python
     - setuptools
     - pandas 0.20.2
-    - matplotlib 2.0.0
+    - matplotlib 2.0.2
     - jinja2 2.9.4
     - six 1.10.0
 
   run:
     - python
     - pandas 0.20.2
-    - matplotlib 2.0.0
+    - matplotlib 2.0.2
     - jinja2 2.9.4
     - six 1.10.0
 
