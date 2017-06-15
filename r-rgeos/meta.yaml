@@ -1,0 +1,96 @@
+{% set name = 'rgeos' %}
+{% set version = '0.3-23' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-{{ name|lower }}
+  version: {{ version|replace("-", "_") }}
+
+source:
+  fn: {{ name }}_{{ version }}.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/{{ name }}_{{ version }}.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/{{ name }}/{{ name }}_{{ version }}.tar.gz
+
+
+  # You can add a hash for the file here, like md5 or sha1
+  # md5: 49448ba4863157652311cc5ea4fea3ea
+  # sha1: 3bcfbee008276084cbb37a2b453963c61176a322
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # If this is a new build for the same version, increment the build number.
+  number: 1
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: maptools (>= 0.8-5), testthat, XML, maps, rgdal
+requirements:
+  build:
+    - r-base 3.3.2
+    - r-sp 1.2_3
+    - posix                # [win]
+    - {{native}}toolchain  # [win]
+    - gcc 5.4.0            # [not win]
+    - geos 3.5.0
+
+  run:
+    - r-base 3.3.2
+    - r-sp 1.2_3
+    - libgcc >=5.4.0
+    - geos 3.5.0
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('rgeos')"  # [not win]
+    - "\"%R%\" -e \"library('rgeos')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://r-forge.r-project.org/projects/rgeos/ http://trac.osgeo.org/geos/
+  license: GPL (>= 2)
+  summary: Interface to Geometry Engine - Open Source (GEOS) using the C API for topology operations
+    on geometries. The GEOS library is external to the package, and, when installing
+    the package from source, must be correctly installed first. Windows and Mac Intel
+    OS X binaries are provided on CRAN.
+  license_family: GPL3
+
+# The original CRAN metadata for this package was:
+
+# Package: rgeos
+# Title: Interface to Geometry Engine - Open Source (GEOS)
+# Version: 0.3-23
+# Date: 2017-04-05
+# Depends: R (>= 2.14.0)
+# Imports: methods, sp (>= 1.1-0), utils, stats, graphics
+# LinkingTo: sp
+# Suggests: maptools (>= 0.8-5), testthat, XML, maps, rgdal
+# LazyLoad: yes
+# Description: Interface to Geometry Engine - Open Source (GEOS) using the C API for topology operations on geometries. The GEOS library is external to the package, and, when installing the package from source, must be correctly installed first. Windows and Mac Intel OS X binaries are provided on CRAN.
+# Authors@R: c( person("Roger", "Bivand", role = c("cre", "aut"), email = "Roger.Bivand@nhh.no"), person("Colin", "Rundel", role = "aut"), person("Edzer", "Pebesma", role = "ctb"), person("Rainer", "Stuetz", role = "ctb"), person("Karl Ove", "Hufthammer", role = "ctb"))
+# License: GPL (>= 2)
+# URL: https://r-forge.r-project.org/projects/rgeos/ http://trac.osgeo.org/geos/
+# SystemRequirements: GEOS (>= 3.2.0); for building from source: GEOS from http://trac.osgeo.org/geos/; GEOS OSX frameworks built by William Kyngesburye at http://www.kyngchaos.com/ may be used for source installs on OSX.
+# NeedsCompilation: yes
+# Packaged: 2017-04-05 12:06:04 UTC; rsb
+# Author: Roger Bivand [cre, aut], Colin Rundel [aut], Edzer Pebesma [ctb], Rainer Stuetz [ctb], Karl Ove Hufthammer [ctb]
+# Maintainer: Roger Bivand <Roger.Bivand@nhh.no>
+# Repository: CRAN
+# Date/Publication: 2017-04-06 06:54:21 UTC
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
