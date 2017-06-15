@@ -10,26 +10,26 @@ source:
 requirements:
   build:
     - python
-    - gcc
-    - numpy ==1.11.3
-    - hdf5 ==1.8.17
-    - netcdf ==4.4.1.1
-    - libpng ==1.6.27
-    - libtiff ==4.0.6
-    - geotiff ==1.4.1
-    - jpeg ==8d
-    - zlib ==1.2.8
+    - gcc 5.4.0
+    - numpy 1.13.0
+    - hdf5 1.8.17
+    - netcdf 4.4.1.1
+    - libpng 1.6.27
+    - libtiff 4.0.6
+    - geotiff 1.4.1
+    - jpeg 8d
+    - zlib 1.2.8
   run:
     - python
-    - libgcc
-    - numpy ==1.11.3
-    - hdf5 ==1.8.17
-    - netcdf ==4.4.1.1
-    - libpng ==1.6.27
-    - libtiff ==4.0.6
-    - geotiff ==1.4.1
-    - jpeg ==8d
-    - zlib ==1.2.8
+    - libgcc >=5.4.0
+    - numpy 1.13.0
+    - hdf5 1.8.17
+    - netcdf 4.4.1.1
+    - libpng 1.6.27
+    - libtiff 4.0.6
+    - geotiff 1.4.1
+    - jpeg 8d
+    - zlib 1.2.8
 
 test:
   files:
