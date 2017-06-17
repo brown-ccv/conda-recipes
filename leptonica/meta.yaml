@@ -1,30 +1,29 @@
 package:
   name: leptonica
-  version: 1.74.1
+  version: 1.74.4
 
 source:
-  fn: leptonica-1.74.1.tar.gz
-  url: https://github.com/DanBloomberg/leptonica/archive/1.74.1.tar.gz
-  sha256: 6d40c7318b2b60fec5173475e8a34c1e08799d668a533d1756c9dfeb874a9d8a
+  git_url: https://github.com/DanBloomberg/leptonica
+  git_tag: 1.74.4
 
 requirements:
   build:
-    - gcc
+    - gcc 5.4.0
     - automake
     - libtool
     - pkg-config
-    - jpeg ==8d
-    - libpng ==1.6.27
-    - libtiff ==4.0.6
-    - openjpeg ==2.1.2
-    - zlib ==1.2.8
+    - jpeg 8d
+    - libpng 1.6.27
+    - libtiff 4.0.6
+    - openjpeg 2.1.2
+    - zlib 1.2.8
   run:
-    - libgcc
-    - jpeg ==8d
-    - libpng ==1.6.27
-    - libtiff ==4.0.6
-    - openjpeg ==2.1.2
-    - zlib ==1.2.8
+    - libgcc >=5.4.0
+    - jpeg 8d
+    - libpng 1.6.27
+    - libtiff 4.0.6
+    - openjpeg 2.1.2
+    - zlib 1.2.8
 
 test:
   commands:
