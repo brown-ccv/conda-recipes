@@ -1,22 +1,22 @@
 package:
   name: tesserocr
-  version: 2.1.3
+  version: 2.2.1
 
 source:
-  fn: tesserocr-2.1.3.tar.gz
-  url: https://github.com/sirfz/tesserocr/archive/v2.1.3.tar.gz
+  git_url: https://github.com/sirfz/tesserocr
+  git_tag: v2.2.1
 
 requirements:
   build:
     - python
     - setuptools
     - cython
-    - gcc
-    - tesseract ==3.05.00
+    - gcc 5.4.0
+    - tesseract 3.05.01
   run:
     - python
-    - libgcc
-    - tesseract ==3.05.00
+    - libgcc >=5.4.0
+    - tesseract 3.05.01
 
 test:
   imports:
