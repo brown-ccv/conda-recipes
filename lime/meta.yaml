@@ -1,0 +1,68 @@
+package:
+  name: lime
+  version: "0.1.1.21"
+
+source:
+  fn: lime-0.1.1.21.tar.gz
+  url: https://pypi.python.org/packages/38/d0/0fae7d66dd82b5994ee7ef7194cccec5d6d0d10303736d7b800e1d2ff068/lime-0.1.1.21.tar.gz
+  md5: 4e1ba353cf2a5ab446ec61a27ec7e05c
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+# build:
+  # noarch_python: True
+  # preserve_egg_dir: True
+  # entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - lime = lime:main
+    #
+    # Would create an entry point called lime that calls lime.main()
+
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - numpy 1.13.0
+    - scipy 0.19.0
+    - scikit-learn 0.18.1
+
+  run:
+    - python
+    - numpy 1.13.0
+    - scipy 0.19.0
+    - scikit-learn 0.18.1
+
+test:
+  # Python imports
+  imports:
+    - lime
+
+  # commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: http://github.com/marcotcr/lime
+  license: BSD
+  summary: 'Local Interpretable Model-Agnostic Explanations for machine learning classifiers'
+  license_family: BSD
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
