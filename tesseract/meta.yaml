@@ -1,26 +1,29 @@
 package:
   name: tesseract
-  version: 3.05.00
+  version: 3.05.01
 
 source:
-  fn: tesseract-3.05.00.tar.gz
-  url: https://github.com/tesseract-ocr/tesseract/archive/3.05.00.tar.gz
-  sha256: 3fe83e06d0f73b39f6e92ed9fc7ccba3ef734877b76aa5ddaaa778fac095d996
+  git_url: https://github.com/tesseract-ocr/tesseract
+  git_tag: 3.05.01
 
 requirements:
   build:
-    - gcc
+    - gcc 5.4.0
     - automake
+    - curl
     - libtool
     - pkg-config
-    - leptonica ==1.74.1
+    - leptonica 1.74.1
   run:
-    - libgcc
-    - leptonica ==1.74.1
+    - libgcc >=5.4.0
+    - leptonica 1.74.1
 
 test:
+  files:
+    - test.png
   commands:
     - tesseract -v
+    - tesseract test.png stdout | grep "^joy of data$"
 
 about:
   home: https://github.com/tesseract-ocr/tesseract
