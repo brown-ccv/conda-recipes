@@ -1,24 +1,25 @@
 package:
-  name: gslab_tools
-  version: "3.0.5"
+  name: setuptools_scm
+  version: "1.15.6"
 
 source:
-  git_url: https://github.com/gslab-econ/gslab_python
-  git_tag: 3.0.5
+  fn: setuptools_scm-1.15.6.tar.gz
+  url: https://pypi.python.org/packages/03/6d/aafdd01edd227ee879b691455bf19895091872af7e48192bea1758c82032/setuptools_scm-1.15.6.tar.gz
+  md5: f17493d53f0d842bb0152f214775640b
 #  patches:
    # List any patch files here
    # - fix.patch
 
-# build:
+build:
   # noarch_python: True
-  # preserve_egg_dir: True
+  preserve_egg_dir: True
   # entry_points:
     # Put any entry points (scripts to be generated automatically) here. The
     # syntax is module:function.  For example
     #
-    # - gslab_tools = gslab_tools:main
+    # - setuptools_scm = setuptools_scm:main
     #
-    # Would create an entry point called gslab_tools that calls gslab_tools.main()
+    # Would create an entry point called setuptools_scm that calls setuptools_scm.main()
 
 
   # If this is a new build for the same version, increment the build
@@ -29,24 +30,15 @@ requirements:
   build:
     - python
     - setuptools
-    - requests ==2.12.4
-    - coverage ==4.4.1
-    - pytest-runner ==2.11.1
 
   run:
     - python
-    - requests ==2.12.4
-    - coverage ==4.4.1
-    - pytest-runner ==2.11.1
+    - setuptools
 
 test:
   # Python imports
   imports:
-    - gencat
-    - gslab_fill
-    - gslab_make
-    - gslab_make.private
-    - gslab_scons
+    - setuptools_scm
 
   # commands:
     # You can put test commands to be run here.  Use this to test that the
@@ -61,9 +53,9 @@ test:
     # - nose
 
 about:
-  home: https://github.com/gslab-econ/gslab_python
-  license: MIT
-  summary: 'Python tools for GSLab'
+  home: https://github.com/pypa/setuptools_scm/
+  license: MIT License
+  summary: 'the blessed package to manage your versions by scm tags'
   license_family: MIT
 
 # See
