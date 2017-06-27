@@ -1,0 +1,42 @@
+{%set name = "sklearn-contrib-lightning" %}
+{%set version = "0.4.0" %}
+{%set hash_type = "md5" %}
+{%set hash_val = "7324683380bb8a5d9257817bd549728d" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  {{ hash_type }}: {{ hash_val }}
+
+build:
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - cython
+    - gcc 5.4.0
+    - numpy 1.13.0
+    - scikit-learn 0.18.1
+  run:
+    - python
+    - libgcc >=5.4.0
+    - numpy 1.13.0
+    - scikit-learn 0.18.1
+
+test:
+  requires:
+    - nose
+  imports:
+    - lightning
+
+about:
+  home: http://contrib.scikit-learn.org/lightning/
+  license: BSD 3-Clause
+  summary: lightning is a library for large-scale linear classification, regression and ranking in Python.
