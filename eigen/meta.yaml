@@ -1,0 +1,20 @@
+package:
+  name: eigen
+  version: 3.3.4
+
+source:
+  fn: eigen-3.3.4.tar.bz2
+  url: http://bitbucket.org/eigen/eigen/get/3.3.4.tar.bz2
+  sha1: e52d7d7a8c81f5ee0699e63ae3b78fe8214380a5
+
+requirements:
+  build:
+    - gcc 5.4.0
+    - cmake
+  run:
+    - libgcc >=5.4.0
+
+about:
+  home: http://eigen.tuxfamily.org
+  summary: "C++ template library for linear algebra"
+  license: MPLv2
