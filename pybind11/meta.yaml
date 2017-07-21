@@ -1,0 +1,27 @@
+package:
+  name: pybind11
+  version: "2.1.1"
+
+source:
+  fn: pybind11-2.1.1.tar.gz
+  url: https://pypi.python.org/packages/db/5d/2b064d0dd2ac7ccb723cda6ef82e5364b0ae0d299dc6532aa11680f001f9/pybind11-2.1.1.tar.gz
+  md5: 67752f9da3ce822b5bd6c55b41b89d3e
+
+requirements:
+  build:
+    - python
+    - setuptools
+
+  run:
+    - python
+
+test:
+  # Python imports
+  imports:
+    - pybind11
+
+about:
+  home: https://github.com/wjakob/pybind11
+  license: BSD License
+  summary: 'Seamless operability between C++11 and Python'
+  license_family: BSD
