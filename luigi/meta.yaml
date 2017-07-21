@@ -36,13 +36,13 @@ requirements:
   build:
     - python
     - setuptools
-    - tornado ==4.02
+    - tornado ==4.4.2
     - python-daemon ==2.1.2
     - docutils ==0.13.1
 
   run:
     - python
-    - tornado ==4.02
+    - tornado ==4.4.2
     - python-daemon ==2.1.2
 
 test:
