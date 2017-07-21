@@ -1,0 +1,67 @@
+package:
+  name: pyquery
+  version: "1.2.10"
+
+source:
+  fn: pyquery-1.2.10.tar.gz
+  url: https://files.pythonhosted.org/packages/a8/85/2cc9fef69eafe2f65e090690b5c46bbb0a45e81bf1e2096bc0ace7f46b6a/pyquery-1.2.10.tar.gz
+  sha256: caca7391f6de91be647ad4477c895269c3725b35322232a18478da2b12e9960c
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # noarch_python: True
+  preserve_egg_dir: True
+  # entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - pyquery = pyquery:main
+    #
+    # Would create an entry point called pyquery that calls pyquery.main()
+
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - lxml 3.5.0
+    - cssselect 1.0.1
+
+  run:
+    - python
+    - setuptools
+    - lxml 3.5.0
+    - cssselect 1.0.1
+
+test:
+  # Python imports
+  imports:
+    - pyquery
+
+  # commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: https://github.com/gawel/pyquery
+  license: BSD
+  summary: 'A jquery-like library for python'
+  license_family: BSD
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
