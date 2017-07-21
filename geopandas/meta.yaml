@@ -31,7 +31,7 @@ requirements:
     - python
     - setuptools
     - pandas 0.20.2
-    - shapely 1.5.13
+    - shapely 1.5.16
     - fiona 1.7.3
     - descartes 1.1.0
     - pyproj 1.9.5.1
