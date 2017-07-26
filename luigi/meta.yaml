@@ -1,0 +1,82 @@
+package:
+  name: luigi
+  version: "2.6.2"
+
+source:
+  fn: luigi-2.6.2.tar.gz
+  url: https://pypi.python.org/packages/ba/02/875fc467eb435a26de29ca654273dee24425696416de1d701971d3e04a91/luigi-2.6.2.tar.gz
+  md5: 3db3d2c6555c6ebcc621edbf09770681
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # noarch_python: True
+  # preserve_egg_dir: True
+  entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - luigi = luigi:main
+    #
+    # Would create an entry point called luigi that calls luigi.main()
+
+    - luigi = luigi.cmdline:luigi_run
+    - luigid = luigi.cmdline:luigid
+    - luigi-grep = luigi.tools.luigi_grep:main
+    - luigi-deps = luigi.tools.deps:main
+    - luigi-deps-tree = luigi.tools.deps_tree:main
+    - luigi-migrate = luigi.tools.migrate:main
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - tornado ==4.4.2
+    - python-daemon ==2.1.2
+    - docutils ==0.13.1
+
+  run:
+    - python
+    - tornado ==4.4.2
+    - python-daemon ==2.1.2
+
+test:
+  # Python imports
+  imports:
+    - luigi
+    - luigi.contrib
+    - luigi.contrib.hdfs
+    - luigi.tools
+
+  commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+    - luigi --help
+    - luigid --help
+    - luigi-grep --help
+    - luigi-deps --help
+    - luigi-deps-tree --help
+    - luigi-migrate --help
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: https://github.com/spotify/luigi
+  license: Apache Software License
+  summary: 'Workflow mgmgt + task scheduling + dependency resolution'
+  license_family: APACHE
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml

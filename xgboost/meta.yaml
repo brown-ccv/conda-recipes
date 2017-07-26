@@ -1,29 +1,25 @@
 package:
   name: xgboost
-  version: 0.6
+  version: 0.60
 
 source:
-  fn: xgboost-0.6.zip
-  url: https://github.com/dmlc/xgboost/archive/b4d97d3cb81f72f8967ecd6c4b1e2412e0813239.zip
-  sha256: cce1c7c4695944d5049d361f18c9bce1276c1288ac1d9bf229b5e8e35390e637
-  patches:
-    - osx-Makefile.patch # [osx]
+  git_url: https://github.com/dmlc/xgboost
+  git_tag: v0.60
 
 requirements:
   build:
     - python
     - setuptools
-    - curl
-    - gcc
-    - numpy ==1.11.3
-    - scipy ==0.18.1
+    - gcc 5.4.0
+    - numpy 1.13.0
+    - scipy 0.19.0
 
   run:
     - python
     - setuptools
-    - libgcc
-    - numpy ==1.11.3
-    - scipy ==0.18.1
+    - libgcc >=5.4.0
+    - numpy 1.13.0
+    - scipy 0.19.0
 
 test:
   # Python imports
