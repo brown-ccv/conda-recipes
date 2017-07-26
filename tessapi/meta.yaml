@@ -1,0 +1,29 @@
+package:
+  name: tessapi
+  version: 0.0.1
+
+source:
+  git_url: https://github.com/brown-data-science/tessapi
+  git_tag: v0.0.1
+
+requirements:
+  build:
+    - python
+    - gcc 5.4.0
+    - eigen 3.3.4
+    - pybind11 2.1.1
+    - tesseract 3.05.01
+  run:
+    - python
+    - libgcc >=5.4.0
+    - tesseract 3.05.01
+
+test:
+  imports:
+    - tessapi
+
+about:
+  home: https://github.com/brown-data-science/tessapi
+  summary: "python bindings to the C++ API for the Tesseract OCR engine"
+  license: BSD-like
+  license_file: LICENSE.txt
