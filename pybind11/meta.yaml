@@ -7,11 +7,12 @@ source:
   url: https://pypi.python.org/packages/db/5d/2b064d0dd2ac7ccb723cda6ef82e5364b0ae0d299dc6532aa11680f001f9/pybind11-2.1.1.tar.gz
   md5: 67752f9da3ce822b5bd6c55b41b89d3e
 
+build:
+  script: pip install --no-deps .
+
 requirements:
   build:
     - python
-    - setuptools
-
   run:
     - python
 
