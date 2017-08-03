@@ -1,0 +1,68 @@
+package:
+  name: usaddress
+  version: "0.5.10"
+
+source:
+  fn: usaddress-0.5.10.tar.gz
+  url: https://pypi.python.org/packages/89/59/6ae17a9718fdbf43e19f6d7ab89f0916cae489ccd766d1505d2ad802c4d6/usaddress-0.5.10.tar.gz
+  md5: 27965f4884050ec610301055958fe509
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+# build:
+  # noarch_python: True
+  # preserve_egg_dir: True
+  # entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - usaddress = usaddress:main
+    #
+    # Would create an entry point called usaddress that calls usaddress.main()
+
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - python-crfsuite ==0.9.2
+    - future ==0.16.0
+    - probableparsing ==0.0.1
+
+  run:
+    - python
+    - python-crfsuite ==0.9.2
+    - future ==0.16.0
+    - probableparsing ==0.0.1
+
+test:
+  # Python imports
+  imports:
+    - usaddress
+
+  # commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: https://github.com/datamade/usaddress
+  license: MIT License
+  summary: 'Parse US addresses using conditional random fields'
+  license_family: MIT
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
