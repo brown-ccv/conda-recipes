@@ -1,0 +1,70 @@
+package:
+  name: sqlacodegen
+  version: "1.1.6"
+
+source:
+  fn: sqlacodegen-1.1.6.tar.gz
+  url: https://pypi.python.org/packages/c6/88/7de326dc81fbfb2184c13d00b9c450951223a1d72d6e16f7087ba16d8c11/sqlacodegen-1.1.6.tar.gz
+  md5: 33673ad850398bb2d50c7f7f1707034c
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # noarch_python: True
+  # preserve_egg_dir: True
+  entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - sqlacodegen = sqlacodegen:main
+    #
+    # Would create an entry point called sqlacodegen that calls sqlacodegen.main()
+
+    - sqlacodegen=sqlacodegen.main:main
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - sqlalchemy ==1.1.5
+    - inflect ==0.2.5
+
+  run:
+    - python
+    - sqlalchemy ==1.1.5
+    - inflect ==0.2.5
+
+test:
+  # Python imports
+  imports:
+    - sqlacodegen
+
+  commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+    - sqlacodegen --help
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  requires:
+    - pytest
+    - pytest-pep8
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: http://pypi.python.org/pypi/sqlacodegen/
+  license: MIT License
+  summary: 'Automatic model code generator for SQLAlchemy'
+  license_family: MIT
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
