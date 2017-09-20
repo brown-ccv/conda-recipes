@@ -1,0 +1,88 @@
+{% set version = '2.5.0' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-randomforestsrc
+  version: {{ version|replace("-", "_") }}
+
+source:
+  fn: randomForestSRC_{{ version }}.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/randomForestSRC_{{ version }}.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/randomForestSRC/randomForestSRC_{{ version }}.tar.gz
+
+
+  sha256: d9b18fbc3ffa994eb9f6879fd81ac121e9525522e2814f67c60f76c63f91074a
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: glmnet, survival, pec, prodlim, mlbench
+requirements:
+  build:
+    - r-base
+    - posix                # [win]
+    - {{native}}toolchain  # [win]
+    - gcc                  # [not win]
+
+  run:
+    - r-base
+    - {{native}}gcc-libs   # [win]
+    - libgcc               # [not win]
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('randomForestSRC')"  # [not win]
+    - "\"%R%\" -e \"library('randomForestSRC')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: http://web.ccs.miami.edu/~hishwaran http://www.kogalur.com https://github.com/kogalur/randomForestSRC
+  license: GPL (>= 3)
+  summary: A unified treatment of Breiman's random forests for survival, regression and classification
+    problems based on Ishwaran and Kogalur's random survival forests (RSF) package.  Now
+    extended to include multivariate and unsupervised forests.  Also includes quantile
+    regression forests for univariate and multivariate training/testing settings.  The
+    package runs in both serial and parallel (OpenMP) modes.
+  license_family: GPL3
+
+# The original CRAN metadata for this package was:
+
+# Package: randomForestSRC
+# Version: 2.5.0
+# Date: 2017-08-06
+# Title: Random Forests for Survival, Regression, and Classification (RF-SRC)
+# Author: Hemant Ishwaran <hemant.ishwaran@gmail.com>, Udaya B. Kogalur <ubk@kogalur.com>
+# Maintainer: Udaya B. Kogalur <ubk@kogalur.com>
+# BugReports: https://github.com/kogalur/randomForestSRC/issues/new
+# Depends: R (>= 3.1.0),
+# Imports: parallel
+# Suggests: glmnet, survival, pec, prodlim, mlbench
+# Description: A unified treatment of Breiman's random forests for survival, regression and classification problems based on Ishwaran and Kogalur's random survival forests (RSF) package.  Now extended to include multivariate and unsupervised forests.  Also includes quantile regression forests for univariate and multivariate training/testing settings.  The package runs in both serial and parallel (OpenMP) modes.
+# License: GPL (>= 3)
+# URL: http://web.ccs.miami.edu/~hishwaran http://www.kogalur.com https://github.com/kogalur/randomForestSRC
+# NeedsCompilation: yes
+# Packaged: 2017-08-07 01:22:35 UTC; kogalur
+# Repository: CRAN
+# Date/Publication: 2017-08-07 06:02:13 UTC
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
