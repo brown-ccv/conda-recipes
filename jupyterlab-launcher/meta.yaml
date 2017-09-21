@@ -1,0 +1,40 @@
+# Recipe from: https://github.com/conda-forge/jupyterlab_launcher-feedstock
+
+{% set version = "0.4.0" %}
+
+package:
+  name: jupyterlab_launcher
+  version: {{ version }}
+
+source:
+  fn: jupyterlab_launcher-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/j/jupyterlab_launcher/jupyterlab_launcher-{{ version }}.tar.gz
+  sha256: aa29ad90926309ba7d6d711a2e34509041098102d2f061030428cc70f13b8317
+
+build:
+    number: 0
+    script: python setup.py install --single-version-externally-managed --record record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+
+  run:
+    - python
+    - notebook
+
+test:
+  imports:
+    - jupyterlab_launcher
+
+about:
+  home: http://github.com/jupyterlab/jupyterlab_launcher
+  license: BSD 3-Clause
+  license_file: LICENSE
+  summary: A Launcher for JupyterLab based applications.
+
+extra:
+  recipe-maintainers:
+    - jasongrout
+    - blink1073
