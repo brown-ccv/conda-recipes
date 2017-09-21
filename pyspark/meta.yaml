@@ -1,0 +1,45 @@
+package:
+  name: pyspark
+  version: 2.2.0
+
+source:
+  fn: pyspark-2.2.0.tar.gz
+  url: https://www.apache.org/dist/spark/spark-2.2.0/pyspark-2.2.0.tar.gz
+  sha1: bd05517fd50eeb0e506f317f165dc6a3a20c0599
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python
+    - pip
+    - pypandoc
+    - numpy ==1.13.0
+    - pandas ==0.20.2
+    - py4j ==0.10.6
+
+  run:
+    - python
+    - numpy ==1.13.0
+    - pandas ==0.20.2
+    - py4j ==0.10.6
+
+test:
+  imports:
+    - pyspark
+    - pyspark.ml
+    - pyspark.ml.linalg
+    - pyspark.ml.param
+    - pyspark.mllib
+    - pyspark.mllib.linalg
+    - pyspark.mllib.stat
+    - pyspark.sql
+    - pyspark.streaming
+
+about:
+  home: http://spark.apache.org/
+  license: Apache 2.0
+  license_file: LICENSE
+  summary: Apache Spark is a fast and general engine for large-scale data processing.
+
