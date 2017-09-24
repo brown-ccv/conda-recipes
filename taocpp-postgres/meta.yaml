@@ -1,0 +1,21 @@
+package:
+  name: taocpp-postgres
+  version: 0.0.0
+
+source:
+  git_url: https://github.com/taocpp/postgres
+  git_commit: 7b08d6743c5ae341969e880e012c793cb2522dc4
+
+requirements:
+  build:
+    - gcc ==5.4.0
+    - postgresql ==9.6.5
+  run:
+    - libgcc >=5.4.0
+    - postgresql ==9.6.5
+
+about:
+  home: https://github.com/taocpp/postgres
+  summary: "C++11 client library for PostgreSQL"
+  license: MIT
+  license_file: LICENSE
