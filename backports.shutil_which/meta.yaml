@@ -1,0 +1,40 @@
+{% set name = "backports.shutil_which" %}
+{% set version = "3.5.1" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "dd439a7b02433e47968c25a45a76704201c4ef2167deb49830281c379b1a4a9b" %}
+
+package:
+  name: '{{ name|lower }}'
+  version: '{{ version }}'
+
+source:
+  fn: '{{ name }}-{{ version }}.tar.gz'
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  '{{ hash_type }}': '{{ hash_value }}'
+
+build:
+  number: 0
+  script: 'python setup.py install '
+
+requirements:
+  build:
+    - python
+  run:
+    - python
+
+test:
+  imports:
+    - backports
+
+about:
+  home: https://github.com/minrk/backports.shutil_which
+  license: Python Software Foundation License
+  license_family: OTHER
+  license_file: ''
+  summary: Backport of shutil.which from Python 3.3
+  description: "Use Python 3 shutil.which on Python 2::\n\n    try:\n        from shutil import which\n    except ImportError:\n        from backports.shutil_which import which"
+  doc_url: ''
+  dev_url: ''
+
+extra:
+  recipe-maintainers: ''
