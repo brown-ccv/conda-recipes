@@ -1,0 +1,19 @@
+package:
+  name: kmc
+  version: "3.0.0"
+
+source:
+  fn: kmc-3.0.0.tar.gz
+  url: https://github.com/refresh-bio/KMC/releases/download/v3.0.0/KMC3.linux.tar.gz
+  sha1: 29a2a508990d823a4799f43c395ba9603d1591c4
+
+test:
+  commands:
+    - kmc | grep 3.0.0
+    - kmc_dump | grep 3.0.0
+    - kmc_tools | grep 3.0.0
+
+about:
+  home: https://github.com/refresh-bio/KMC
+  license: GPLv2
+  summary: Fast and frugal disk based k-mer counter
