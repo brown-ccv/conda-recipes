@@ -1,0 +1,29 @@
+package:
+  name: fastaq
+  version: 3.15.0
+
+source:
+  git_url: https://github.com/sanger-pathogens/Fastaq
+  git_tag: v3.15.0
+
+build:
+  script: pip install --no-deps .
+
+requirements:
+  build:
+    - python
+    - pip
+  run:
+    - python
+
+test:
+  imports:
+    - pyfastaq
+  commands:
+    - fastaq version
+
+about:
+  home: https://github.com/sanger-pathogens/Fastaq
+  license: GPLv3
+  summary: Python3 scripts to manipulate FASTA and FASTQ files
+  license_file: LICENSE
