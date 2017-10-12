@@ -10,16 +10,16 @@ requirements:
   build:
     - python
     - setuptools
-    - gcc 5.4.0
-    - numpy 1.13.0
-    - scipy 0.19.0
-
+    - maven >=3.5.0
+    - gcc ==5.4.0
+    - numpy ==1.13.0
+    - scipy ==0.19.0
   run:
     - python
     - setuptools
     - libgcc >=5.4.0
-    - numpy 1.13.0
-    - scipy 0.19.0
+    - numpy ==1.13.0
+    - scipy ==0.19.0
 
 test:
   # Python imports
@@ -28,5 +28,6 @@ test:
 
 about:
   home: https://github.com/dmlc/xgboost
-  license: Apache
+  license: Apache 2.0
+  license_file: LICENSE
   summary: eXtreme Gradient Boosting

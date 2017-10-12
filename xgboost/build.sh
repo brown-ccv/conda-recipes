@@ -7,4 +7,4 @@ export CXX=g++
 make
 
 cd python-package
-$PYTHON setup.py install
+pip install --no-deps .
