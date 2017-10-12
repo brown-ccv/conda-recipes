@@ -1,0 +1,22 @@
+package:
+  name: trimmomatic
+  version: 0.36
+
+source:
+  fn: Trimmomatic-0.36.zip
+  url: http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.36.zip
+  sha1: 6b2c766544a4d043429da68b957c074e2caf77da
+
+requirements:
+  run:
+    - openjdk
+
+test:
+  commands:
+    - trimmomatic -version
+
+about:
+  home: http://www.usadellab.org/cms/?page=trimmomatic
+  license: GPLv3
+  summary: A flexible read trimming tool for Illumina NGS data
+  license_file: LICENSE
