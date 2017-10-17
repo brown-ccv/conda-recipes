@@ -1,0 +1,21 @@
+package:
+  name: picard
+  version: 2.13.2
+
+source:
+  fn: picard.jar
+  url: https://github.com/broadinstitute/picard/releases/download/2.13.2/picard.jar
+  sha1: f8a2d07a082957ba8e7fb8f73d5d301ff08eb7f3
+
+requirements:
+  run:
+    - openjdk
+
+test:
+  commands:
+    - "picard 2>&1 | grep 'USAGE: PicardCommandLine'"
+
+about:
+  home: "http://broadinstitute.github.io/picard/"
+  license: MIT
+  summary: "Java tools for working with NGS data in the BAM format"
