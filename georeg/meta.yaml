@@ -1,0 +1,44 @@
+package:
+
+  name: georeg
+  version: 0.0.1
+
+source:
+  git_url: https://github.com/brown-data-science/georeg
+  git_tag: v0.0.1
+
+build:
+  script: pip install --no-deps .
+
+requirements:
+  build:
+    - python
+    - opencv 3.1.0
+    - fuzzywuzzy 0.15.1
+    - geopy 1.11.0
+    - nltk 3.2.4
+    - python-levenshtein 0.12.0
+    - scikit-learn 0.18.2
+    - tessapi 0.0.1
+  run:
+    - python
+    - opencv 3.1.0
+    - fuzzywuzzy 0.15.1
+    - geopy 1.11.0
+    - nltk 3.2.4
+    - python-levenshtein 0.12.0
+    - scikit-learn 0.18.2
+    - tessapi 0.0.1
+
+test:
+  source_files:
+    - test/img.png
+  commands:
+    - georeg -h
+    - georeg --year 1979 --state RI --images test/img.png --outdir . --pre-processed
+
+about:
+  home: https://github.com/brown-data-science/georeg
+  summary: "extracts addresses and other business information from historical registries"
+  license: BSD-like
+  license_file: LICENSE.txt
