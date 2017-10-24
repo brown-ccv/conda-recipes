@@ -1,0 +1,31 @@
+{% set version = "0.6.12" %}
+
+package:
+  name: libcroco
+  version: {{ version }}
+
+source:
+  fn: libcroco-{{ version }}.tar.xz
+  url: https://download.gnome.org/sources/libcroco/0.6/libcroco-0.6.12.tar.xz
+  sha256: ddc4b5546c9fb4280a5017e2707fbd4839034ed1aba5b7d4372212f34f84f860
+
+requirements:
+  build:
+    - gcc ==5.4.0 # [linux]
+    - pkg-config
+    - glib ==2.53.6
+    - libxml2 ==2.9.4
+  run:
+    - libgcc >=5.4.0 # [linux]
+    - glib ==2.53.6
+    - libxml2 ==2.9.4
+
+test:
+  commands:
+    - csslint-0.6 -v
+
+about:
+  home: https://github.com/GNOME/libcroco
+  license: LGPLv2+
+  license_file: COPYING
+  summary: standalone css2 parsing and manipulation library
