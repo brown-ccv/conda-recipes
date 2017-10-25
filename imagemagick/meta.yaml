@@ -1,0 +1,41 @@
+package:
+  name: imagemagick
+  version: "7.0.5.5"
+
+source:
+  fn: ImageMagick-7.0.5_5.zip
+  url: https://github.com/ImageMagick/ImageMagick/archive/7.0.5-5.zip
+  sha256: c019a7777c028a345a0946959e1b4a216083034b95aae2306615300e55733816
+
+requirements:
+  build:
+    - gcc ==5.4.0 # [linux]
+    - autoconf
+    - automake
+    - bzip2 ==1.0.6
+    - fontconfig ==2.12.4
+    - freetype ==2.8
+    - jpeg ==8d
+    - libpng ==1.6.32
+    - libtiff ==4.0.6
+    - pango ==1.40.11
+    - zlib ==1.2.11
+  run:
+    - libgcc >=5.4.0 # [linux]
+    - bzip2 ==1.0.6
+    - fontconfig ==2.12.4
+    - freetype ==2.8
+    - jpeg ==8d
+    - libpng ==1.6.32
+    - libtiff ==4.0.6
+    - pango ==1.40.11
+    - zlib ==1.2.11
+
+test:
+  commands:
+    - convert -version
+
+about:
+  home: http://www.imagemagick.org/
+  summary: software suite to create, edit, compose, or convert bitmap images
+  license: ImageMagick
