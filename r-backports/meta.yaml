@@ -1,0 +1,86 @@
+{% set version = '1.1.1' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-backports
+  version: {{ version|replace("-", "_") }}
+
+source:
+  fn: backports_{{ version }}.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/backports_{{ version }}.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/backports/backports_{{ version }}.tar.gz
+
+
+  sha256: 494e81a4829339c8f1cc3e015daa807e9138b8e21b929965fc7c00b1abbe8897
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+
+requirements:
+  build:
+    - gcc ==5.4.0
+    - r-base ==3.3.2
+
+  run:
+    - libgcc >=5.4.0
+    - r-base ==3.3.2
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('backports')"  # [not win]
+    - "\"%R%\" -e \"library('backports')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://github.com/mllg/backports
+  license: GPL-2
+  summary: Implementations of functions which have been introduced in R since version 3.0.0.
+    The backports are conditionally exported which results in R resolving the function
+    names to the version shipped with R (if available) and uses the implemented backports
+    as fallback. This way package developers can make use of the new functions without
+    worrying about the minimum required R version.
+  license_family: GPL2
+
+# The original CRAN metadata for this package was:
+
+# Package: backports
+# Type: Package
+# Title: Reimplementations of Functions Introduced Since R-3.0.0
+# Version: 1.1.1
+# Author: Michel Lang <michellang@gmail.com>
+# Maintainer: Michel Lang <michellang@gmail.com>
+# Description: Implementations of functions which have been introduced in R since version 3.0.0. The backports are conditionally exported which results in R resolving the function names to the version shipped with R (if available) and uses the implemented backports as fallback. This way package developers can make use of the new functions without worrying about the minimum required R version.
+# URL: https://github.com/mllg/backports
+# BugReports: https://github.com/mllg/backports/issues
+# License: GPL-2
+# NeedsCompilation: yes
+# ByteCompile: yes
+# Depends: R (>= 3.0.0)
+# Imports: utils
+# RoxygenNote: 6.0.1
+# Packaged: 2017-09-25 20:20:29 UTC; michel
+# Repository: CRAN
+# Date/Publication: 2017-09-25 22:09:46 UTC
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
