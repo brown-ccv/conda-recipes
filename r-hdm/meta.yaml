@@ -1,0 +1,100 @@
+{% set version = '0.2.0' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-hdm
+  version: {{ version|replace("-", "_") }}
+
+source:
+  fn: hdm_{{ version }}.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/hdm_{{ version }}.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/hdm/hdm_{{ version }}.tar.gz
+
+
+  sha256: 14dd57d18e2eb2be79f4c47f9af981045306f8914f57d679e7360346c81aed07
+
+build:
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: testthat, knitr, xtable
+requirements:
+  build:
+    - r-base ==3.3.2
+    - r-formula ==1.2_1
+    - r-mass ==7.3_45
+    - r-checkmate ==1.8.5
+    - r-ggplot2 ==2.2.0
+    - r-glmnet ==2.0_5
+
+  run:
+    - r-base ==3.3.2
+    - r-formula ==1.2_1
+    - r-mass ==7.3_45
+    - r-checkmate ==1.8.5
+    - r-ggplot2 ==2.2.0
+    - r-glmnet ==2.0_5
+
+test:
+  commands:
+
+    # You can put additional test commands to be run here.
+    - $R -e "library('hdm')"  # [not win]
+    - "\"%R%\" -e \"library('hdm')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://CRAN.R-project.org/package=hdm
+  license: GPL-3
+  summary: Implementation of selected high-dimensional statistical and econometric methods for
+    estimation and inference. Efficient estimators and uniformly valid confidence intervals
+    for various low-dimensional causal/ structural parameters are provided which appear
+    in high-dimensional approximately sparse models. Including functions for fitting
+    heteroscedastic robust Lasso regressions with non-Gaussian errors and for instrumental
+    variable (IV) and treatment effect estimation in a high-dimensional setting. Moreover,
+    the methods enable valid post-selection inference and rely on a theoretically grounded,
+    data-driven choice of the penalty.
+  license_family: GPL3
+
+# The original CRAN metadata for this package was:
+
+# Package: hdm
+# Type: Package
+# Title: High-Dimensional Metrics
+# Version: 0.2.0
+# Date: 2016-06-14
+# Authors@R: c(person("Martin", "Spindler", email="spindler@mea.mpisoc.mpg.de", role=c("cre", "aut")), person("Victor", "Chernozhukov", role="aut"), person("Christian", "Hansen", role="aut"))
+# Depends: R (>= 3.0.0)
+# Description: Implementation of selected high-dimensional statistical and econometric methods for estimation and inference. Efficient estimators and uniformly valid confidence intervals for various low-dimensional causal/ structural parameters are provided which appear in high-dimensional approximately sparse models. Including functions for fitting heteroscedastic robust Lasso regressions with non-Gaussian errors and for instrumental variable (IV) and treatment effect estimation in a high-dimensional setting. Moreover, the methods enable valid post-selection inference and rely on a theoretically grounded, data-driven choice of the penalty.
+# License: GPL-3
+# LazyData: TRUE
+# Imports: MASS, glmnet, ggplot2, checkmate, Formula, methods
+# Suggests: testthat, knitr, xtable
+# VignetteBuilder: knitr
+# RoxygenNote: 5.0.1
+# Author: Martin Spindler [cre, aut], Victor Chernozhukov [aut], Christian Hansen [aut]
+# Maintainer: Martin Spindler <spindler@mea.mpisoc.mpg.de>
+# Repository: CRAN
+# Repository/R-Forge/Project: hdm
+# Repository/R-Forge/Revision: 107
+# Repository/R-Forge/DateTimeStamp: 2016-06-17 17:57:22
+# Date/Publication: 2016-06-17 21:46:27
+# NeedsCompilation: no
+# Packaged: 2016-06-17 18:26:07 UTC; rforge
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
