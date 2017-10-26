@@ -1,0 +1,91 @@
+{% set version = '1.8.5' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-checkmate
+  version: {{ version|replace("-", "_") }}
+
+source:
+  fn: checkmate_{{ version }}.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/checkmate_{{ version }}.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/checkmate/checkmate_{{ version }}.tar.gz
+
+
+  sha256: e94d2a3971908ce2a8252a9320ae7e030e0364b0ecd5385ab98e600aca7cd1e0
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: R6, bit, fastmatch, data.table (>= 1.9.8), devtools, ggplot2, knitr, magrittr, microbenchmark, rmarkdown, testthat (>= 0.11.0), tibble
+requirements:
+  build:
+    - gcc ==5.4.0
+    - r-base ==3.3.2
+    - r-backports ==1.1.1
+
+  run:
+    - libgcc >=5.4.0
+    - r-base ==3.3.2
+    - r-backports ==1.1.1
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('checkmate')"  # [not win]
+    - "\"%R%\" -e \"library('checkmate')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://github.com/mllg/checkmate
+  license: BSD_3_clause + file LICENSE
+  summary: Tests and assertions to perform frequent argument checks. A substantial part of the
+    package was written in C to minimize any worries about execution time overhead.
+  license_family: BSD
+
+# The original CRAN metadata for this package was:
+
+# Package: checkmate
+# Type: Package
+# Title: Fast and Versatile Argument Checks
+# Description: Tests and assertions to perform frequent argument checks. A substantial part of the package was written in C to minimize any worries about execution time overhead.
+# Version: 1.8.5
+# Authors@R: c( person("Michel", "Lang", NULL, "michellang@gmail.com", role = c("cre", "aut")), person("Bernd", "Bischl", NULL, "bernd_bischl@gmx.de", role = "ctb") )
+# URL: https://github.com/mllg/checkmate
+# URLNote: https://github.com/mllg/checkmate
+# BugReports: https://github.com/mllg/checkmate/issues
+# NeedsCompilation: yes
+# ByteCompile: yes
+# Encoding: UTF-8
+# Depends: R (>= 3.0.0)
+# Imports: backports (>= 1.1.0), utils
+# Suggests: R6, bit, fastmatch, data.table (>= 1.9.8), devtools, ggplot2, knitr, magrittr, microbenchmark, rmarkdown, testthat (>= 0.11.0), tibble
+# License: BSD_3_clause + file LICENSE
+# VignetteBuilder: knitr
+# RoxygenNote: 6.0.1
+# Collate: 'AssertCollection.R' 'allMissing.R' 'anyInfinite.R' 'anyMissing.R' 'anyNaN.R' 'asInteger.R' 'assert.R' 'helper.R' 'makeExpectation.R' 'makeTest.R' 'makeAssertion.R' 'checkAccess.R' 'checkArray.R' 'checkAtomic.R' 'checkAtomicVector.R' 'checkBit.R' 'checkCharacter.R' 'checkChoice.R' 'checkClass.R' 'checkComplex.R' 'checkCount.R' 'checkDataFrame.R' 'checkDataTable.R' 'checkDate.R' 'checkDirectoryExists.R' 'checkEnvironment.R' 'checkFALSE.R' 'checkFactor.R' 'checkFileExists.R' 'checkFlag.R' 'checkFunction.R' 'checkInt.R' 'checkInteger.R' 'checkIntegerish.R' 'checkList.R' 'checkLogical.R' 'checkMatrix.R' 'checkNamed.R' 'checkNames.R' 'checkNull.R' 'checkNumber.R' 'checkNumeric.R' 'checkOS.R' 'checkPOSIXct.R' 'checkPathForOutput.R' 'checkR6.R' 'checkScalar.R' 'checkScalarNA.R' 'checkSetEqual.R' 'checkString.R' 'checkSubset.R' 'checkTRUE.R' 'checkTibble.R' 'checkVector.R' 'coalesce.R' 'isIntegerish.R' 'matchArg.R' 'qassert.R' 'qassertr.R' 'vname.R' 'wfwl.R' 'zzz.R'
+# Packaged: 2017-10-24 12:50:38 UTC; lang
+# Author: Michel Lang [cre, aut], Bernd Bischl [ctb]
+# Maintainer: Michel Lang <michellang@gmail.com>
+# Repository: CRAN
+# Date/Publication: 2017-10-24 13:28:31 UTC
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
