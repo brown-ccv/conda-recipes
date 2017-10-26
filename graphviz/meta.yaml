@@ -1,0 +1,55 @@
+{% set version = "2.40.1" %}
+
+package:
+  name: graphviz
+  version: {{ version }}
+
+source:
+  fn:  graphviz-{{ version }}.tar.gz
+  url: http://www.graphviz.org/pub/graphviz/stable/SOURCES/graphviz-{{ version }}.tar.gz
+  sha256: ca5218fade0204d59947126c38439f432853543b0818d9d728c589dfe7f3a421
+
+requirements:
+  build:
+    - gcc ==5.4.0 # [linux]
+    - pkg-config
+    - cairo ==1.14.10
+    - expat ==2.2.4
+    - libpng ==1.6.32
+    - librsvg ==2.40.19
+    - libtiff ==4.0.6
+    - freetype ==2.8
+    - jpeg ==8d
+    - pango ==1.40.11
+    - zlib ==1.2.11
+  run:
+    - libgcc >=5.4.0 # [linux]
+    - cairo ==1.14.10
+    - expat ==2.2.4
+    - libpng ==1.6.32
+    - librsvg ==2.40.19
+    - libtiff ==4.0.6
+    - freetype ==2.8
+    - jpeg ==8d
+    - pango ==1.40.11
+    - zlib ==1.2.11
+
+test:
+  commands:
+    - dot -V
+    - neato -?  # [unix]
+  files:
+    - sample.dot
+
+about:
+  home: http://www.graphviz.org/
+  license: EPL v1.0
+  license_family: Other
+  license_file: COPYING
+  summary: Open Source graph visualization software.
+  description: |
+    Graphviz is an open source graph visualization software. Graph visualization
+    is a way of representing structural information as diagrams of abstract
+    graphs and networks.
+  doc_url: http://www.graphviz.org/Documentation.php
+  dev_url: https://github.com/ellson/graphviz
