@@ -1,0 +1,29 @@
+package:
+  name: spark
+  version: 2.2.0
+
+source:
+  fn: spark-2.2.0.tar.gz
+  url: https://www.apache.org/dist/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.7.tgz
+  md5: 1715b661bdf33b40c98b3daa7837f690
+
+build:
+  number: 0
+
+requirements:
+  build:
+  run:
+    - openjdk ==8.0.121
+    - scala ==2.11.11
+
+test:
+  commands:
+    - find-spark-home
+    - spark-shell -h
+
+about:
+  home: http://spark.apache.org/
+  license: Apache 2.0
+  license_file: LICENSE
+  summary: Apache Spark is a fast and general engine for large-scale data processing.
+
