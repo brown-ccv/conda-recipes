@@ -1,0 +1,33 @@
+{% set version = "1.8" %}
+
+package:
+  name: shared-mime-info
+  version: {{ version }}
+
+source:
+  url: http://freedesktop.org/~hadess/shared-mime-info-1.8.tar.xz
+  md5: f6dcadce764605552fc956563efa058c
+
+requirements:
+  build:
+    - gcc ==5.4.0 # [linux]
+    - pkg-config
+    - intltool
+    - gettext ==0.19.8.1 # [osx]
+    - glib ==2.53.6
+    - libxml2 ==2.9.4
+  run:
+    - libgcc >=5.4.0 # [linux]
+    - gettext ==0.19.8.1 # [osx]
+    - glib ==2.53.6
+    - libxml2 ==2.9.4
+
+test:
+  commands:
+    - update-mime-database -v
+
+about:
+  home: https://wiki.freedesktop.org/www/Software/shared-mime-info
+  license: LGPLv2
+  license_file: COPYING
+  summary: Database of common MIME types
