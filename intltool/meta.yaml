@@ -1,0 +1,27 @@
+{% set version = "0.51.0" %}
+
+package:
+  name: intltool
+  version: {{ version }}
+
+source:
+  url: https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz
+  sha265: 67c74d94196b153b774ab9f89b2fa6c6ba79352407037c8c14d5aeb334e959cd
+
+requirements:
+  build:
+    - gcc ==5.4.0 # [linux]
+    - pkg-config
+  run:
+    - libgcc >=5.4.0 # [linux]
+
+test:
+  commands:
+    - intltool-extract --help
+    - intltool-update --help
+
+about:
+  home: https://wiki.freedesktop.org/www/Software/intltool
+  license: LGPLv2
+  license_file: COPYING
+  summary: String tool
