@@ -1,0 +1,94 @@
+{% set version = '0.8.0' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-ranger
+  version: {{ version|replace("-", "_") }}
+
+source:
+  fn: ranger_{{ version }}.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/ranger_{{ version }}.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/ranger/ranger_{{ version }}.tar.gz
+
+
+  sha256: 7f0fdee2f2d553a0aec56c2a4a4ff9dd972e1c7284118d9ea570749e0eaaabb9
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: survival, testthat, GenABEL
+requirements:
+  build:
+    - gcc ==5.4.0
+    - r-base ==3.3.2
+    - r-matrix ==1.2_7.1
+    - r-rcpp ==0.12.8
+    - r-rcppeigen ==0.3.2.9.0
+
+  run:
+    - libgcc >=5.4.0
+    - r-base ==3.3.2
+    - r-matrix ==1.2_7.1
+    - r-rcpp ==0.12.8
+    - r-rcppeigen ==0.3.2.9.0
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('ranger')"  # [not win]
+    - "\"%R%\" -e \"library('ranger')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://github.com/imbs-hl/ranger
+  license: GPL-3
+  summary: A fast implementation of Random Forests, particularly suited for high dimensional
+    data. Ensembles of classification, regression, survival and probability prediction
+    trees are supported. Data from genome-wide association studies can be analyzed efficiently.
+    In addition to data frames, datasets of class 'gwaa.data' (R package 'GenABEL')
+    can be directly analyzed.
+  license_family: GPL3
+
+# The original CRAN metadata for this package was:
+
+# Package: ranger
+# Type: Package
+# Title: A Fast Implementation of Random Forests
+# Version: 0.8.0
+# Date: 2017-06-19
+# Author: Marvin N. Wright
+# Maintainer: Marvin N. Wright <cran@wrig.de>
+# Description: A fast implementation of Random Forests, particularly suited for high dimensional data. Ensembles of classification, regression, survival and probability prediction trees are supported. Data from genome-wide association studies can be analyzed efficiently. In addition to data frames, datasets of class 'gwaa.data' (R package 'GenABEL') can be directly analyzed.
+# License: GPL-3
+# Imports: Rcpp (>= 0.11.2), Matrix
+# LinkingTo: Rcpp, RcppEigen
+# Depends: R (>= 3.1)
+# Suggests: survival, testthat, GenABEL
+# RoxygenNote: 6.0.1
+# URL: https://github.com/imbs-hl/ranger
+# BugReports: https://github.com/imbs-hl/ranger/issues
+# NeedsCompilation: yes
+# Packaged: 2017-06-19 14:10:39 UTC; wright
+# Repository: CRAN
+# Date/Publication: 2017-06-20 15:35:58 UTC
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
