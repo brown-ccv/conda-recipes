@@ -1,0 +1,22 @@
+package:
+  name: p7zip
+  version: 16.02
+
+source:
+  fn: p7zip-16.02.tar.bz2
+  url: https://downloads.sourceforge.net/project/p7zip/p7zip/16.02/p7zip_16.02_src_all.tar.bz2
+
+requirements:
+  build:
+    - gcc 5.4.0
+  run:
+    - libgcc >=5.4.0
+
+test:
+  commands:
+    - 7za
+
+about:
+  home: http://p7zip.sourceforge.net
+  license: LGPLv2
+  summary: "7Zip for POSIX systems"
