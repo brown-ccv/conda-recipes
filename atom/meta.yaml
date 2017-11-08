@@ -1,0 +1,37 @@
+package:
+  name: atom
+  version: "1.21.1"
+
+source:
+  fn: atom-1.21.1.tar.gz
+  url: https://github.com/atom/atom/archive/v1.21.1.tar.gz
+  sha256: 537cbb6be91d3bd2a7b6372c14b95b8ae07ee8bc06d608bcab8a3dc93a6cc88d
+
+requirements:
+  build:
+    - python ==2.7.13
+    - git
+    - gcc ==5.4.0
+    - fontconfig ==2.12.4
+    - freetype ==2.8
+    - gdk-pixbuf ==2.36.11
+    - libgcrypt ==1.8.0
+    - libsecret ==0.18.5
+    - nodejs ==6.11.5
+  run:
+    - libgcc >=5.4.0
+    - fontconfig ==2.12.4
+    - freetype ==2.8
+    - gdk-pixbuf ==2.36.11
+    - libgcrypt ==1.8.0
+    - libsecret ==0.18.5
+    - nodejs ==6.11.5
+
+test:
+  commands:
+    - atom
+
+about:
+  home: https://github.com/atom/atom
+  summary: "The hackable text editor"
+  license: MIT
