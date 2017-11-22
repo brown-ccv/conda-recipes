@@ -1,0 +1,25 @@
+package:
+  name: flask-login
+  version: "0.2.11"
+
+source:
+  fn: Flask-Login-0.2.11.tar.gz
+  url: https://pypi.python.org/packages/42/3c/ead3f50b8a39b6dd3499ae6f0f5b13b955130c92a7479a287e2e07921faf/Flask-Login-0.2.11.tar.gz
+  md5: c0a7eaf28623f0aeac4929dc05a7a064
+
+build:
+  script: pip install --no-deps .
+
+requirements:
+  build:
+    - python
+    - flask ==0.12.2
+  run:
+    - python
+    - flask ==0.12.2
+
+about:
+  home: https://github.com/maxcountryman/flask-login
+  license: MIT License
+  summary: 'User session management for Flask'
+  license_family: MIT
