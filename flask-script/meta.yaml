@@ -1,0 +1,30 @@
+package:
+  name: flask-script
+  version: "2.0.5"
+
+source:
+  fn: Flask-Script-2.0.5.tar.gz
+  url: https://pypi.python.org/packages/66/e9/2b3c7c548a6bad0b59da21e2050613da43aae4da617fb98847efa3e09a43/Flask-Script-2.0.5.tar.gz
+  md5: e5c73d3b7937f5b88942f342f9617029
+
+build:
+  script: pip install --no-deps .
+
+requirements:
+  build:
+    - python
+    - flask ==0.12.2
+  run:
+    - python
+    - flask ==0.12.2
+
+test:
+  # Python imports
+  imports:
+    - flask_script
+
+about:
+  home: http://github.com/smurfix/flask-script
+  license: BSD License
+  summary: 'Scripting support for Flask'
+  license_family: BSD
