@@ -5,37 +5,20 @@ package:
 source:
   git_url: https://github.com/gslab-econ/gslab_python
   git_tag: 3.0.5
-#  patches:
-   # List any patch files here
-   # - fix.patch
 
-# build:
-  # noarch_python: True
-  # preserve_egg_dir: True
-  # entry_points:
-    # Put any entry points (scripts to be generated automatically) here. The
-    # syntax is module:function.  For example
-    #
-    # - gslab_tools = gslab_tools:main
-    #
-    # Would create an entry point called gslab_tools that calls gslab_tools.main()
-
-
-  # If this is a new build for the same version, increment the build
-  # number. If you do not include this key, it defaults to 0.
-  # number: 1
+build:
+  script: pip install --no-deps .
+  number: 1
 
 requirements:
   build:
     - python
-    - setuptools
-    - requests ==2.12.4
+    - requests ==2.17.3
     - coverage ==4.4.1
     - pytest-runner ==2.11.1
-
   run:
     - python
-    - requests ==2.12.4
+    - requests ==2.17.3
     - coverage ==4.4.1
     - pytest-runner ==2.11.1
 
@@ -48,24 +31,8 @@ test:
     - gslab_make.private
     - gslab_scons
 
-  # commands:
-    # You can put test commands to be run here.  Use this to test that the
-    # entry points work.
-
-
-  # You can also put a file called run_test.py in the recipe that will be run
-  # at test time.
-
-  # requires:
-    # Put any additional test requirements here.  For example
-    # - nose
-
 about:
   home: https://github.com/gslab-econ/gslab_python
   license: MIT
   summary: 'Python tools for GSLab'
   license_family: MIT
-
-# See
-# http://docs.continuum.io/conda/build.html for
-# more information about meta.yaml
