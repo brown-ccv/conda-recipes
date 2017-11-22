@@ -1,0 +1,61 @@
+package:
+  name: flask-appbuilder
+  version: "1.9.4"
+
+source:
+  fn: Flask-AppBuilder-1.9.4.tar.gz
+  url: https://pypi.python.org/packages/f9/ab/2ab0e7641534b3c53998599ef1ae7340285ffd71cc51dae0173058b6962e/Flask-AppBuilder-1.9.4.tar.gz
+  md5: 6389d4815b6cb8a7cca656e9d20f99fd
+
+build:
+  script: pip install --no-deps .
+  entry_points:
+    - fabmanager = flask_appbuilder.console:cli
+
+requirements:
+  build:
+    - python
+    - colorama ==0.3.9
+    - click ==6.7
+    - flask ==0.12.2
+    - flask-babel ==0.11.1
+    - flask-login ==0.2.11
+    - flask-openid ==1.2.5
+    - flask-sqlalchemy ==2.1
+    - flask-wtf ==0.14.2
+
+  run:
+    - python
+    - colorama ==0.3.9
+    - click ==6.7
+    - flask ==0.12.2
+    - flask-babel ==0.11.1
+    - flask-login ==0.2.11
+    - flask-openid ==1.2.5
+    - flask-sqlalchemy ==2.1
+    - flask-wtf ==0.14.2
+
+test:
+  # Python imports
+  imports:
+    - examples
+    - flask_appbuilder
+    - flask_appbuilder.babel
+    - flask_appbuilder.charts
+    - flask_appbuilder.models
+    - flask_appbuilder.models.generic
+    - flask_appbuilder.models.mongoengine
+    - flask_appbuilder.models.sqla
+    - flask_appbuilder.security
+    - flask_appbuilder.security.mongoengine
+    - flask_appbuilder.security.sqla
+    - flask_appbuilder.tests
+    - flask_appbuilder.translations
+  commands:
+    - fabmanager --help
+
+about:
+  home: https://github.com/dpgaspar/flask-appbuilder/
+  license: BSD License
+  summary: 'Simple and rapid application development framework, built on top of Flask. includes detailed security, auto CRUD generation for your models, google charts and much more.'
+  license_family: BSD
