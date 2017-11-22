@@ -1,0 +1,72 @@
+package:
+  name: celery
+  version: "3.1.25"
+
+source:
+  fn: celery-3.1.25.tar.gz
+  url: https://pypi.python.org/packages/62/8d/5d9e8cddd987b409b9a332a5eb73c2d01ea42ab83865e8e8a011326c16dc/celery-3.1.25.tar.gz
+  md5: 81ebed2cccbc03c2d8adcba4fefac3bb
+
+build:
+  script: pip install --no-deps .
+  entry_points:
+    - celery = celery.__main__:main
+    - celeryd = celery.__main__:_compat_worker
+    - celerybeat = celery.__main__:_compat_beat
+    - celeryd-multi = celery.__main__:_compat_multi
+
+requirements:
+  build:
+    - python
+    - pytz ==2017.3
+    - billiard ==3.3.0.23
+    - kombu ==3.0.37
+  run:
+    - python
+    - pytz ==2017.3
+    - billiard ==3.3.0.23
+    - kombu ==3.0.37
+
+test:
+  # Python imports
+  imports:
+    - celery
+    - celery.app
+    - celery.apps
+    - celery.backends
+    - celery.backends.database
+    - celery.bin
+    - celery.concurrency
+    - celery.contrib
+    - celery.events
+    - celery.fixups
+    - celery.loaders
+    - celery.security
+    - celery.task
+    - celery.tests
+    - celery.tests.app
+    - celery.tests.backends
+    - celery.tests.bin
+    - celery.tests.bin.proj
+    - celery.tests.compat_modules
+    - celery.tests.concurrency
+    - celery.tests.contrib
+    - celery.tests.events
+    - celery.tests.fixups
+    - celery.tests.functional
+    - celery.tests.security
+    - celery.tests.slow
+    - celery.tests.tasks
+    - celery.tests.utils
+    - celery.tests.worker
+    - celery.utils
+    - celery.utils.dispatch
+    - celery.worker
+  commands:
+    - celery --version
+
+about:
+  home: http://celeryproject.org
+  license: BSD License
+  summary: 'Distributed Task Queue'
+  license_family: BSD
