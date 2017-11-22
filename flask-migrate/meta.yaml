@@ -1,0 +1,52 @@
+package:
+  name: flask-migrate
+  version: "2.0.3"
+
+source:
+  fn: Flask-Migrate-2.0.3.tar.gz
+  url: https://pypi.python.org/packages/a9/fe/559c313679b08f67efb9fba6f01debbc9ea3a488539d03a5a38371351456/Flask-Migrate-2.0.3.tar.gz
+  md5: b88ccaef9c8bdc99a197769d09b92a7f
+
+build:
+  script: pip install --no-deps .
+
+requirements:
+  build:
+    - python
+    - alembic ==0.9.5
+    - flask ==0.12.2
+    - flask-sqlalchemy ==2.1
+    - flask-script ==2.0.5
+  run:
+    - python
+    - alembic ==0.9.5
+    - flask ==0.12.2
+    - flask-sqlalchemy ==2.1
+    - flask-script ==2.0.5
+
+test:
+  # Python imports
+  imports:
+    - flask_migrate
+
+  # commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: http://github.com/miguelgrinberg/flask-migrate/
+  license: MIT License
+  summary: 'SQLAlchemy database migrations for Flask applications using Alembic'
+  license_family: MIT
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
