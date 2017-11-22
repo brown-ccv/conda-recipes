@@ -1,0 +1,34 @@
+{% set name = "simplejson" %}
+{% set version = "3.10.0" %}
+{% set file_ext = "tar.gz" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "953be622e88323c6f43fad61ffd05bebe73b9fd9863a46d68b052d2aa7d71ce2" %}
+
+package:
+  name: '{{ name|lower }}'
+  version: '{{ version }}'
+
+source:
+  fn: '{{ name }}-{{ version }}.{{ file_ext }}'
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ file_ext }}
+  '{{ hash_type }}': '{{ hash_value }}'
+
+build:
+  script: pip install --no-deps .
+
+requirements:
+  build:
+    - python
+  run:
+    - python
+
+test:
+  imports:
+    - simplejson
+    - simplejson.tests
+
+about:
+  home: http://github.com/simplejson/simplejson
+  license: MIT License or Academic Free License (AFL)
+  license_family: MIT
+  summary: Simple, fast, extensible JSON encoder/decoder for Python
