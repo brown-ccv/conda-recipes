@@ -1,0 +1,32 @@
+package:
+  name: flask-sqlalchemy
+  version: "2.1"
+
+source:
+  fn: Flask-SQLAlchemy-2.1.tar.gz
+  url: https://pypi.python.org/packages/b3/52/227aaf4e8cebb153e239c518a9e916590b2fe0e4350e6b02d92b546b69b7/Flask-SQLAlchemy-2.1.tar.gz
+  md5: dc15fe08b07b434d3d2c4063b4674b72
+
+build:
+  script: pip install --no-deps .
+
+requirements:
+  build:
+    - python
+    - flask ==0.12.2
+    - sqlalchemy ==1.1.9
+  run:
+    - python
+    - flask ==0.12.2
+    - sqlalchemy ==1.1.9
+
+test:
+  # Python imports
+  imports:
+    - flask_sqlalchemy
+
+about:
+  home: http://github.com/mitsuhiko/flask-sqlalchemy
+  license: BSD License
+  summary: 'Adds SQLAlchemy support to your Flask application'
+  license_family: BSD
