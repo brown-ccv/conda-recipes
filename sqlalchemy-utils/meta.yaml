@@ -1,0 +1,41 @@
+{% set name = "sqlalchemy-utils" %}
+{% set version = "0.32.16" %}
+{% set file_ext = "tar.gz" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "ca07051b5d45e8b077d1ce7a475752988336c7b11cf9f868f6f97f311a84baa3" %}
+
+package:
+  name: '{{ name|lower }}'
+  version: '{{ version }}'
+
+source:
+  fn: '{{ name }}-{{ version }}.{{ file_ext }}'
+  url: https://files.pythonhosted.org/packages/8d/76/68b410437f35b63c3d09d1758f8cb8fa22b5b9e1e1f6f198d1738a68aae3/SQLAlchemy-Utils-0.32.16.tar.gz
+  '{{ hash_type }}': '{{ hash_value }}'
+
+build:
+  script: pip install --no-deps .
+
+requirements:
+  build:
+    - python
+    - six ==1.10.0
+    - sqlalchemy ==1.1.9
+  run:
+    - python
+    - six ==1.10.0
+    - sqlalchemy ==1.1.9
+
+test:
+  imports:
+    - sqlalchemy_utils
+    - sqlalchemy_utils.functions
+    - sqlalchemy_utils.primitives
+    - sqlalchemy_utils.relationships
+    - sqlalchemy_utils.types
+
+about:
+  home: https://github.com/kvesteri/sqlalchemy-utils
+  license: BSD License
+  license_family: BSD
+  summary: Various utility functions for SQLAlchemy.
