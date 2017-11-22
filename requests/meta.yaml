@@ -1,0 +1,36 @@
+package:
+  name: requests
+  version: "2.17.3"
+
+source:
+  fn: requests-2.17.3.tar.gz
+  url: https://pypi.python.org/packages/27/c7/a45641c83c6e28f4922ba6af3d4ae4d79b41932c2f3d77fed9e0bf878149/requests-2.17.3.tar.gz
+  md5: b1b8e6412e11e00e12adbb7786c3f2a3
+
+build:
+  script: pip install --no-deps .
+
+requirements:
+  build:
+    - python
+    - chardet ==3.0.4
+    - idna ==2.5
+    - urllib3 ==1.21.1
+    - certifi >=2017.4.17
+  run:
+    - python
+    - chardet ==3.0.4
+    - idna ==2.5
+    - urllib3 ==1.21.1
+    - certifi >=2017.4.17
+
+test:
+  # Python imports
+  imports:
+    - requests
+
+about:
+  home: http://python-requests.org
+  license: Apache Software License
+  summary: 'Python HTTP for Humans.'
+  license_family: APACHE
