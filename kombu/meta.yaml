@@ -1,0 +1,44 @@
+package:
+  name: kombu
+  version: "3.0.37"
+
+source:
+  fn: kombu-3.0.37.tar.gz
+  url: https://pypi.python.org/packages/38/69/8d603be2df979f1b9ffefae1e51cde664c52a258aff6e8c3253032c8f2c8/kombu-3.0.37.tar.gz
+  md5: a1901036ba5e70e6b1733f7c2d5ee313
+
+build:
+  script: pip install --no-deps .
+
+requirements:
+  build:
+    - python
+    - anyjson ==0.3.3
+    - amqp ==1.4.9
+    - sqlalchemy ==1.1.9
+  run:
+    - python
+    - anyjson ==0.3.3
+    - amqp ==1.4.9
+    - sqlalchemy ==1.1.9
+
+test:
+  # Python imports
+  imports:
+    - kombu
+    - kombu.async
+    - kombu.tests
+    - kombu.tests.async
+    - kombu.tests.transport
+    - kombu.tests.transport.virtual
+    - kombu.tests.utils
+    - kombu.transport
+    - kombu.transport.sqlalchemy
+    - kombu.transport.virtual
+    - kombu.utils
+
+about:
+  home: https://kombu.readthedocs.io
+  license: BSD License
+  summary: 'Messaging library for Python'
+  license_family: BSD
