@@ -8,23 +8,23 @@ source:
   md5: f6cd816607a2627ddb586466f55d1b95
 
 build:
-  number: 1
+  script: pip install --no-deps .
+  number: 2
 
 requirements:
   build:
     - python
-    - setuptools
-    - pandas 0.20.2
-    - matplotlib 2.0.2
-    - jinja2 2.9.4
-    - six 1.10.0
+    - pandas ==0.20.3
+    - matplotlib ==2.0.2
+    - jinja2 ==2.9.6
+    - six ==1.10.0
 
   run:
     - python
-    - pandas 0.20.2
-    - matplotlib 2.0.2
-    - jinja2 2.9.4
-    - six 1.10.0
+    - pandas ==0.20.3
+    - matplotlib ==2.0.2
+    - jinja2 ==2.9.6
+    - six ==1.10.0
 
 test:
   imports:
