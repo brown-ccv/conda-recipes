@@ -1,0 +1,51 @@
+package:
+  name: cryptography
+  version: "1.9"
+
+source:
+  fn: cryptography-1.9.tar.gz
+  url: https://pypi.python.org/packages/2a/0c/31bd69469e90035381f0197b48bf71032991d9f07a7e444c311b4a23a3df/cryptography-1.9.tar.gz
+  md5: 1529f12fb403c9a0045277cb73df766c
+
+build:
+  script: pip install --no-deps .
+
+requirements:
+  build:
+    - python
+    - idna ==2.5
+    - asn1crypto ==0.22.0
+    - six ==1.10.0
+    - enum34 ==1.1.6
+    - ipaddress ==1.0.18
+    - cffi ==1.10.0
+  run:
+    - python
+    - idna ==2.5
+    - asn1crypto ==0.22.0
+    - six ==1.10.0
+    - enum34 ==1.1.6
+    - ipaddress ==1.0.18
+    - cffi ==1.10.0
+
+test:
+  # Python imports
+  imports:
+    - cryptography
+    - cryptography.hazmat
+    - cryptography.hazmat.backends
+    - cryptography.hazmat.backends.openssl
+    - cryptography.hazmat.bindings
+    - cryptography.hazmat.bindings.openssl
+    - cryptography.hazmat.primitives
+    - cryptography.hazmat.primitives.asymmetric
+    - cryptography.hazmat.primitives.ciphers
+    - cryptography.hazmat.primitives.kdf
+    - cryptography.hazmat.primitives.twofactor
+    - cryptography.x509
+
+about:
+  home: https://github.com/pyca/cryptography
+  license: Apache Software License or BSD License
+  summary: 'cryptography is a package which provides cryptographic recipes and primitives to Python developers.'
+  license_family: BSD
