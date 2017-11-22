@@ -1,9 +1,6 @@
 #!/bin/bash
 
-$PYTHON setup.py install 
+export CPATH=$PREFIX/include
+export LD_RUN_PATH=$PREFIX/lib
 
-# Add more build steps here, if they are necessary.
-
-# See
-# http://docs.continuum.io/conda/build.html
-# for a list of environment variables that are set during the build process.
+pip install --no-deps .
