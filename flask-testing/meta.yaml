@@ -1,0 +1,30 @@
+package:
+  name: flask-testing
+  version: "0.6.2"
+
+source:
+  fn: Flask-Testing-0.6.2.tar.gz
+  url: https://pypi.python.org/packages/45/b6/4915dc083a4261309e4d7107a9af25712b2a045b94674c9be044ce5038c1/Flask-Testing-0.6.2.tar.gz
+  md5: 801a19bc7fee2f5c2a89f254c51f61d6
+
+build:
+  script: pip install --no-deps .
+
+requirements:
+  build:
+    - python
+    - flask ==0.12.2
+  run:
+    - python
+    - flask ==0.12.2
+
+test:
+  # Python imports
+  imports:
+    - flask_testing
+
+about:
+  home: https://github.com/jarus/flask-testing
+  license: BSD License
+  summary: 'Unit testing for Flask'
+  license_family: BSD
