@@ -1,0 +1,37 @@
+{% set name = "parsedatetime" %}
+{% set version = "2.0" %}
+{% set file_ext = "tar.gz" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "74aaed8e8639842ff48c05c1e3708a26ffa138eb00d557be6681b5df771f7c8c" %}
+
+package:
+  name: '{{ name|lower }}'
+  version: '{{ version }}'
+
+source:
+  fn: '{{ name }}-{{ version }}.{{ file_ext }}'
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ file_ext }}
+  '{{ hash_type }}': '{{ hash_value }}'
+
+build:
+  script: pip install --no-deps .
+
+requirements:
+  build:
+    - python
+  run:
+    - python
+
+test:
+  imports:
+    - parsedatetime
+    - parsedatetime.pdt_locales
+  requires:
+    - nose
+
+about:
+  home: https://github.com/bear/parsedatetime
+  license: Apache Software License
+  license_family: APACHE
+  license_file: ''
+  summary: Parse human-readable date/time text.
