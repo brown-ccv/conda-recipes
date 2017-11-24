@@ -4,32 +4,31 @@ package:
 
 source:
   fn: gdal-1.8.1.tar.gz
-  url: http://download.osgeo.org/gdal/gdal-1.8.1.tar.gz
+  url: http://download.osgeo.org/gdal/old_releases/gdal-1.8.1.tar.gz
   md5: b32269893afc9dc9eced45e74e4c6bb4
+
+build:
+  number: 1
 
 requirements:
   build:
     - python
-    - gcc 5.4.0
-    - numpy 1.13.0
-    - hdf5 1.8.17
-    - netcdf 4.4.1.1
-    - libpng 1.6.27
-    - libtiff 4.0.6
-    - geotiff 1.4.1
-    - jpeg 8d
-    - zlib 1.2.8
+    - gcc ==5.4.0
+    - numpy ==1.13.0
+    - netcdf ==4.4.1.1
+    - libpng ==1.6.32
+    - libtiff ==4.0.6
+    - geotiff ==1.4.1
+    - jpeg ==8d
   run:
     - python
     - libgcc >=5.4.0
-    - numpy 1.13.0
-    - hdf5 1.8.17
-    - netcdf 4.4.1.1
-    - libpng 1.6.27
-    - libtiff 4.0.6
-    - geotiff 1.4.1
-    - jpeg 8d
-    - zlib 1.2.8
+    - numpy ==1.13.0
+    - netcdf ==4.4.1.1
+    - libpng ==1.6.32
+    - libtiff ==4.0.6
+    - geotiff ==1.4.1
+    - jpeg ==8d
 
 test:
   files:
