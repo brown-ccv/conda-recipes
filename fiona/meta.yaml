@@ -8,14 +8,14 @@ source:
   md5: f449afb60f5a1efe15d3d868a9e5c742
 
 build:
-  preserve_egg_dir: True
+  script: pip install --no-deps .
   entry_points:
     - fio=fiona.fio.main:main_group
+  number: 1
 
 requirements:
   build:
     - python
-    - setuptools
     - cligj ==0.4.0
     - click-plugins ==1.0.3
     - six ==1.10.0
@@ -23,7 +23,6 @@ requirements:
     - gdal ==1.8.1
   run:
     - python
-    - setuptools
     - cligj ==0.4.0
     - click-plugins ==1.0.3
     - six ==1.10.0
