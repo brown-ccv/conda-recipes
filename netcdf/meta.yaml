@@ -7,15 +7,18 @@ source:
   url: https://github.com/Unidata/netcdf-c/archive/v4.4.1.1.tar.gz
   md5: 9210fd5355bee868684d9b8f83064aa6
 
+build:
+  number: 1
+
 requirements:
   build:
-    - gcc
+    - gcc ==5.4.0
     - hdf5 ==1.8.17
-    - zlib ==1.2.8
+    - zlib ==1.2.11
   run:
-    - libgcc
+    - libgcc >=5.4.0
     - hdf5 ==1.8.17
-    - zlib ==1.2.8
+    - zlib ==1.2.11
 
 test:
   commands:
