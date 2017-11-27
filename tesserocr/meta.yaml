@@ -1,22 +1,24 @@
 package:
   name: tesserocr
-  version: 2.2.1
+  version: 2.2.2
 
 source:
   git_url: https://github.com/sirfz/tesserocr
-  git_tag: v2.2.1
+  git_tag: v2.2.2
+
+build:
+  script: pip install --no-deps .
 
 requirements:
   build:
     - python
-    - setuptools
     - cython
-    - gcc 5.4.0
-    - tesseract 3.05.01
+    - gcc ==5.4.0
+    - tesseract ==3.05.01
   run:
     - python
     - libgcc >=5.4.0
-    - tesseract 3.05.01
+    - tesseract ==3.05.01
 
 test:
   imports:
