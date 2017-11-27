@@ -39,7 +39,6 @@ requirements:
     - thrift_sasl ==0.2.1
   run:
     - python
-    - nodejs
     - boto3 ==1.4.4
     - celery ==3.1.25
     - cryptography ==1.9 
