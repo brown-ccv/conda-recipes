@@ -1,0 +1,33 @@
+{% set major_minor = "2.25" %}
+{% set version = major_minor + ".2" %}
+
+package:
+  name: atk
+  version: {{ version }}
+
+source:
+  url: http://ftp.gnome.org/pub/gnome/sources/atk/{{ major_minor }}/atk-{{ version }}.tar.xz
+  sha256: 75ac1f63e845f895dec8d72d4645ef5f362e32c921cc78987f2f19c2ce212a24
+
+requirements:
+  build:
+    - gcc ==5.4.0
+    - python
+    - pkg-config
+    - glib ==2.53.6
+    - gobject-introspection ==1.53.5
+  run:
+    - gcc >=5.4.0
+    - glib ==2.53.6
+    - gobject-introspection ==1.53.5
+
+test:
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+
+about:
+  home: http://www.gtk.org/
+  license: LGPL-2.0
+  license_file: COPYING
+  summary: 'Accessibility Toolkit.'
