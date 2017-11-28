@@ -1,0 +1,33 @@
+{% set major_version = "2.24" %}
+{% set minor_version = "31" %}
+{% set version = major_version + "." +minor_version %}
+
+package:
+  name: gtk2
+  version: {{ version }}
+
+source:
+  fn: gtk+-{{ version }}.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/gtk+/{{ major_version }}/gtk+-{{ version }}.tar.xz
+  sha256: 68c1922732c7efc08df4656a5366dcc3afdc8791513400dac276009b40954658
+
+requirements:
+  build:
+    - gcc ==5.4.0
+    - atk ==2.25.2
+    - glib ==2.53.6
+    - cairo ==1.14.10
+    - pango ==1.40.11
+    - gdk-pixbuf ==2.36.11
+  run:
+    - gcc >=5.4.0
+    - atk ==2.25.2
+    - glib ==2.53.6
+    - cairo ==1.14.10
+    - pango ==1.40.11
+    - gdk-pixbuf ==2.36.11
+
+about:
+  license: LGPL-2
+  license_file: COPYING
+  home: http://www.gtk.org
