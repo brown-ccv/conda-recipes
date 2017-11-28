@@ -1,0 +1,25 @@
+package:
+  name: jags
+  version: "4.3.0"
+
+source:
+  url: https://downloads.sourceforge.net/project/mcmc-jags/JAGS/4.x/Source/JAGS-4.3.0.tar.gz
+  sha256: 8ac5dd57982bfd7d5f0ee384499d62f3e0bb35b5f1660feb368545f1186371fc
+
+requirements:
+  build:
+    - gcc ==5.4.0
+    - mkl
+  run:
+    - libgcc >=5.4.0
+    - mkl
+
+test:
+  commands:
+    - jags <<< 'exit'
+
+about:
+  home: http://mcmc-jags.sourceforge.net/
+  license: GPL-2.0
+  license_file: COPYING
+  summary: "JAGS is Just Another Gibbs Sampler."
