@@ -1,0 +1,42 @@
+# Recipe based on below and Microsoft installation docs.
+# https://github.com/conda/conda-recipes/blob/master/r-mro/meta.yaml
+
+package:
+  name: r
+  version: 3.4.2
+
+about:
+  home: https://mran.microsoft.com/
+  license: GPL
+  summary: Microsoft R Open
+
+source:
+  fn: microsoft-r-open-3.4.2.tar.gz
+  url: https://mran.blob.core.windows.net/install/mro/3.4.2/microsoft-r-open-3.4.2.tar.gz
+
+build:
+  rpaths:
+    - lib/R/lib
+    - lib
+
+requirements:
+  build:
+    - icu   [linux]
+    - libpng  [linux]
+    - readline   [linux]
+    - libtiff   [linux]
+    - libgfortran  [linux]
+    - cairo    [linux]
+    - pango   [linux]
+    - zlib   [linux]
+    - gcc   [linux]
+  run:
+    - libgcc [linux]
+    - icu   [linux]
+    - libpng  [unix]
+    - readline   [unix]
+    - libtiff   [unix]
+    - libgfortran  [linux]
+    - cairo    [linux]
+    - pango   [linux]
+    - zlib   [unix]
