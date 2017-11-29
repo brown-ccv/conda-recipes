@@ -1,0 +1,54 @@
+{% set name = "poppler" %}
+{% set version = "0.61.1" %}
+{% set sha256 = "1266096343f5163c1a585124e9a6d44474e1345de5cdfe55dc7b47357bcfcda9" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://poppler.freedesktop.org/{{ name }}-{{ version }}.tar.xz
+  sha256: {{ sha256 }}
+
+requirements:
+  build:
+    - gcc ==5.4.0
+    - pkg-config
+    - cmake
+    - cairo ==1.14.10
+    - curl ==7.55.1
+    - freetype ==2.8
+    - gdk-pixbuf ==2.36.11
+    - glib ==2.53.6
+    - jpeg ==8d
+    - libpng ==1.6.32
+    - libtiff ==4.0.6
+    - openjpeg ==2.1.2
+    - zlib ==1.2.11
+  run:
+    - libgcc >=5.4.0
+    - poppler-data
+    - cairo ==1.14.10
+    - curl ==7.55.1
+    - freetype ==2.8
+    - gdk-pixbuf ==2.36.11
+    - glib ==2.53.6
+    - jpeg ==8d
+    - libpng ==1.6.32
+    - libtiff ==4.0.6
+    - openjpeg ==2.1.2
+    - zlib ==1.2.11
+
+test:
+  commands:
+    - pdfunite --help
+    - pdftocairo --help
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+
+about:
+  home: https://poppler.freedesktop.org/
+  license: GPLv2
+  license_family: GPL
+  license_file: COPYING
+  summary: 'The Poppler PDF manipulation library.'
