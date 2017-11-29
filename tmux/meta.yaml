@@ -1,0 +1,49 @@
+# Recipe based on: https://github.com/conda-forge/tmux-feedstock/blob/master/recipe/meta.yaml
+
+{% set version = "2.6" %}
+{% set build = 0 %}
+
+package:
+  name: tmux
+  version: {{ version }}
+
+source:
+  url: https://github.com/tmux/tmux/archive/{{ version }}.tar.gz
+
+build:
+  number: {{ build }}
+  skip: true  # [win]
+
+requirements:
+  build:
+    #- toolchain
+    - autoconf
+    - automake
+    - libtool
+    - m4
+    - pkg-config
+    - libevent 2.0.22
+    - ncurses 5.9
+
+  run:
+    - libevent 2.0.22
+    - ncurses 5.9
+
+test:
+  commands:
+    # Verify command existence.
+    - which tmux
+
+    # Check that no server is running.
+    - $(tmux info || true) 2> >(grep "no server running on")
+
+about:
+  home: https://tmux.github.io/
+  license: ISC
+  license_file: COPYING
+  summary: A terminal multiplexer.
+
+extra:
+  recipe-maintainers:
+    - jakirkham
+    - dougalsutherland
