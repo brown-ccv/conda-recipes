@@ -17,7 +17,7 @@ requirements:
     - glib ==2.53.6
     - gobject-introspection ==1.53.5
   run:
-    - gcc >=5.4.0
+    - libgcc >=5.4.0
     - glib ==2.53.6
     - gobject-introspection ==1.53.5
 

@@ -1,7 +1,7 @@
 # Recipe based on: https://github.com/conda-forge/tmux-feedstock/blob/master/recipe/meta.yaml
 
 {% set version = "2.6" %}
-{% set build = 0 %}
+{% set build = 1 %}
 
 package:
   name: tmux
@@ -22,12 +22,12 @@ requirements:
     - libtool
     - m4
     - pkg-config
-    - libevent 2.0.22
-    - ncurses 5.9
+    - libevent ==2.0.22
+    - ncurses ==6.0
 
   run:
-    - libevent 2.0.22
-    - ncurses 5.9
+    - libevent ==2.0.22
+    - ncurses ==6.0
 
 test:
   commands:

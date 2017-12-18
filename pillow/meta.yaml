@@ -1,0 +1,66 @@
+{% set name = "pillow" %}
+{% set version = "4.3.0" %}
+{% set file_ext = "tar.gz" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "a97c715d44efd5b4aa8d739b8fad88b93ed79f1b33fc2822d5802043f3b1b527" %}
+
+package:
+  name: '{{ name|lower }}'
+  version: '{{ version }}'
+
+source:
+  fn: '{{ name }}-{{ version }}.{{ file_ext }}'
+  url: https://files.pythonhosted.org/packages/e0/82/ec499c78bfe4ecaa91c2f3000040451d187ed0a816d58b8543e29c48827f/Pillow-4.3.0.tar.gz
+  '{{ hash_type }}': '{{ hash_value }}'
+
+build:
+  number: 0
+  script: pip install --no-deps .
+
+requirements:
+  build:
+    - python
+    - freetype ==2.8
+    - jpeg ==8d
+    - libtiff ==4.0.6
+    - olefile ==0.44
+    - openjpeg ==2.1.2
+    - tk ==8.5.18
+    - zlib ==1.2.11
+  run:
+    - python
+    - freetype ==2.8
+    - jpeg ==8d
+    - libtiff ==4.0.6
+    - olefile ==0.44
+    - openjpeg ==2.1.2
+    - tk ==8.5.18
+    - zlib ==1.2.11
+
+test:
+  imports:
+    - PIL
+
+about:
+  home: https://python-pillow.org
+  license: Standard PIL License
+  license_family: OTHER
+  license_file: ''
+  summary: Python Imaging Library (Fork)
+  description: "Pillow\n======\n\nPython Imaging Library (Fork)\n-----------------------------\n\nPillow is the friendly PIL fork by `Alex Clark and Contributors <https://github.com/python-pillow/Pillow/graphs/contributors>`_.\
+    \ PIL is the Python Imaging Library by Fredrik Lundh and Contributors.\n\n.. start-badges\n\n.. list-table::\n    :stub-columns: 1\n\n    * - docs\n      - |docs|\n    * - tests\n      - | |linux| |macos|\
+    \ |windows| |coverage|\n    * - package\n      - |zenodo| |version|\n\n.. |docs| image:: https://readthedocs.org/projects/pillow/badge/?version=latest\n   :target: https://pillow.readthedocs.io/?badge=latest\n\
+    \   :alt: Documentation Status\n\n.. |linux| image:: https://img.shields.io/travis/python-pillow/Pillow/master.svg?label=Linux%20build\n   :target: https://travis-ci.org/python-pillow/Pillow\n   :alt:\
+    \ Travis CI build status (Linux)\n\n.. |macos| image:: https://img.shields.io/travis/python-pillow/pillow-wheels/latest.svg?label=macOS%20build\n   :target: https://travis-ci.org/python-pillow/pillow-wheels\n\
+    \   :alt: Travis CI build status (macOS)\n\n.. |windows| image:: https://img.shields.io/appveyor/ci/python-pillow/Pillow/master.svg?label=Windows%20build\n   :target: https://ci.appveyor.com/project/python-pillow/Pillow\n\
+    \   :alt: AppVeyor CI build status (Windows)\n\n.. |coverage| image:: https://coveralls.io/repos/python-pillow/Pillow/badge.svg?branch=master&service=github\n   :target: https://coveralls.io/github/python-pillow/Pillow?branch=master\n\
+    \   :alt: Code coverage\n\n.. |zenodo| image:: https://zenodo.org/badge/17549/python-pillow/Pillow.svg\n   :target: https://zenodo.org/badge/latestdoi/17549/python-pillow/Pillow\n\n.. |version| image::\
+    \ https://img.shields.io/pypi/v/pillow.svg\n   :target: https://pypi.python.org/pypi/Pillow/\n   :alt: Latest PyPI version\n\n.. end-badges\n\n\n\nMore Information\n----------------\n\n- `Documentation\
+    \ <https://pillow.readthedocs.io/>`_\n\n  - `Installation <https://pillow.readthedocs.io/en/latest/installation.html>`_\n  - `Handbook <https://pillow.readthedocs.io/en/latest/handbook/index.html>`_\n\
+    \n- `Contribute <https://github.com/python-pillow/Pillow/blob/master/.github/CONTRIBUTING.md>`_\n\n  - `Issues <https://github.com/python-pillow/Pillow/issues>`_\n  - `Pull requests <https://github.com/python-pillow/Pillow/pulls>`_\n\
+    \n- `Changelog <https://github.com/python-pillow/Pillow/blob/master/CHANGES.rst>`_\n\n  - `Pre-fork <https://github.com/python-pillow/Pillow/blob/master/CHANGES.rst#pre-fork>`_\n\n\n"
+  doc_url: ''
+  dev_url: ''
+
+extra:
+  recipe-maintainers: ''

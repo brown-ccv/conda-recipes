@@ -1,5 +1,5 @@
 package:
-  name: atom
+  name: atom-editor
   version: "1.21.1"
 
 source:

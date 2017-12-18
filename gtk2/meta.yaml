@@ -20,7 +20,7 @@ requirements:
     - pango ==1.40.11
     - gdk-pixbuf ==2.36.11
   run:
-    - gcc >=5.4.0
+    - libgcc >=5.4.0
     - atk ==2.25.2
     - glib ==2.53.6
     - cairo ==1.14.10
