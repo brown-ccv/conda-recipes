@@ -1,0 +1,74 @@
+package:
+  name: r-base
+  version: "3.4.2"
+
+source:
+  url: https://cran.r-project.org/src/base/R-3/R-3.4.2.tar.gz
+  sha256: 971e30c2436cf645f58552905105d75788bd9733bddbcb7c4fbff4c1a6d80c64
+
+build:
+  number: 0
+  rpaths:
+    - lib/R/lib/
+    - lib/
+  no_link:
+    # These files are modified by R CMD javareconf and can
+    # point to different Java implementations in each env.
+    - lib/R/etc/Makeconf
+    - lib/R/etc/ldpaths
+    - lib/R/etc/javaconf
+    - lib/R/etc/x64/Makeconf
+    - lib/R/etc/x64/ldpaths
+    - lib/R/etc/x64/javaconf
+  detect_binary_files_with_prefix: true
+
+requirements:
+  build:
+    - gcc ==5.4.0
+    - pkg-config
+    - mkl
+    - bzip2 ==1.0.6
+    - cairo ==1.14.10
+    - curl ==7.55.1
+    - icu ==58.2
+    - jpeg ==8d
+    - libpng ==1.6.32
+    - libtiff ==4.0.6
+    - libxml2 ==2.9.4
+    - ncurses ==6.0
+    - pango ==1.40.11
+    - pcre ==8.41
+    - readline ==6.2
+    - tk ==8.5.18
+    - zlib ==1.2.11
+  run:
+    - libgcc >=5.4.0
+    - mkl
+    - bzip2 ==1.0.6
+    - cairo ==1.14.10
+    - curl ==7.55.1
+    - icu ==58.2
+    - jpeg ==8d
+    - libpng ==1.6.32
+    - libtiff ==4.0.6
+    - libxml2 ==2.9.4
+    - ncurses ==6.0
+    - pango ==1.40.11
+    - pcre ==8.41
+    - readline ==6.2
+    - tk ==8.5.18
+    - zlib ==1.2.11
+
+test:
+  commands:
+    - R -h
+    - R --version
+    - Rscript --version
+    - Rscript -e  'cat("ok\\n")'
+
+about:
+  home: http://www.r-project.org/
+  license: GPL-3.0
+  license_family: GPL
+  license_file: COPYING
+  summary: 'R is a free software environment for statistical computing and graphics.'
