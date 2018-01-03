@@ -1,0 +1,58 @@
+package:
+  name: r-cran
+  version: "3.4.2"
+
+build:
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  build:
+    - libgcc >=5.4.0
+    - r-base ==3.4.2
+    - boost ==1.61.0
+    - fftw ==3.3.7
+    - gdal ==1.8.1
+    - geos ==3.6.2
+    - gtk2 ==2.24.31
+    - gsl ==2.2.1
+    - imagemagick ==7.0.5.5
+    - jags ==4.3.0
+    - librsvg ==2.40.19
+    - libxml2 ==2.9.4
+    - libxslt ==1.1.29
+    - mpfr ==3.1.5
+    - mysql ==5.7.20
+    - poppler ==0.61.1
+    - postgresql ==9.6.5
+    - protobuf ==3.4.1
+    - tesseract ==3.05.01
+    - udunits2 ==2.2.25
+    - unixodbc ==2.3.4
+  run:
+    - libgcc >=5.4.0
+    - r-base ==3.4.2
+    - boost ==1.61.0
+    - fftw ==3.3.7
+    - gdal ==1.8.1
+    - geos ==3.6.2
+    - gtk2 ==2.24.31
+    - gsl ==2.2.1
+    - imagemagick ==7.0.5.5
+    - jags ==4.3.0
+    - librsvg ==2.40.19
+    - libxml2 ==2.9.4
+    - libxslt ==1.1.29
+    - mpfr ==3.1.5
+    - mysql ==5.7.20
+    - poppler ==0.61.1
+    - postgresql ==9.6.5
+    - protobuf ==3.4.1
+    - tesseract ==3.05.01
+    - udunits2 ==2.2.25
+    - unixodbc ==2.3.4
+
+about:
+  home: https://cran.r-project.org/
+  summary: A precompiled installation of almost every R package available in CRAN
