@@ -7,33 +7,41 @@ source:
   url: https://github.com/ImageMagick/ImageMagick/archive/7.0.5-5.zip
   sha256: c019a7777c028a345a0946959e1b4a216083034b95aae2306615300e55733816
 
+build:
+  number: 1
+
 requirements:
   build:
     - gcc ==5.4.0 # [linux]
     - autoconf
     - automake
     - bzip2 ==1.0.6
+    - cairo ==1.14.10
     - fontconfig ==2.12.4
     - freetype ==2.8
     - jpeg ==8d
     - libpng ==1.6.32
     - libtiff ==4.0.6
+    - openjpeg ==2.1.2
     - pango ==1.40.11
     - zlib ==1.2.11
   run:
     - libgcc >=5.4.0 # [linux]
     - bzip2 ==1.0.6
+    - cairo ==1.14.10
     - fontconfig ==2.12.4
     - freetype ==2.8
     - jpeg ==8d
     - libpng ==1.6.32
     - libtiff ==4.0.6
+    - openjpeg ==2.1.2
     - pango ==1.40.11
     - zlib ==1.2.11
 
 test:
   commands:
     - convert -version
+    - convert -list configure | grep DELEGATES | grep png
 
 about:
   home: http://www.imagemagick.org/
