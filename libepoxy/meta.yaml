@@ -1,0 +1,21 @@
+package:
+  name: libepoxy
+  version: 1.4.3
+
+source:
+  git_url: https://github.com/anholt/libepoxy
+  git_tag: 1.4.3
+
+requirements:
+  build:
+    - gcc ==5.4.0
+    - git
+    - meson
+  run:
+    - libgcc >=5.4.0
+
+about:
+  home: https://github.com/anholt/libepoxy
+  summary: "Epoxy is a library for handling OpenGL function pointer management for you"
+  license: MIT
+  license_file: COPYING
