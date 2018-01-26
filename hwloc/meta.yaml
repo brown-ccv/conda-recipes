@@ -1,0 +1,31 @@
+{% set name = "hwloc" %}
+{% set pname = "hwloc" %}
+{% set version = "1.11.5" %}
+{% set sha256 = "da2c780fce9b5440a1a7d1caf78f637feff9181a9d1ca090278cae4bea71b3df" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ pname }}-{{ version }}.tar.gz
+  url: https://www.open-mpi.org/software/hwloc/v1.11/downloads/{{ pname }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+requirements:
+  build:
+    - gcc ==5.4.0
+    - libxml2 ==2.9.4
+  run:
+    - libgcc >=5.4.0
+    - libxml2 ==2.9.4
+
+test:
+  commands:
+    - hwloc-ls
+
+about:
+  home: https://www.open-mpi.org/projects/hwloc/
+  license: BSD 3-Clause
+  license_file: COPYING
+  summary: 'Portable Hardware Locality (hwloc)'
