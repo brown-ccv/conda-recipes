@@ -1,0 +1,23 @@
+package:
+  name: munge
+  version: "0.5.13"
+
+source:
+  fn: munge-0.5.13.tar.xz
+  url: https://github.com/dun/munge/releases/download/munge-0.5.13/munge-0.5.13.tar.xz
+  sha256: 99753dfd06a4f063c36f3fb0eb1964f394feb649937d94c4734d85b7964144da
+
+requirements:
+  build:
+    - gcc ==5.4.0
+  run:
+    - libgcc >=5.4.0
+
+test:
+  commands:
+    - munge -V
+
+about:
+  home: https://github.com/dun/munge
+  summary: "MUNGE (MUNGE Uid 'N' Gid Emporium) is an authentication service for creating and validating credentials"
+  license: LGPLv3
