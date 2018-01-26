@@ -1,0 +1,44 @@
+{% set name = "functools32" %}
+{% set version = "3.2.3-2" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "f6253dfbe0538ad2e387bd8fdfd9293c925d63553f5813c4e587745416501e6d" %}
+
+package:
+  name: '{{ name|lower }}'
+  version: 3.2.3.2
+
+source:
+  fn: '{{ name }}-{{ version }}.tar.gz'
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  '{{ hash_type }}': '{{ hash_value }}'
+
+build:
+  number: 0
+  script: 'python setup.py install '
+
+requirements:
+  build:
+    - python
+  run:
+    - python
+
+test:
+  imports:
+    - functools32
+
+about:
+  home: https://github.com/MiCHiLU/python-functools32
+  license: PSF license
+  license_family: PSF
+  license_file: ''
+  summary: Backport of the functools module from Python 3.2.3 for use on 2.7 and PyPy.
+  description: 'This is a backport of the functools standard library module from
+
+    Python 3.2.3 for use on Python 2.7 and PyPy. It includes
+
+    new features `lru_cache` (Least-recently-used cache decorator).'
+  doc_url: ''
+  dev_url: ''
+
+extra:
+  recipe-maintainers: ''
