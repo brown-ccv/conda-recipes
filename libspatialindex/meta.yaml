@@ -1,0 +1,20 @@
+package:
+  name: libspatialindex
+  version: "1.8.5"
+
+source:
+  fn: libspatialindex-1.8.5.tar.gz
+  url: http://download.osgeo.org/libspatialindex/spatialindex-src-1.8.5.tar.gz
+  md5: 4065c6218ce3d1c4906beb3a313470db
+
+requirements:
+  build:
+    - gcc ==5.4.0
+  run:
+    - libgcc >=5.4.0
+
+about:
+  home: https://github.com/libspatialindex/libspatialindex
+  summary: "C++ implementation of R*-tree, an MVR-tree and a TPR-tree with C API"
+  license: MIT
+  license_file: COPYING
