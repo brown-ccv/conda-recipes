@@ -1,0 +1,22 @@
+package:
+  name: ampliconclipper
+  version: "0.0"
+
+source:
+  git_url: https://github.com/SoapZA/AmpliconClipper
+  git_tag: ceced74
+
+requirements:
+  build:
+    - gcc ==5.4.0
+  run:
+    - libgcc >=5.4.0
+
+test:
+  commands:
+    - AmpliconClipper
+
+about:
+  home: https://github.com/SoapZA/AmpliconClipper
+  summary: "an alignment postprocessor that removes PCR primers from SAM alignments and discards reads with major errors"
+  license: GPLv3
