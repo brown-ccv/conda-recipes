@@ -1,0 +1,87 @@
+package:
+  name: tableschema
+  version: "1.0.11"
+
+source:
+  fn: tableschema-1.0.11.tar.gz
+  url: https://pypi.python.org/packages/4c/ca/38b2976b7081ddd6afc464c7ff682620904830c5cf18b314900258244b63/tableschema-1.0.11.tar.gz
+  md5: faebba26363a974a7c4a5266bb3ee7e8
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # noarch_python: True
+  # preserve_egg_dir: True
+  entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - tableschema = tableschema:main
+    #
+    # Would create an entry point called tableschema that calls tableschema.main()
+
+    - tableschema = tableschema.cli:main
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - six ==1.10
+    - click ==6.7
+    - requests ==2.12.4
+    - python-dateutil ==2.6.0
+    - jsonschema ==2.6.0
+    - unicodecsv ==0.14.1
+    - isodate ==0.6.0
+    - rfc3986 ==1.1.0
+    - tabulator ==1.13.0
+
+  run:
+    - python
+    - six ==1.10
+    - click ==6.7
+    - requests ==2.12.4
+    - python-dateutil ==2.6.0
+    - jsonschema ==2.6.0
+    - unicodecsv ==0.14.1
+    - isodate ==0.60
+    - rfc3986 ==1.1.0
+    - tabulator ==1.13.0
+
+test:
+  # Python imports
+  imports:
+    - tableschema
+    - tableschema.constraints
+    - tableschema.plugins
+    - tableschema.types
+
+  commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+    - tableschema --help
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  requires:
+    - pylama
+    - tox
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: https://github.com/frictionlessdata/tableschema-py
+  license: MIT License
+  summary: 'A utility library for working with Table Schema in Python'
+  license_family: MIT
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
