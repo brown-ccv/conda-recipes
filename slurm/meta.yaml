@@ -1,0 +1,27 @@
+package:
+  name: slurm
+  version: "17.02.9"
+
+source:
+  fn: slurm-17.02.9.tar.bz2
+  url: https://download.schedmd.com/slurm/slurm-17.02.9.tar.bz2
+  sha1: 375250d7410f9ba2a7db53e6eea26ee7e8543f37
+
+requirements:
+  build:
+    - gcc ==5.4.0
+    - hwloc ==1.11.5
+    - munge ==0.5.13
+    - mysql ==5.7.20
+    - numactl ==2.0.11
+  run:
+    - libgcc >=5.4.0
+    - hwloc ==1.11.5
+    - munge ==0.5.13
+    - mysql ==5.7.20
+    - numactl ==2.0.11
+
+about:
+  home: https://www.schedmd.com/
+  summary: "open-source workload manager designed specifically to satisfy the demanding needs of high performance computing"
+  license: GPLv2
