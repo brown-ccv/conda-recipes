@@ -1,0 +1,24 @@
+package:
+  name: numactl
+  version: "2.0.11"
+
+source:
+  git_url: https://github.com/numactl/numactl
+  git_tag: v2.0.11
+
+requirements:
+  build:
+    - gcc ==5.4.0
+    - automake
+    - libtool
+  run:
+    - libgcc >=5.4.0
+
+test:
+  commands:
+    - "numactl 2>&1 | grep 'usage: numactl'"
+
+about:
+  home: https://github.com/numactl/numactl
+  summary: "NUMA support for Linux"
+  license: GPLv2
