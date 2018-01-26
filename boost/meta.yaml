@@ -1,0 +1,28 @@
+package:
+  name: boost
+  version: 1.61.0
+
+source:
+  fn:  boost_1_61_0.tar.bz2
+  url: http://sourceforge.net/projects/boost/files/boost/1.61.0/boost_1_61_0.tar.bz2
+  md5: 6095876341956f65f9d35939ccea1a9f
+
+requirements:
+  build:
+    - python
+    - gcc ==5.4.0
+    - bzip2 ==1.0.6
+    - icu ==58.2
+    - zlib ==1.2.11
+  run:
+    # python dependency is here due to libboost-python library that depends on
+    # python version
+    - python
+    - libgcc >=5.4.0
+    - bzip2 ==1.0.6
+    - icu ==58.2
+    - zlib ==1.2.11
+
+about:
+  home: http://www.boost.org/
+  license: Boost-1.0
