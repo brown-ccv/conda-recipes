@@ -1,0 +1,91 @@
+package:
+  name: tabulator
+  version: "1.13.0"
+
+source:
+  fn: tabulator-1.13.0.tar.gz
+  url: https://pypi.python.org/packages/33/0f/2b9566602494a1e77b6ccf043ffb48f278ff8a7d3d0ca3b6f3fa19faf7a4/tabulator-1.13.0.tar.gz
+  md5: ba91cc0e993e85577f07d3e76b59af19
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # noarch_python: True
+  # preserve_egg_dir: True
+  entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - tabulator = tabulator:main
+    #
+    # Would create an entry point called tabulator that calls tabulator.main()
+
+    - tabulator = tabulator.cli:cli
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - six ==1.10
+    - click ==6.7
+    - requests ==2.12.4
+    - cchardet ==1.1.3
+    - unicodecsv ==0.14.1
+    - ijson ==2.3
+    - jsonlines ==1.2.0
+    - sqlalchemy ==1.1.9
+    - linear-tsv ==1.1.0
+    - xlrd ==1.1.0
+    - openpyxl ==2.5.0
+
+  run:
+    - python
+    - six ==1.10
+    - click ==6.7
+    - requests ==2.12.4
+    - cchardet ==1.1.3
+    - unicodecsv ==0.14.1
+    - ijson ==2.3
+    - jsonlines ==1.2.0
+    - sqlalchemy ==1.1.9
+    - linear-tsv ==1.1.0
+    - xlrd ==1.1.0
+    - openpyxl ==2.5.0
+
+test:
+  # Python imports
+  imports:
+    - tabulator
+    - tabulator.loaders
+    - tabulator.parsers
+    - tabulator.writers
+
+  commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+    - tabulator --help
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  requires:
+    - pylama
+    - tox
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: https://github.com/frictionlessdata/tabulator-py
+  license: MIT License
+  summary: 'Consistent interface for stream reading and writing tabular data (csv/xls/json/etc)'
+  license_family: MIT
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
