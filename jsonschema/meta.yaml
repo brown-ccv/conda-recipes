@@ -1,0 +1,69 @@
+package:
+  name: jsonschema
+  version: "2.6.0"
+
+source:
+  fn: jsonschema-2.6.0.tar.gz
+  url: https://pypi.python.org/packages/58/b9/171dbb07e18c6346090a37f03c7e74410a1a56123f847efed59af260a298/jsonschema-2.6.0.tar.gz
+  md5: 50c6b69a373a8b55ff1e0ec6e78f13f4
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # noarch_python: True
+  # preserve_egg_dir: True
+  entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - jsonschema = jsonschema:main
+    #
+    # Would create an entry point called jsonschema that calls jsonschema.main()
+
+    - jsonschema = jsonschema.cli:main
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - vcversioner ==2.16
+    - functools32 ==3.2.3-2
+
+  run:
+    - python
+    - vcversioner ==2.16
+    - functools32 ==3.2.3-2
+
+test:
+  # Python imports
+  imports:
+    - jsonschema
+    - jsonschema.tests
+
+  commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+    - jsonschema --help
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: http://github.com/Julian/jsonschema
+  license: MIT License
+  summary: 'An implementation of JSON Schema validation for Python'
+  license_family: MIT
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
