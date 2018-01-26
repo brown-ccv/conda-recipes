@@ -1,0 +1,35 @@
+{% set version = "0.8.3" %}
+
+package:
+  name: rtree
+  version: {{ version }}
+
+source:
+  fn: rtree-{{ version }}.tar.gz
+  url: https://github.com/Toblerity/rtree/archive/{{ version }}.tar.gz
+  sha256: ab9d29ea3935d189ce32217ad5f5aff464a7ded9e9f9777e2d8dbf11dcf90b93
+
+build:
+  number: 0
+  script: pip install --no-deps .
+
+requirements:
+  build:
+    - python
+    - libspatialindex ==1.8.5
+  run:
+    - python
+    - libspatialindex ==1.8.5
+
+test:
+  imports:
+    - rtree
+  commands:
+    - conda inspect linkages -p $PREFIX rtree  # [not win]
+    - conda inspect objects -p $PREFIX rtree  # [osx]
+
+about:
+  home: http://toblerity.github.com/rtree/
+  license: LGPL-2.1
+  license_file: LICENSE.txt
+  summary: 'R-Tree spatial index for Python GIS.'
