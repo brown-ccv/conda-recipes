@@ -1,0 +1,22 @@
+package:
+  name: mafft
+  version: 7.313
+
+source:
+  fn: mafft-7.313.tar.gz
+  url: https://mafft.cbrc.jp/alignment/software/mafft-7.313-without-extensions-src.tgz
+  sha256: 53a860f649d5777ab24449569bf2a19d3d911572ad8feea58915b9285ec50365
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+
+test:
+  commands:
+    - mafft --version
+
+about:
+  home: http://mafft.cbrc.jp/alignment/software/
+  summary: Multiple alignment program for amino acid or nucleotide sequences based on fast Fourier transform
+  license: BSD
+  license_file: license
