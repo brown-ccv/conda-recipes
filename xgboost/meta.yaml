@@ -1,33 +1,32 @@
 package:
   name: xgboost
-  version: 0.60
+  version: 0.7
 
 source:
   git_url: https://github.com/dmlc/xgboost
-  git_tag: v0.60
+  git_tag: v0.7
 
 requirements:
   build:
+    - {{ compiler('cxx') }}
+    - libgcc-ng
+  host:
     - python
     - setuptools
-    - maven >=3.5.0
-    - gcc ==5.4.0
     - numpy ==1.13.0
     - scipy ==0.19.0
   run:
     - python
     - setuptools
-    - libgcc >=5.4.0
     - numpy ==1.13.0
     - scipy ==0.19.0
 
 test:
-  # Python imports
   imports:
     - xgboost
 
 about:
   home: https://github.com/dmlc/xgboost
+  summary: eXtreme Gradient Boosting
   license: Apache 2.0
   license_file: LICENSE
-  summary: eXtreme Gradient Boosting

@@ -1,10 +1,5 @@
 #!/bin/bash
 set -e
-
-export CC=gcc
-export CXX=g++
-
-make
-
+make -j${CPU_COUNT}
 cd python-package
-pip install --no-deps .
+python setup.py install --single-version-externally-managed --record=record.txt
