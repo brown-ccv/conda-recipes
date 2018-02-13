@@ -1,0 +1,21 @@
+package:
+  name: r-tidyverse
+  version: 1.2.1
+
+build:
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  host:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - r-base ==3.4.3
+  run:
+    - r-base ==3.4.3
+
+about:
+  home: https://github.com/tidyverse/tidyverse
+  summary: R packages for data science
+  license: Various
