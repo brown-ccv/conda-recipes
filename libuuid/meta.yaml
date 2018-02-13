@@ -1,0 +1,27 @@
+package:
+  name: libuuid
+  version: 2.31.1
+
+source:
+  git_url: https://github.com/karelzak/util-linux
+  git_tag: v2.31.1
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - automake
+    - bison
+    - libtool
+    - gettext
+    - pkg-config
+    - xz
+
+test:
+  commands:
+    - uuidgen
+
+about:
+  home: https://github.com/karelzak/util-linux
+  summary: a random collection of Linux utilities
+  license: GPLv2
+  license_file: COPYING
