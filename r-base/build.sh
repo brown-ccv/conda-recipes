@@ -6,6 +6,8 @@ export LD_RUN_PATH=$PREFIX/lib
 export LD_LIBRARY_PATH=$PREFIX/lib
 export MKL="-Wl,--no-as-needed -lmkl_intel_lp64 -lmkl_gnu_thread -lmkl_core -lgomp -lpthread -lm -ldl"
 
+export CXXFLAGS=$(echo $CXXFLAGS | sed 's/ -std=c++17//')
+
 # If lib/R/etc/javaconf ends up with anything other than ~autodetect~
 # for any value (except JAVA_HOME) then 'R CMD javareconf' will never
 # change it, so we prevent configure from finding Java.  post-install
