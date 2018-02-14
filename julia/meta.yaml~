@@ -1,0 +1,37 @@
+package:
+  name: julia
+  version: "0.6.2"
+
+source:
+  fn: julia-0.6.2-linux-x86_64.tar.gz
+  url: https://julialang.s3.amazonaws.com/bin/linux/x64/0.6/julia-0.6.2-linux-x86_64.tar.gz
+
+
+build:
+  skip: True # [osx]
+  rpaths:
+    - lib/
+    - lib/julia/
+  binary_relocation: False  ## NOTE: default is true
+
+  number: 1
+
+requirements:
+  build:
+    - gcc # [linux]
+    - llvm # [osx]
+    - zlib
+  run:
+    - zlib
+    - libgcc >=5.2.0 # [linux]
+
+
+about:
+  home: http://julialang.org/
+  license: MIT
+  license_file: LICENSE.md
+  summary: A high-performance dynamic programming language for data science
+
+test:
+  commands:
+    - "julia -v"
