@@ -1,0 +1,22 @@
+package:
+  name: tbb
+  version: 2018u2
+
+source:
+  fn: tbb-2018u2.tar.gz
+  url: https://github.com/01org/tbb/archive/2018_U2.tar.gz
+  sha256: 78bb9bae474736d213342f01fe1a6d00c6939d5c75b367e2e43e7bf29a6d8eca
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+
+test:
+  commands:
+    - test -f ${PREFIX}/include/tbb/tbb.h
+
+about:
+  home: https://www.threadingbuildingblocks.org/
+  summary: Intel(R) Threading Building Blocks (Intel TBB)
+  license: Apache-2.0
+  license_file: LICENSE
