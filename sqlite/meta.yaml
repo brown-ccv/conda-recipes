@@ -1,0 +1,23 @@
+package:
+  name: sqlite
+  version: 3.22
+
+source:
+  fn: sqlite-autoconf-3220000.tar.gz
+  url: https://www.sqlite.org/2018/sqlite-autoconf-3220000.tar.gz
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+
+test:
+  commands:
+    - sqlite3 --version
+
+about:
+  home: https://www.sqlite.org/
+  summary: sqlite 3.2
+  license: Public Domain
