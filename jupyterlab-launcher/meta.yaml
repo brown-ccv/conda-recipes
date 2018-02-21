@@ -1,6 +1,6 @@
 # Recipe from: https://github.com/conda-forge/jupyterlab_launcher-feedstock
 
-{% set version = "0.4.0" %}
+{% set version = "0.10.5" %}
 
 package:
   name: jupyterlab_launcher
@@ -9,10 +9,9 @@ package:
 source:
   fn: jupyterlab_launcher-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/j/jupyterlab_launcher/jupyterlab_launcher-{{ version }}.tar.gz
-  sha256: aa29ad90926309ba7d6d711a2e34509041098102d2f061030428cc70f13b8317
 
 build:
-    number: 0
+    number: 1
     script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:

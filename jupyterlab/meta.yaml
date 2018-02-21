@@ -1,6 +1,6 @@
 #Recipe from: https://github.com/conda-forge/jupyterlab-feedstock
 
-{% set version = "0.31.2" %}
+{% set version = "0.31.8" %}
 
 package:
   name: jupyterlab
@@ -10,7 +10,7 @@ source:
     fn: jupyterlab-{{ version }}.tar.gz
     url: https://pypi.io/packages/source/j/jupyterlab/jupyterlab-{{ version }}.tar.gz
 build:
-  number: 1
+  number: 2
   script: python setup.py install --single-version-externally-managed --record record.txt
   entry_points:
     - jupyter-lab = jupyterlab.labapp:main
