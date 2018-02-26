@@ -1,0 +1,18 @@
+package:
+  name: lynis
+  version: 2.6.2
+
+source:
+  fn: lynis-2.6.2.tar.gz
+  url: https://github.com/CISOfy/lynis/archive/2.6.2.tar.gz
+  sha256: 590c8e6aa19ac99e03dd7859ccf724a65b73c871fe0ad96090c7df0a2e8eb854
+
+test:
+  commands:
+    - lynis show help
+
+about:
+  home: https://cisofy.com/lynis/
+  summary: Security auditing tool for Linux, macOS, and UNIX-based systems
+  license: GPLv3
+  license_file: LICENSE
