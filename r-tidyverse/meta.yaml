@@ -11,6 +11,7 @@ requirements:
   host:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
     - r-base ==3.4.3
   run:
     - r-base ==3.4.3
