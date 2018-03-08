@@ -1,0 +1,39 @@
+about:
+  home: https://github.com/BenLangmead/bowtie
+  license: Artistic
+  summary: An ultrafast memory-efficient short read aligner
+
+package:
+  name: bowtie
+  version: 1.1.2
+
+source:
+  url: http://downloads.sourceforge.net/project/bowtie-bio/bowtie/1.1.2/bowtie-1.1.2-src.zip
+  sha256: b1e9ccc825207efd1893d9e33244c681bcb89b9b2b811eb95a9f5a92eab637ae
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - gcc   # [linux]
+    - llvm  # [osx]
+    - python
+    - tbb
+  run:
+    - python
+    - perl 5.22.2.1
+    - libgcc    # [linux]
+    - tbb
+
+test:
+  commands:
+    - bowtie --help
+    - bowtie-align-l --help
+    - bowtie-align-s --help
+    - bowtie-build --help
+    - bowtie-build-l --help
+    - bowtie-build-s --help
+    - bowtie-inspect --help
+    - bowtie-inspect-l --help
+    - bowtie-inspect-s --help

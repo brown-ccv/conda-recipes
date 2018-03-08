@@ -1,0 +1,227 @@
+{% set name = "saga-python" %}
+{% set version = "0.46.1" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "dad6bad14aec074e7dc848ed23b96d042d00e6cec1a4866bbcc11b068b7357d3" %}
+
+package:
+  name: '{{ name|lower }}'
+  version: '{{ version }}'
+
+source:
+  fn: '{{ name }}-{{ version }}.tar.gz'
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  '{{ hash_type }}': '{{ hash_value }}'
+
+build:
+  number: 0
+  script: python setup.py install  --single-version-externally-managed --record=record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - apache-libcloud
+    - radical.utils
+    - parse
+  run:
+    - python
+    - apache-libcloud
+    - radical.utils
+    - parse
+
+test:
+  imports:
+    - saga
+    - saga.adaptors
+    - saga.adaptors.aws
+    - saga.adaptors.cobalt
+    - saga.adaptors.condor
+    - saga.adaptors.context
+    - saga.adaptors.cpi
+    - saga.adaptors.cpi.advert
+    - saga.adaptors.cpi.filesystem
+    - saga.adaptors.cpi.job
+    - saga.adaptors.cpi.namespace
+    - saga.adaptors.cpi.replica
+    - saga.adaptors.cpi.resource
+    - saga.adaptors.globus_online
+    - saga.adaptors.http
+    - saga.adaptors.irods
+    - saga.adaptors.loadl
+    - saga.adaptors.lsf
+    - saga.adaptors.pbs
+    - saga.adaptors.pbspro
+    - saga.adaptors.redis
+    - saga.adaptors.sge
+    - saga.adaptors.shell
+    - saga.adaptors.slurm
+    - saga.adaptors.srm
+    - saga.adaptors.torque
+    - saga.advert
+    - saga.engine
+    - saga.filesystem
+    - saga.job
+    - saga.namespace
+    - saga.replica
+    - saga.resource
+    - saga.utils
+    - saga.utils.job
+
+about:
+  home: http://radical-cybertools.github.io/saga-python/
+  license: MIT License
+  license_family: MIT
+  license_file: ''
+  summary: A light-weight access layer for distributed computing infrastructure(http://radical.rutgers.edu/)
+  description: "saga-python\n===========\n\nA light-weight access layer for distributed computing infrastructure \n\n  www:  http://radical-cybertools.github.io/saga-python/\n  wiki: https://github.com/radical-cybertools/saga-python/wiki\n\
+    \n\nUnit Tests\n----------\n\nThe unit tests for saga-python can be found in the tests/ subdirectory.\nInstructions how to tun the tests are in tests/README.md.\n \nSAGA-Python requires Python version\
+    \ 2.x, specifically version 2.5 or newer.\n\n\n\n\n\n\n  - For a list of bug fixes, see\n    https://github.com/radical-cybertools/saga-python/issues?q=is%3Aissue+is%3Aclosed+sort%3Aupdated-desc\n \
+    \ - For a list of open issues and known problems, see\n    https://github.com/radical-cybertools/saga-python/issues?q=is%3Aissue+is%3Aopen+\n\n\nVersion 0.46                                        \
+    \                  2017-08-23\n--------------------------------------------------------------------------------\n\n  - hotfix for RP #1415\n\n\nVersion 0.46                                         \
+    \                 2017-08-11\n--------------------------------------------------------------------------------\n\n  - Fix several debug messages\n  - Fix/621 experiment aimes (#622) \n  - Fixed run_job\
+    \ to run in service.py \n  - Properly support SGE job name. (#624) \n  - Anselm support in pbspro v.13 (#634) \n  - fix a condor script syntax error \n  - attempt to prevent job eviction \n  - be resiliant\
+    \ against lingering NFS locks (hi titan) \n  - clean bulk job info for condor \n  - clean up state management in condor adaptor,\n  - slim down condor log calls, simplify status updates, ensure output\
+    \ transfer \n  - container_cancel needs to accept timeout parameter (#633) \n  - don't barf on failing condor_history \n  - don't limit status check length \n  - iteration on slurm mpi support (#623)\
+    \ \n  - fix logic error in directive evaluation \n  - fix parsing of condor_history for multi-file staging\n  - fixes on src/tgt ordering in osg staging \n  - follow the rename of ru.Task to ru.Future\
+    \ \n  - follow the rename of ru.Thread to ru.Future \n  - implement bulk cancel for condor \n  - iteration on bulk submission, data staging \n  - iteration on run_job implementatio \n  - improve condor\
+    \ scaling / performance\n  - make sure we alsways have a valid transfer directive in condor \n  - make sure we do not fail on a missing exit code \n  - more clarity on file staging semantics, some cleanup\
+    \ \n  - better handling of $PROMPT_COMMAND \n  - resilience against condor_history errors \n  - update on torque to avoid triggering a check \n\n\nVersion 0.45.1                                    \
+    \                    2017-02-28\n--------------------------------------------------------------------------------\n\n  - hotfix to support CandidateHosts for LoadLeveler\n\n\nVersion 0.45          \
+    \                                                2017-02-28\n--------------------------------------------------------------------------------\n\n  - Add srm adaptor - Thanks Mark!\n  - Add cobalt adaptor\
+    \ (blue gene/q) - Thanks Manuel!\n  - Add special case for Rhea\n  - Deal with timeouts. \n  - Don't want our jobs to restart after eviction (OSG)\n  - Make pty shell url configurable. \n  - Remove\
+    \ some more PBSPro remains. \n  - address #585 \n  - fix #590 \n  - check that prev_info exists before populating curr_info with its info in _job_get_info \n  - clean up slurm adaptor to get it fit\
+    \ for the split branch in RP\n  - fix state interpretation for pbspro \n  - make torque fit for rp split branch \n  - remove some debug logs \n  - some consistency fixes\n  - update slurm example in\
+    \ context of #611 \n  - use `-o Port=%d` notation for ssh based channels \n  - backport ft and bulk ops for torque from osg_optimization \n\n\nVersion 0.44                                          \
+    \                2016-11-01\n--------------------------------------------------------------------------------\n\n  - added basework_dir parameter to sge and proxy adaptors\n  - added new PBS versions\
+    \ to pbsnodes CPU count check\n  - changed the regular expression to find the job-id on LSF adaptor. Fixes #568 \n  - re-enable fallback methods for slurm job containers, jd.name support for slurm \n\
+    \  - fix for issue #586, removing invalid dirs from shell wrapper script file path\n  - fix parsing of file staging directives \n  - make shell job adaptor workdir configurable \n  - avoid double close\
+    \ for shell job service \n  - raise error on missing tools \n  - removed duplicate get_name function in job class \n  - add missing container method to get job states \n  - merged pull request #583\
+    \ \n  - enforce version in radical stack \n  - fix #555 \n\n\nVersion 0.41.3                                                        2016-07-07\n--------------------------------------------------------------------------------\n\
+    \n  - still hating it...\n\n\nVersion 0.41.2                                                        2016-07-07\n--------------------------------------------------------------------------------\n\n \
+    \ - I hate python deployment\n\n\nVersion 0.41.1                                                        2016-07-07\n--------------------------------------------------------------------------------\n\
+    \n  - hotfix: remove some debug code which causes trouble in multiuser envs\n\n\nVersion 0.41                                                          2016-06-02\n--------------------------------------------------------------------------------\n\
+    \n  - Feature/job name shell (#541) \n  - implementation of job names for shell job adaptor and on API level \n  - add job.name for condor\n  - address #552 \n  - allow for non-interative local pty\
+    \ shells \n  - initialidir support for Condor\n  - change HOSTFILE settings \n\n  - fix missing var setting in aws example \n  - fix port opening directive, make sure port is opened just once \n  -\
+    \ fix regression in job cancellation \n  - fix rel path on open \n  - fix staging calls \n  - fix string formatting error \n  - fix ssh context to handle passwords containing spaces \n  - cleanup of\
+    \ the shell spawner, getting in sync with RP version \n  - implement dir.exists \n  - make sure we have a job description on reconnected jobs \n  - make task passing to async calls optional \n  - aws\
+    \ security group tweaking \n  - remove invalid obj redirection \n  - code simplification \n  - simplify local mkdir in shell file adaptor \n  - sync with updated benchmark tools \n  - use shared shell\
+    \ connection for FS ops \n\n\nVersion 0.40.2                                                        2016-04-23\n--------------------------------------------------------------------------------\n\n \
+    \ - Hotfix release to avoid security warnings on Stampede\n\n\nVersion 0.40.1                                                        2016-02-05\n--------------------------------------------------------------------------------\n\
+    \n  - Hotfix release to address a tmp file race condition on file staging\n\n\nVersion 0.40                                                          2016-01-19\n--------------------------------------------------------------------------------\n\
+    \n  - Added job monitor state update fix to PBSPro adapter. \n  - Add session property to base class. Fix #480. \n  - add traceback property to exception\n  - support gsissh for condor job submission\
+    \ \n  - pass span parameter to LSF. \n  - support SLURM reservation. \n  - file staging for shell adaptor\n  - Fix #477, set session for shell job service \n  - Fixed job state monitor to correctly\
+    \ identify state changes. \n  - Fixed string formatting error. \n  - Fixes #501. Thanks Javi! \n  - fix session documentation.  Thanks Jeremy!\n  - Fix to allow use of environment vars in ssh context\
+    \ key/cert property file paths. \n  - Implement bulk submit, states and wait for condor. \n  - Improve file staging directives handling. \n  - Logging goes into working directory. \n  - make ssh connection\
+    \ timeout configirable (defaults now to 10 seconds) \n  - Passing ssh_timeout param to ssh ConnectTimeout option \n  - Updated fix to #494 to take account of empty key/cert parameter. \n  - deprecate\
+    \ PBS adaptor\n\n\nVersion 0.39                                                          2015-12-01\n--------------------------------------------------------------------------------\n\n  - support dynamic\
+    \ adaptor loading \n  - fix #477, set session for shell job service (thanks Mehdi!)\n  - set session on file and directory instances, #480 \n\n\nVersion 0.38.1 release                              \
+    \                  2015-11-11\n--------------------------------------------------------------------------------\n\n  - fix 0.38 after botched merge\n\n\nVersion 0.38 release                        \
+    \                          2015-11-06\n--------------------------------------------------------------------------------\n\n  - support for anaconda client install\n\n\nVersion 0.37 release         \
+    \                                         2015-10-15\n--------------------------------------------------------------------------------\n\n  - scattered bug fixes\n\n\nVersion 0.36 release          \
+    \                                        2015-10-15\n--------------------------------------------------------------------------------\n\n  - update of GO adaptor with recent GlobusOnline evolotion\n\
+    \  - scattered fixes in GO adaptor\n\n\nVersion 0.36 release                                                  2015-10-08\n--------------------------------------------------------------------------------\n\
+    \n  Note that RADICAL_SAGA_VERBOSE should now be used instead of SAGA_VERBOSE (but\n  the latter will be supported for a while).  PTY layer debug levels can\n  separately be enabled via RADICAL_SAGA_PTY_VERBOSE.\n\
+    \n  - fix cray qsub arguments\n  - fix interpretation of relative / absolute URLs in some cases\n  - fix #449 - thanks jcohen02! \n  - keep up with logger changes in util \n  - properly detect failed\
+    \ jobs.\n  - follow changes on resource configurations (BW)\n  - remove dead code.\n  - fix state mapping in some queue adaptors\n  - clean torque/pbs separation\n\n\nVersion 0.35 release          \
+    \                                        2015-07-14\n--------------------------------------------------------------------------------\n\n  - Add contexts to session at start of context list\n  - add\
+    \ tc.get_task(id)\n  - Add PROCESSES_PER_HOST to all job adaptors.\n  - sync an sdist naming fix\n  - Add dedicated PBS Pro adaptor.\n  - Get ppn from proccess_per_host.\n  - implement candidate_hosts\
+    \ for slurm adaptor\n  - processes_per_host for SLURM.\n\n\nVersion 0.29 release                                                  2015-07-14\n--------------------------------------------------------------------------------\n\
+    \n  - apply setup/git fix\n  - fix exception type exception\n  - convert to locking \"with\"/by context manager.\n  - only create parents for the dir part of a target.\n  - reentrant lock to guard concurrent\
+    \ cache writing.\n  - fix object._id format\n\n\nVersion 0.28 release 2015-04-16\n--------------------------------------------------------------------------------\n\n  - set 'ssh_share_mode=no' on CentOS\n\
+    \  - resilience against missing git in setup.py\n  - Prompt pattern for RSA SecureID (BW, Titan, etc.)\n  - cleaner version string\n  - treat empty strings as unset values in PBS job description\n \
+    \ - fix slurm script generation\n  - implement discussed changes to job stdio inspection\n  - finish implementation of #202\n  - pre- and post-exec for shell job adaptor\n  - implement pre/post_exec,\
+    \ support in slurm, cleanup slurm submission\n  - clean up stdin/stdout/stderr/log handling for jobs\n  - sync setup.py with recent changes in RP\n  - Fix rounding up cores for blacklight \n  - ignore\
+    \ SIGHUP in the shell monitor -- fixes #415\n  - install sdist, export sdist location\n\n\nVersion 0.27 release 2015-03-25\n--------------------------------------------------------------------------------\n\
+    \n  - fix rounding-up cores for blacklight\n\n\nVersion 0.26 release 2015-02-24\n--------------------------------------------------------------------------------\n\n  - Major iteration on Globus Online\
+    \ adaptor, including tests and\n    examples\n  - move sources into src/ \n  - short_version -> version \n  - long_version -> version_detail\n  - use DebugHelper in test suite\n  - implement #413\n\
+    \  - Check status of task to be able to detect failure.\n  - fix to make async tasks working for methods which do not provide\n    metrics\n  - Fix ssh key logic.\n  - do not pick up pem certs by default\n\
+    \  - Add \"gres\" (Generic Resource) query parameter.\n  - Add note about queue query parameter.\n  - fix syntax error in PBS variable spec\n  - Fix, cleanup and document qstat parsing.\n  - Document\
+    \ job states.\n  - stop job monitoring on continous errors (pbs)\n  - Support \"bigflash\" nodes selection on Gordon.\n  - make workdir for shell wrapper a parameter\n  - force copy shells to be non-posix\
+    \ (sftp)\n  - make sure that non-posix shells are excused from prompt triggering\n\n\nVersion 0.25 release 2014-12-17\n--------------------------------------------------------------------------------\n\
+    \n  - hotfix for sftp problems on some client/server version\n    combinations which lead to data inconsistencies\n\n\nVersion 0.24 release 2014-12-08\n--------------------------------------------------------------------------------\n\
+    \n  - make ssh share mode configurable\n  - Re-enable explicit_exec and add more explanation.\n  - Make setting job_type conditional on >1 cores.\n  - more variety in PBS \"constants\" (ha!)\n  - fix\
+    \ #401\n  - make sure the target dir for leased shells exists on\n    CREATE_PARENTS in dir ctor\n  - fix #400\n  - export PPN information to torque and pbs jobs\n  - merge and fix Danila's patch\n\
+    \  - re-enable test for PBSPro_10\n  - added test config for archer\n  - re-enable test for PBSPro_10, as discussed with Ole.\n  - added test config for archer\n  - add missing error check on mkdir\n\
+    \  - fix logical error on dir state recovery\n  - LoadLeveler support for BG/Q machines.\n\n\nVersion 0.22 release 2014-11-03\n--------------------------------------------------------------------------------\n\
+    \n  - Hotfix release fixing incompatbile sftp flag \"-2\" \n    - https://github.com/radical-cybertools/saga-python/issues/397\n\n\nVersion 0.21 release 2014-10-29\n--------------------------------------------------------------------------------\n\
+    \n  - scattered bug fixes related to connection caching\n  - configurable switch between scp and sftp\n  - tweak timeouts on ssh channels\n  - disable irods adaptor\n\n\nVersion 0.19 release 2014-09-15\n\
+    --------------------------------------------------------------------------------\n\n  - LeaseManager for connection sharing.\n  - Improved file transfer performance\n  - Small improvements in PBS (esp.\
+    \ Cray) and LSF adaptors. \n  - Closed tickets:\n    - https://github.com/radical-cybertools/saga-python/issues?q=is%3Aclosed+is%3Aissue+milestone%3A%22saga-python+0.19%22+\n\nVersion 0.18 release 2014-08-28\n\
+    --------------------------------------------------------------------------------\n\n  - scattered fixes and perf improvement\n\nVersion 0.17 release 2014-07-22\n--------------------------------------------------------------------------------\n\
+    \n  - Improved prompt-detection and small bug fixes.\n  - Closed tickets:\n    - https://github.com/radical-cybertools/saga-python/issues?milestone=20&state=closed\n\nVersion 0.16 release 2014-07-09\n\
+    --------------------------------------------------------------------------------\n\n  - Several adaptor upddtes\n  - Addressed SSH caching and prompt-detection issues\n  - Closed tickets:\n    - https://github.com/radical-cybertools/saga-python/issues?milestone=19&state=closed\n\
+    \nVersion 0.15 release 2014-06-18\n--------------------------------------------------------------------------------\n\n  - Fixed issues with the shell aadaptor Directory.list() method:\n    - https://github.com/radical-cybertools/saga-python/issues/330\n\
+    \nVersion 0.14 release 2014-05-07\n--------------------------------------------------------------------------------\n\n  - Fixed TTY wrapper issues\n  - Migration to new GitHub repository\n  - Documentation\
+    \ now on ReadTheDocs:\n    http://saga-python.readthedocs.org/en/latest/\n  - Integrated Mark's work on the Condor adaptor\n  - Closed tickets:\n    - https://github.com/radical-cybertools/saga-python/issues?milestone=18&state=closed\n\
+    \nVersion 0.13 release 2014-02-27\n--------------------------------------------------------------------------------\n\n  - Bugfix release.\n  - Closed tickets:\n    - https://github.com/saga-project/saga-python/issues?milestone=17&state=closed\n\
+    \n\nVersion 0.12 release 2014-02-26\n--------------------------------------------------------------------------------\n\n  - Bugfix release + shell cleanup\n\nVersion 0.11 release 2014-02-25\n--------------------------------------------------------------------------------\n\
+    \n  - Closed tickets:\n    - https://github.com/saga-project/saga-python/issues?milestone=16&state=closed\n\nVersion 0.10 release 2014-01-18\n--------------------------------------------------------------------------------\n\
+    \n  - Changed versioning scheme from major.minor.patch to major.minor\n    due to Python's messed up installers\n  - Fixed job script cleanup:\n    https://github.com/saga-project/saga-python/issues?milestone=15&state=closed\n\
+    \nVersion 0.9.16 release 2014-01-13\n--------------------------------------------------------------------------------\n\n  - Some improvements to sftp file adaptor\n  - Closed tickets: \n    - https://github.com/saga-project/saga-python/issues?milestone=14&state=closed\n\
+    \nVersion 0.9.15 release 2013-12-10\n--------------------------------------------------------------------------------\n\n  - Emergency release to fix missing VERSION file\n\nVersion 0.9.14 release 2013-12-10\n\
+    --------------------------------------------------------------------------------\n\n  - Migration to radical.utils\n  - Numerous SFTP file adaptor improvements\n  - Closed tickets: \n    - https://github.com/saga-project/saga-python/issues?milestone=13&state=closed\n\
+    \nVersion 0.9.13 release 2013-11-26\n--------------------------------------------------------------------------------\n\n  - Added Platform LSF adaptor\n  - Closed tickets:\n    - https://github.com/saga-project/saga-python/issues?milestone=11&state=closed\n\
+    \nVersion 0.9.12 release 2013-10-18\n--------------------------------------------------------------------------------\n\n  - Added iRODS replica adaptor\n  - Closed tickets:\n    - https://github.com/saga-project/saga-python/issues?milestone=10&state=closed\n\
+    \nVersion 0.9.11 released 2013-09-04\n--------------------------------------------------------------------------------\n\n  - Bugfix release\n  - Closed tickets:\n    - https://github.com/saga-project/saga-python/issues?milestone=9&state=closed\n\
+    \nVersion 0.9.10 released 2013-08-12\n--------------------------------------------------------------------------------\n\n  - Better support for Amazon EC2\n  - Fixed working directory handling for\
+    \ PBS\n  - Closed tickets: \n    - https://github.com/saga-project/saga-python/issues?milestone=3&state=closed\n\nVersion 0.9.9 released 2013-07-19\n--------------------------------------------------------------------------------\n\
+    \n  - Hotfix release: bug in Url.__str__ and SFTP copy\n    - https://github.com/saga-project/saga-python/issues?milestone=8&state=closed\n\nVersion 0.9.8 released 2013-06-22\n--------------------------------------------------------------------------------\n\
+    \n  - Hotfix release: critical bug in wait() signature\n    - https://github.com/saga-project/saga-python/issues?milestone=7&state=closed\n\nVersion 0.9.7 released 2013-06-19\n--------------------------------------------------------------------------------\n\
+    \n  - Added resource package\n  - Added 'liblcoud' based adaptor to access Amazon EC2 clouds\n  - Closed issues:\n    - https://github.com/saga-project/saga-python/issues?milestone=5&state=closed\n\n\
+    Version 0.9.6 released 2013-06-17\n--------------------------------------------------------------------------------\n\n  - Hotfix release: critical PBS/TORQUE adaptor fixes\n    - https://github.com/saga-project/saga-python/issues?&milestone=6&state=closed\n\
+    \nVersion 0.9.5 released 2013-06-06\n--------------------------------------------------------------------------------\n\n  - Hotfix release: critical SLURM adaptor fixes\n    - https://github.com/saga-project/saga-python/issues?milestone=4&state=closed\n\
+    \nVersion 0.9.4 released 2013-06-01\n--------------------------------------------------------------------------------\n\n  - jd.working_directory now gets created if it doesn't exist\n  - Support for\
+    \ older Cray systems running PBS Pro 10\n  - Job state callback support for the PBS adaptor - others to follow \n  - A simple HTTP protocol file adaptor\n  - Fixed some issues with user-pass and X.509\
+    \ security contexts\n  - Over 40 bugfixes and improvements: \n    - https://github.com/saga-project/saga-python/issues?milestone=2&state=closed\n\nVersion 0.9.3 released 2013-04-08\n--------------------------------------------------------------------------------\n\
+    \n  - Added SFTP adaptor\n  - Added tutorial examples\n  - Closed issues:\n    - https://github.com/saga-project/saga-python/issues/78\n    - https://github.com/saga-project/saga-python/issues/73\n\
+    \    - https://github.com/saga-project/saga-python/issues/72\n    - https://github.com/saga-project/saga-python/issues/71\n    - https://github.com/saga-project/saga-python/issues/69\n    - https://github.com/saga-project/saga-python/issues/66\n\
+    \    - https://github.com/saga-project/saga-python/issues/63\n    - https://github.com/saga-project/saga-python/issues/62\n    - https://github.com/saga-project/saga-python/issues/61\n    - https://github.com/saga-project/saga-python/issues/60\n\
+    \    - https://github.com/saga-project/saga-python/issues/58\n    - https://github.com/saga-project/saga-python/issues/57\n    - https://github.com/saga-project/saga-python/issues/56\n    - https://github.com/saga-project/saga-python/issues/55\n\
+    \    - https://github.com/saga-project/saga-python/issues/22\n    - https://github.com/saga-project/saga-python/issues/51\n    - https://github.com/saga-project/saga-python/issues/53\n    - https://github.com/saga-project/saga-python/issues/26\n\
+    \    - https://github.com/saga-project/saga-python/issues/49\n    - https://github.com/saga-project/saga-python/issues/50\n    - https://github.com/saga-project/saga-python/issues/47\n    - https://github.com/saga-project/saga-python/issues/45\n\
+    \    - https://github.com/saga-project/saga-python/issues/46\n    - https://github.com/saga-project/saga-python/issues/43\n    - https://github.com/saga-project/saga-python/issues/27\n\nVersion 0.9.2\
+    \ released 2013-03-11\n--------------------------------------------------------------------------------\n\n  - Hotfix release\n\nVersion 0.9.1 released 2013-03-03\n--------------------------------------------------------------------------------\n\
+    \n  - Major re-write of engine and adaptor interface\n  - Support for asynchronous operations \n  - Improved PTYWrapper for ssh/gsissh remote execution\n  - Added SLURM job adaptor \n  - Added Condor\
+    \ job adaptor\n\nVersion 0.2.7 released 2012-11-09\n--------------------------------------------------------------------------------\n\n  - Fixed errors related to pbs://localhost and sge://localhost\n\
+    \  URLs that were caused by a bug in the command-line wrappers.\n\nVersion 0.2.6 released 2012-10-25\n--------------------------------------------------------------------------------\n\n  - HOTFIX:\
+    \ credential management for SGE and PBS. both adaptors now\n    iterate over SSH and GSISSH contexts as well as consider usernames\n    that are part of the url, e.g., pbs+ssh://ole@lonestar.tacc...\n\
+    \nVersion 0.2.5 released 2012-10-24\n--------------------------------------------------------------------------------\n\n  - Changed documentation to Sphinx\n  - Removed object_type API. Python buildins\
+    \ can be used instead\n  - Updates to Filesystem API\n  - Added JobDescription.name attribute (as defined in DRMAA)\n  - Introduced stateful SSH connection substrate for PBS, SGE, etc\n  - Introduced\
+    \ support for GSISSH: pbs+gsissh://, sge+gsissh://\n  - Re-implementation of a (more Python-esque) attribute interface\n  - Fixed JobID issues, i.e., job.job_id returns 'None' in case the\n    job is\
+    \ not running instead of\n  - Introduced dynamic, fault-tolerant plug-in loader. If anything\n    goes wrong during loading of a specific plug-in (i.e.,\n    dependencies on 3rd party modules cannot\
+    \ be fulfilled, the plug-in\n    will just get skipped and the remaining ones will still get\n    loaded. Previously, a single problem during plug-in loading would\n    take Bliss down.\n\nVersion 0.2.4\
+    \ released 2012-7-10\n--------------------------------------------------------------------------------\n\n  - Added unit-tests for SPMDVariation\n  - Added 'mpirun' support for local job plug-in (via\
+    \ SPMDVariation)\n  - Added some of the missing methods and flags to filesystem package\n  - An URL object can now be constructed from another URL object\n  - Fixed job.cancel()\n  - Wildcard support\
+    \ for Directory.list()\n\nVersion 0.2.3 released 2012-6-26\n--------------------------------------------------------------------------------\n\n  - Fixed query support for URL class (issue #61)\n  -\
+    \ Improved logging. No root logger hijacking anymore (issue #62)\n  - Fixed job.Description.number_of_processes (issue #63)\n  - Less chatty SSH plug-in (issue #51)\n\nVersion 0.2.2 released 2012-6-12\n\
+    --------------------------------------------------------------------------------\n\n  - job.Decription now accepts strings for int values. This has been\n    implemented for backwards compatibility\n\
+    \  - Fixed resource.Compute.wait() timeout issue\n  - Removed excessive SGE/PBS plug-in logging\n  - job.Service can now be created from a resource.Manager\n  - Implemented deep copy for description\
+    \ objects\n  - Runtime now supports multiple plug-ins for the same schema\n\nVersion 0.2.1 released 2012-5-16\n--------------------------------------------------------------------------------\n\n  -\
+    \ Fixed https://github.com/saga-project/bliss/issues/5\n  - Fixed https://github.com/saga-project/bliss/issues/13\n\nVersion 0.2.0 released 2012-5-15\n--------------------------------------------------------------------------------\n\
+    \n  - SFTP support for local <-> remote copy operations, mkdir, get_size\n  - Added supoprt for ssh re-connection after timeout (issue #29)\n  - Abandoned 'Exception' filenames and API inheritance.\
+    \ The Bliss\n    interface looks much cleaner now. Compatibility with previous\n    versions has been ensured\n  - Improved (inline) API documentation\n  - Swapped urlparse with furl in saga.Url class\
+    \ This hopefully fixes\n    the problem with inconsistent parsing accross different Python\n    versions\n  - Added SGE (Sun Grid Engine) plug-in (issue #11)\n  - Removed sagacompat compatibility API\n\
+    \  - Log source names now all start with 'bliss.'. This should make\n    filtering much easier\n  - Moved SD package into development branch features/servicediscovery\n\nVersion 0.1.19 released 2012-02-29\n\
+    --------------------------------------------------------------------------------\n\n  - Hotfix - removed experimental Resource plug-in from release\n\nVersion 0.1.18 released 2012-02-29\n--------------------------------------------------------------------------------\n\
+    \n  - Fixed issue with plugin introspection \n  - Added template for job plug-in\n\nVersion 0.1.17 released 2012-01-04\n--------------------------------------------------------------------------------\n\
+    \n  - Hotfix\n\nVersion 0.1.16 released 2012-01-03\n--------------------------------------------------------------------------------\n\n  - Fixed issue: https://github.com/oweidner/bliss/issues/9\n\n\
+    Version 0.1.15 released 2012-01-03\n--------------------------------------------------------------------------------\n\n  - Fixed issue: https://github.com/oweidner/bliss/issues/8\n  - Fixed issue:\
+    \ https://github.com/oweidner/bliss/issues/6\n  - First version of a bigjob plugin. See wiki for details.\n  - Fixed Python 2.4 compatibility issue\n\nVersion 0.1.14 released 2011-12-08\n--------------------------------------------------------------------------------\n\
+    \n  - Added bliss.sagacompat module for API compatibility.  \n    - API documentation:\n      http://oweidner.github.com/bliss/apidoc-compat/\n  - Added examples for 'compat' API, e.g.:\n    https://github.com/oweidner/bliss/tree/master/examples/job-api/compat/\n\
+    \  - Added configuration files for epydoc\n\nVersion 0.1.13 released 2011-12-07\n--------------------------------------------------------------------------------\n\n  - Fixed executable & argument handling\
+    \ for the local job plugin\n  - Added support for jd.output and jd.error to local job plugin\n\nVersion 0.1.12 released 2011-12-06\n--------------------------------------------------------------------------------\n\
+    \n  - Fixed bug in URL.get_host()\n  - Fixed issues with extremely short running PBS jobs in conjunction\n    with scheduler configruations that remove the job from the queue\n    the second it finishes\
+    \ execution.\n  - First working version of an SFTP file API plugini based on\n    Paramiko\n  - Two advance bfast examples incl. output file staging:\n    https://github.com/oweidner/bliss/blob/master/examples/advanced/bfast_workflow_01.py\n\
+    \    https://github.com/oweidner/bliss/blob/master/examples/advanced/bfast_workflow_02.py\n\nVersion 0.1.11 released 2011-11-28\n--------------------------------------------------------------------------------\n\
+    \n  - Fixed issues with PBS working directory \n  - Added simple job API example that uses BFAST:\n    https://github.com/oweidner/bliss/blob/master/examples/job-api/pbs_via_ssh_bfast_job.py\n  - Updated\
+    \ apidoc: http://oweidner.github.com/bliss/apidoc/\n  - First prototype of a job container. Example can be found here:\n    https://github.com/oweidner/bliss/blob/master/examples/job-api/pbs_via_ssh_container.py\
+    \  \n  - Implemented CPU and Memory information via PBS service discovery\n  - Changed job.Description.walltime_limit to\n    job.Description.wall_time_limit\n\nVersion 0.1.10 released 2011-11-16\n\
+    --------------------------------------------------------------------------------\n\n  - Fixed issue with local job plugin\n\nVersion 0.1.9 released 2011-11-16\n--------------------------------------------------------------------------------\n\
+    \n  - Prototype of a Service Discovery packages\n  - PBS/SSH support for service discovery\n\nVersion 0.1.8 released 2011-11-09\n--------------------------------------------------------------------------------\n\
+    \n  - Fixed issue with PBS plugin job.wait()\n\nVersion 0.1.7 released 2011-11-09\n--------------------------------------------------------------------------------\n\n  - More or less stable job API\
+    \    \n  - First functional PBS over SSH plugin \n\n\n--------------------------------------------------------------------------------"
+  doc_url: ''
+  dev_url: ''
+
+extra:
+  recipe-maintainers: ''

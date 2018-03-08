@@ -1,0 +1,87 @@
+{% set version = '1.1.2' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-progress
+  version: {{ version|replace("-", "_") }}
+
+source:
+  fn: progress_{{ version }}.tar.gz
+  url:
+    - https://cran.r-project.org/src/contrib/progress_{{ version }}.tar.gz
+    - https://cran.r-project.org/src/contrib/Archive/progress/progress_{{ version }}.tar.gz
+
+
+  sha256: a9f4abfd9579b80967cd681041643fe9dfcc4eb3beeba45391bb64e9209baabb
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: testthat
+requirements:
+  build:
+    - r-base 3.3.2
+    - r-r6 2.2.0
+    - r-prettyunits 1.0.2
+
+  run:
+    - r-base 3.3.2
+    - r-r6 2.2.0
+    - r-prettyunits 1.0.2
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('progress')"  # [not win]
+    - "\"%R%\" -e \"library('progress')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://github.com/gaborcsardi/progress#readme
+  license: MIT + file LICENSE
+  summary: Configurable Progress bars, they may include percentage, elapsed time, and/or the
+    estimated completion time. They work in terminals, in 'Emacs' 'ESS', 'RStudio',
+    'Windows' 'Rgui' and the 'macOS' 'R.app'. The package also provides a 'C++' 'API',
+    that works with or without 'Rcpp'.
+  license_family: MIT
+
+# The original CRAN metadata for this package was:
+
+# Package: progress
+# Title: Terminal Progress Bars
+# Version: 1.1.2
+# Author: Gbor Csrdi [aut, cre], Rich FitzJohn [aut]
+# Maintainer: Gbor Csrdi <csardi.gabor@gmail.com>
+# Description: Configurable Progress bars, they may include percentage, elapsed time, and/or the estimated completion time. They work in terminals, in 'Emacs' 'ESS', 'RStudio', 'Windows' 'Rgui' and the 'macOS' 'R.app'. The package also provides a 'C++' 'API', that works with or without 'Rcpp'.
+# License: MIT + file LICENSE
+# LazyData: true
+# URL: https://github.com/gaborcsardi/progress#readme
+# BugReports: https://github.com/gaborcsardi/progress/issues
+# Imports: prettyunits, R6
+# Suggests: testthat
+# RoxygenNote: 5.0.1.9000
+# Encoding: UTF-8
+# NeedsCompilation: no
+# Packaged: 2016-12-14 09:09:03 UTC; gaborcsardi
+# Repository: CRAN
+# Date/Publication: 2016-12-14 17:23:33
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml

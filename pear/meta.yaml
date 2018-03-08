@@ -1,0 +1,23 @@
+package:
+  name: pear
+  version: 0.9.10
+
+source:
+  fn: pear-0.9.10.tar.gz
+  url: http://sco.h-its.org/exelixis/web/software/pear/files/pear-0.9.10.tar.gz
+  sha1: 5a170e1e8a2d4c7fc1ffe6bcbdc9609281608688
+
+requirements:
+  build:
+    - zlib
+  run:
+    - zlib
+
+test:
+  commands:
+    - pear --help | grep "PEAR v0.9.10"
+
+about:
+  home: http://www.exelixis-lab.org/pear
+  license: CCPL
+  summary: PEAR is an ultrafast, memory-efficient and highly accurate pair-end read merger

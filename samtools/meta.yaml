@@ -1,0 +1,31 @@
+{% set version = "1.3.1" %}
+
+package:
+  name: samtools
+  version: {{ version }}
+
+source:
+  fn: samtools-{{ version }}.tar.bz2
+  url: https://github.com/samtools/samtools/releases/download/{{ version }}/samtools-{{ version }}.tar.bz2
+  md5: a7471aa5a1eb7fc9cc4c6491d73c2d88
+
+requirements:
+  build:
+  - gcc  # [not osx]
+  - llvm # [osx]
+  - zlib
+  - curl
+  run:
+  - libgcc # [not osx]
+  - perl 5.22.2.1
+  - zlib
+  - curl
+
+test:
+  commands:
+    - samtools --help
+
+about:
+  home: https://github.com/samtools/samtools
+  license: MIT
+  summary: Tools for dealing with SAM, BAM and CRAM files

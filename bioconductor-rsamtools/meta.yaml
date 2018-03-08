@@ -1,0 +1,50 @@
+package:
+  name: bioconductor-rsamtools
+  version: "1.26.1"
+source:
+  fn: Rsamtools_1.26.1.tar.gz
+  url: https://depot.galaxyproject.org/software/bioconductor-rsamtools/bioconductor-rsamtools_1.26.1_src_all.tar.gz
+  md5: 53b695db2aaea899348d7ccea464197e
+
+build:
+  number: 0
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  build:
+    - bioconductor-biocgenerics
+    - bioconductor-biocparallel
+    - bioconductor-biostrings
+    - bioconductor-genomeinfodb
+    - bioconductor-genomicranges
+    - bioconductor-iranges
+    - bioconductor-s4vectors
+    - bioconductor-xvector
+    - bioconductor-zlibbioc
+    - r-base
+    - r-bitops
+  run:
+    - bioconductor-biocgenerics
+    - bioconductor-biocparallel
+    - bioconductor-biostrings
+    - bioconductor-genomeinfodb
+    - bioconductor-genomicranges
+    - bioconductor-iranges
+    - bioconductor-s4vectors
+    - bioconductor-xvector
+    - bioconductor-zlibbioc
+    - r-base
+    - r-bitops
+
+test:
+  commands:
+    - '$R -e "library(''Rsamtools'')"'
+about:
+  home: http://bioconductor.org/packages/release/bioc/html/Rsamtools.html
+  license: 'Artistic-2.0 | file LICENSE'
+  summary: 'This package provides an interface to the ''samtools'', ''bcftools'',
+    and ''tabix'' utilities (see ''LICENCE'') for manipulating SAM (Sequence Alignment
+    / Map), FASTA, binary variant call (BCF) and compressed indexed tab-delimited
+    (tabix) files.'

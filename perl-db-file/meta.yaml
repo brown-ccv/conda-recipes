@@ -1,0 +1,26 @@
+package:
+  name: perl-db-file
+  version: 1.835
+
+source:
+  fn: DB_File-1.835.tar.gz
+  url: https://cpan.metacpan.org/authors/id/P/PM/PMQS/DB_File-1.835.tar.gz
+
+requirements:
+  build:
+    - gcc
+    - perl 5.22.2.1
+    - libdb
+  run:
+    - libgcc
+    - perl 5.22.2.1
+    - libdb
+
+test:
+  imports:
+    - DB_File
+
+about:
+  home: https://metacpan.org/pod/Set::IntervalTree
+  license: perl_5
+  summary: Perl5 access to Berkeley DB version 1.x.

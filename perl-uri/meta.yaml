@@ -1,0 +1,27 @@
+package:
+  name: perl-uri
+  version: 1.69
+
+source:
+  fn: URI-1.69.tar.gz
+  url: https://cpan.metacpan.org/authors/id/E/ET/ETHER/URI-1.69.tar.gz
+  md5: 3c56aee0300bce5a440ccbd558277ea0
+
+requirements:
+  build:
+    - gcc
+    - perl 5.22.2.1
+    - perl-scalar-list-utils ==1.45
+  run:
+    - libgcc
+    - perl 5.22.2.1
+    - perl-scalar-list-utils ==1.45
+
+test:
+  imports:
+    - URI
+
+about:
+  home: http://metacpan.org/pod/URI
+  license: perl_5
+  summary: 'Uniform Resource Identifiers (absolute and relative)'

@@ -1,0 +1,31 @@
+# Requires a pre-downloaded source directory usign get_source.sh
+package:
+  name: openjdk
+  version: 1.8.0.121
+
+build:
+  number: 13
+
+source:
+  path: /home/conda/jdk8u
+
+requirements:
+  build:
+    - gcc
+    - freetype ==2.5.5
+    - fontconfig ==2.12.1
+    - zlib ==1.2.8
+  run:
+    - libgcc
+    - freetype ==2.5.5
+    - fontconfig ==2.12.1
+    - zlib ==1.2.8
+
+test:
+  commands:
+    - java -version
+
+about:
+  home: http://openjdk.java.net/
+  license: GPLv2
+  summary: open-source implementation of the Java Platform, Standard Edition

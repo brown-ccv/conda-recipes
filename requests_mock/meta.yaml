@@ -1,0 +1,49 @@
+{% set name = "requests-mock" %}
+{% set version = "1.3.0" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "bd86970d6c52cc97071f5185aa594de6a997a5ca63b3bb36aceb9bb9db49294b" %}
+
+package:
+  name: '{{ name|lower }}'
+  version: '{{ version }}'
+
+source:
+  fn: '{{ name }}-{{ version }}.tar.gz'
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  '{{ hash_type }}': '{{ hash_value }}'
+
+build:
+  number: 0
+  script: python setup.py install  --single-version-externally-managed --record=record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - python
+
+about:
+  home: The package home page
+  license: Apache Software License
+  license_family: APACHE
+  license_file: ''
+  summary: Summary of the package
+  description: "===============================\nrequests-mock\n===============================\n\n.. image:: https://badge.fury.io/py/requests-mock.png\n    :target: http://badge.fury.io/py/requests-mock\n\
+    \nIntro\n=====\n\n`requests-mock` provides a building block to stub out the HTTP `requests`_ portions of your testing code.\nYou should checkout the `docs`_ for more information.\n\nThe Basics\n==========\n\
+    \nEverything in `requests`_ eventually goes through an adapter to do the transport work.\n`requests-mock` creates a custom `adapter` that allows you to predefine responses when certain URIs are called.\n\
+    \nThere are then a number of methods provided to get the adapter used.\n\nA simple example:\n\n.. code:: python\n\n    >>> import requests\n    >>> import requests_mock\n\n    >>> session = requests.Session()\n\
+    \    >>> adapter = requests_mock.Adapter()\n    >>> session.mount('mock', adapter)\n\n    >>> adapter.register_uri('GET', 'mock://test.com', text='data')\n    >>> resp = session.get('mock://test.com')\n\
+    \    >>> resp.status_code, resp.text\n    (200, 'data')\n\nObviously having all URLs be `mock://` prefixed isn't going to useful, so you can use `requests_mock.mock` to get the adapter into place.\n\
+    \nAs a context manager:\n\n.. code:: python\n\n    >>> with requests_mock.mock() as m:\n    ...     m.get('http://test.com', text='data')\n    ...     requests.get('http://test.com').text\n    ...\n\
+    \    'data'\n\nOr as a decorator:\n\n.. code:: python\n\n    >>> @requests_mock.mock()\n    ... def test_func(m):\n    ...     m.get('http://test.com', text='data')\n    ...     return requests.get('http://test.com').text\n\
+    \    ...\n    >>> test_func()\n    'data'\n\nFor more information checkout the `docs`_.\n\nReporting Bugs\n==============\n\nPlease report all bugs on `LaunchPad`_.\n\nLicense\n=======\n\nLicensed under\
+    \ the Apache License, Version 2.0 (the \"License\"); you may\nnot use this file except in compliance with the License. You may obtain\na copy of the License at\n\n     http://www.apache.org/licenses/LICENSE-2.0\n\
+    \nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT\nWARRANTIES OR CONDITIONS OF ANY KIND, either express\
+    \ or implied. See the\nLicense for the specific language governing permissions and limitations\nunder the License.\n\n.. _requests: http://python-requests.org\n.. _docs: http://requests-mock.readthedocs.org\n\
+    .. _LaunchPad: https://bugs.launchpad.net/requests-mock\n\n\n\n"
+  doc_url: ''
+  dev_url: ''
+
+extra:
+  recipe-maintainers: ''

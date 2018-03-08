@@ -1,0 +1,55 @@
+{% set version = "2.12.1" %}
+
+package:
+  name: fontconfig
+  version: {{ version }}
+
+source:
+  fn: fontconfig-{{ version }}.tar.bz2
+  url: http://www.freedesktop.org/software/fontconfig/release/fontconfig-{{ version }}.tar.bz2
+  sha256: b449a3e10c47e1d1c7a6ec6e2016cca73d3bd68fbbd4f0ae5cc6b573f7d6c7f3
+  patches:
+    # This patch won't be submitted upstream. It's use here is to ensure the prefix used
+    # to refer to the `fonts.conf` file.
+    - fcf.patch       # [linux]
+
+build:
+  number: 0
+  skip: true                      # [win]
+  binary_has_prefix_files:        # [linux]
+    - lib/libfontconfig.so.1.9.2  # [linux]
+
+requirements:
+  build:
+    - pkg-config
+    - libtool
+    - freetype ==2.5.5
+    - libiconv ==1.14
+    - libpng ==1.6.27
+    - libxml2 ==2.9.4
+  run:
+    - freetype ==2.5.5
+    - libiconv ==1.14
+    - libpng ==1.6.27
+    - libxml2 ==2.9.4
+
+test:
+  commands:
+    # Test CLI.
+    - fc-cache --help
+    - fc-cat --help
+    - fc-list --help
+    - fc-match --help
+    - fc-pattern --help
+    - fc-query --help
+    - fc-scan --help
+    - fc-validate --help
+
+    # Test for libraries.
+    - test -f "${PREFIX}/lib/libfontconfig.dylib"  # [osx]
+    - test -f "${PREFIX}/lib/libfontconfig.so"     # [linux]
+
+about:
+  home: http://www.freedesktop.org/wiki/Software/fontconfig/
+  license: MIT
+  summary: A library for configuring and customizing font access.

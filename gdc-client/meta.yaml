@@ -1,0 +1,33 @@
+# This file created by conda-build 2.0.8
+# meta.yaml template originally from:
+# /home/m161047/conda-pkgs/gdc, last modified Tue Nov  8 14:19:07 2016
+# ------------------------------------------------
+
+package:
+    name: gdc-client
+    version: 1.2.0
+source:
+    #fn: 1.2.0.tar.gz
+    #url: https://github.com/NCI-GDC/gdc-client/archive/1.2.0.tar.gz
+    git_url: https://github.com/NCI-GDC/gdc-client.git
+    git_rev: master
+build:
+    number: '0'
+    script: python setup.py install --single-version-externally-managed --record=record.txt
+requirements:
+    build:
+        - python
+        - setuptools
+        - parcel
+    run:
+        - python
+        - parcel
+        - jsonschema
+        - pyyaml
+        - lxml
+test:
+    commands:
+        - gdc-client --help
+about:
+    home: https://gdc.cancer.gov/access-data/gdc-data-transfer-tool
+    summary: GDC Data Transfer Tool

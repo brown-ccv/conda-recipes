@@ -1,0 +1,12 @@
+package:
+  name: gblocks
+  version: 0.91b
+
+source:
+  url: http://molevol.cmima.csic.es/castresana/Gblocks/Gblocks_Linux64_0.91b.tar.Z
+  sha1: 149d8ae44346eab8e39b71309aa8961f37ffde76
+
+about:
+  home: http://molevol.cmima.csic.es/castresana/Gblocks.html
+  license: The software and its accompanying documentation are provided as is, without guarantee of support or maintenance.
+  summary: Selection of conserved blocks from multiple alignments for their use in phylogenetic analysis.

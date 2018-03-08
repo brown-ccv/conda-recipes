@@ -1,0 +1,45 @@
+package:
+  name: binutils
+  version: 2.25.1
+
+source:
+  fn: binutils-2.25.1.tar.bz2
+  url: http://ftp.gnu.org/gnu/binutils/binutils-2.25.1.tar.bz2
+  sha256: b5b14added7d78a8d1ca70b5cb75fef57ce2197264f4f5835326b0df22ac9f22
+
+build:
+  number: 0
+  skip: True  # [not linux]
+
+requirements:
+  build:
+    - gcc
+    - bison
+    - flex
+  run:
+    - flex
+    - bison
+
+test:
+  commands:
+    - addr2line --help
+    - ar --help
+    - as --help
+    - c++filt --help
+    - elfedit --help #- gold --help
+    - gprof --help
+    - ld --help
+    - ld.bfd --help #    - ld.gold --help
+    - nm --help
+    - objcopy --help
+    - objdump --help
+    - ranlib --help
+    - readelf --help
+    - size --help
+    - strings --help
+    - strip --help
+
+about:
+  home: https://www.gnu.org/software/coreutils/
+  summary: The GNU Core Utilities are the basic file, shell and text manipulation utilities of the GNU operating system.
+  license: GPLv3

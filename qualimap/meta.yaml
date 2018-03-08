@@ -1,0 +1,26 @@
+package:
+  name: qualimap
+  version: "2.2.2a"
+
+source:
+  fn: qualimap-build-28-08-17.tar.gz
+  url: https://bitbucket.org/kokonech/qualimap/downloads/qualimap-build-28-08-17.tar.gz
+  md5: 6518fbe805a03adb7f99cdeb9438c3bf
+
+build:
+  number: 1
+  skip: False
+
+requirements:
+  run:
+    - openjdk
+    - python
+test:
+  commands:
+    - qualimap --help
+    - qualimap rnaseq --help
+
+about:
+  home: http://qualimap.bioinfo.cipf.es/
+  license: GPLv2
+  summary: Quality control of alignment sequencing data and its derivatives like feature counts

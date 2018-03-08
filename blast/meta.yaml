@@ -1,0 +1,22 @@
+package:
+  name: blast
+  version: 2.5.0
+
+source:
+  url: ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.5.0/ncbi-blast-2.5.0+-src.tar.gz
+  md5: 54ad4f2ea15715487b3de712a9d27be8
+
+requirements:
+  build:
+    - gcc
+  run:
+    - libgcc
+
+test:
+  commands:
+    - blastn -help
+
+about:
+  home: http://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs
+  license: Public Domain
+  summary: BLAST+ is a new suite of BLAST tools that utilizes the NCBI C++ Toolkit

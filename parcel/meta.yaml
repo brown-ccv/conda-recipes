@@ -1,0 +1,40 @@
+# This file created by conda-build 2.1.10
+# meta.yaml template originally from:
+# /home/conda/repos/conda-recipes/parcel, last modified Thu May 11 21:26:13 2017
+# ------------------------------------------------
+
+package:
+    name: parcel
+    version: 0.2.13
+source:
+    git_rev: master
+    git_url: https://github.com/compbiocore/parcel.git
+build:
+    number: '0'
+requirements:
+    build:
+        - zlib 
+        - setuptools
+        - requests
+        - python 
+        - intervaltree
+        - six 
+        - termcolor 
+        - progressbar
+        - flask 
+        - cmd2 
+    run:
+        - python
+        - cmd2
+        - termcolor
+        - intervaltree
+        - flask
+        - progressbar
+        - requests
+test:
+    commands:
+        - parcel --help
+about:
+    home: https://github.com/LabAdvComp/parcel
+    summary: A high performance HTTP download client that leverages the speed of UDP
+        without sacrificing reliability.

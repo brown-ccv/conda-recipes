@@ -1,0 +1,16 @@
+--- Makefile.bak	2016-10-02 10:34:20.000000000 -0400
++++ Makefile	2017-01-14 22:59:40.000000000 -0500
+@@ -163,11 +163,9 @@
+ 
+ 
+ # Install RSEM
+-install : $(PROGRAMS) $(SCRIPTS) $(SAMTOOLS)/samtools rsem_perl_utils.pm
+-	$(INSTALL_DIR) $(DESTDIR)$(bindir) $(DESTDIR)$(bindir)/$(SAMTOOLS)
++install : $(PROGRAMS) $(SCRIPTS) rsem_perl_utils.pm
++	$(INSTALL_DIR) $(DESTDIR)$(bindir)
+ 	$(foreach prog,$(PROGRAMS),$(INSTALL_PROGRAM) $(prog) $(DESTDIR)$(bindir)/$(prog) ; $(STRIP) $(DESTDIR)$(bindir)/$(prog) ;)
+-	$(INSTALL_PROGRAM) $(SAMTOOLS)/samtools $(DESTDIR)$(bindir)/$(SAMTOOLS)/samtools
+-	$(STRIP) $(DESTDIR)$(bindir)/$(SAMTOOLS)/samtools
+ 	$(foreach script,$(SCRIPTS),$(INSTALL_PROGRAM) $(script) $(DESTDIR)$(bindir)/$(script) ;)
+ 	$(INSTALL_DATA) rsem_perl_utils.pm $(DESTDIR)$(bindir)/rsem_perl_utils.pm
+ 

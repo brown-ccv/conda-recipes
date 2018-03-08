@@ -1,0 +1,34 @@
+{% set name = "rsem" %}
+{% set version = "1.2.28" %}
+{% set md5 = "a589c7b8f3fdb59ec4bb33aa27b44dd3" %}
+
+about:
+  home: http://deweylab.biostat.wisc.edu/rsem/
+  license: GPLv3
+  summary: RSEM (RNA-Seq by Expectation-Maximization)
+
+package:
+  name: {{ name }} 
+  version: {{ version }}
+
+requirements:
+  build:
+    - gcc
+    - zlib
+  run:
+    - libgcc
+    - zlib
+    - perl 5.22.2.1
+    - bowtie ==1.1.2
+    - samtools ==1.2
+
+test:
+  commands:
+    - rsem-calculate-expression --version
+
+source:
+  fn: v{{ version }}.tar.gz
+  url: https://github.com/deweylab/RSEM/archive/v{{ version }}.tar.gz
+  md5: {{ md5 }} 
+  patches:
+    - Makefile.patch

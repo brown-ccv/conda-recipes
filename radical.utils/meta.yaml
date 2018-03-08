@@ -1,0 +1,115 @@
+{% set name = "radical.utils" %}
+{% set version = "0.46.2" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "b122494e71130f677b29014fa2dd4d2e23230b16750734a99cd18343688968ac" %}
+
+package:
+  name: '{{ name|lower }}'
+  version: '{{ version }}'
+
+source:
+  fn: '{{ name }}-{{ version }}.tar.gz'
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  '{{ hash_type }}': '{{ hash_value }}'
+
+build:
+  number: 0
+  script: python setup.py install  --single-version-externally-managed --record=record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - future
+    - colorama
+    - netifaces ==0.10.4
+  run:
+    - python
+    - future
+    - colorama
+    - netifaces ==0.10.4
+
+test:
+  imports:
+    - radical
+    - radical.utils
+    - radical.utils.atfork
+    - radical.utils.config
+    - radical.utils.contrib
+    - radical.utils.plugins
+    - radical.utils.plugins.unittests_1
+    - radical.utils.plugins.unittests_2
+    - radical.utils.queue_network
+
+about:
+  home: https://www.github.com/radical-cybertools/radical.utils/
+  license: MIT License
+  license_family: MIT
+  license_file: ''
+  summary: Shared code and tools for various RADICAL Projects (http://radical.rutgers.edu/)
+  description: "Package radical.utils\n=====================\n\nThis Python package contains shared code and tools for various \n[Radical Group](http://radical.rutgers.edu) projects. Sometimes we call it\
+    \ the \nRadical Kitchen Sink.  \n\nThe radical.utils package contains the following things:\n\n* A [URL class](https://github.com/saga-project/radical.utils/blob/master/radical/utils/url.py) (A SAGA-compliant\
+    \ url parser class)\n* A [Plugin manager](https://github.com/saga-project/radical.utils/blob/master/radical/utils/plugin_manager.py) (A simple yet flexible plugin manager and loader)\n* A [Config parser](https://github.com/saga-project/radical.utils/tree/master/radical/utils/config)\
+    \ (Config file reader writeer parser)\n* A [Logger](https://github.com/saga-project/radical.utils/tree/master/radical/utils/logger) (Support for color log output and tracing)\n* An [Object cache](https://github.com/saga-project/radical.utils/blob/master/radical/utils/object_cache.py)\
+    \ (Well, an object cache)\n* A [Type checking module](https://github.com/saga-project/radical.utils/blob/master/radical/utils/signatures.py) (Type checking for python call signatures)\n* A [Singleton\
+    \ metaclass](https://github.com/saga-project/radical.utils/blob/master/radical/utils/singleton.py) (Implements the Sigleton pattern)\n* A [Thread wrapper](https://github.com/saga-project/radical.utils/blob/master/radical/utils/threads.py)\
+    \ (A thin convenience wrapper around threading.Thread)\n* A [Call tracer](https://github.com/saga-project/radical.utils/blob/master/radical/utils/tracer.py) (Support for call tracing / debugging)\n\
+    * A ['which' function](https://github.com/saga-project/radical.utils/blob/master/radical/utils/which.py)(Simliar to the 'which' command line tool)\n\nThe package should in general be compatible with\
+    \ Python 2.6.\n\n\n\nLicense\n-------\n\nThis software is released under the \n[MIT License](http://opensource.org/licenses/MIT).\n\nParts of the module (radical.utils.atfork) are licensed under the\
+    \ [Apache-v2.0\nlicense](http://www.apache.org/licenses/).\n\n\nInstallation \n------------\n\nYou can install the latest radical.utils directly from [PyPi](https://pypi.python.org/pypi/radical.utils/):\n\
+    \n    pip install --upgrade radical.utils\n\nYou can also install the latest development version (which might be broken)\nfrom GitHub directly:\n\n    pip install -e git://github.com/saga-project/radical.utils.git#egg=radical.utils\n\
+    \nIf you want to use radical.utils in your own project, include it in your \n`setup.py` file:\n\n    'install_requires': ['radical.utils']\n\n\nDocumentation\n-------------\n\nYou can generate the documentation\
+    \ yourself with [Sphinx](http://sphinx-doc.org/)\n\n    pip install sphinx\n    make docs\n\nThe resulting documentation will be in `open docs/build/html/index.html`.\n\n\n\n\n  - For a list of bug\
+    \ fixes, see\n    https://github.com/radical-cybertools/radical.utils/issues?q=is%3Aissue+is%3Aclosed+sort%3Aupdated-desc\n  - For a list of open issues and known problems, see\n    https://github.com/radical-cybertools/radical.utils/issues?q=is%3Aissue+is%3Aopen+\n\
+    \n\n0.46.2 Release                                                        2017-08-23\n--------------------------------------------------------------------------------\n\n  - hotfix for RP #1415\n\n\n\
+    0.46.1 Release                                                        2017-08-23\n--------------------------------------------------------------------------------\n\n  - hotfix for RP #1415\n\n\nVersion\
+    \ 0.46 release                                                  2017-08-11\n--------------------------------------------------------------------------------\n\n  - Feature/managed process (#104) \n\
+    \  - Feature/poll (#106) \n  - Fix/version strings (#107) \n  - Revert \"Feature/managed process\" (#102) \n  - add a managed process class \n  - add close() method to logger \n  - add some doc on raise_in_thread()\
+    \ \n  - apply ru.Process syntax/semantics to ru.Thread \n  - be friendly to MacOS \n  - clean out and comment on utils thread wrapper \n  - cleanup on ru Process class, tests \n  - fix logging, leave\
+    \ parent termination alone \n  - fix process termination test case \n  - fix raise_on messaging and eval; work on cancellation (#101) \n  - fix thread locality, logging \n  - fuck python \n  - get stack\
+    \ info and clone in sync \n  - improve error reporting on child processes \n  - iterate and complete documentation; \n  - iteration on reliable process management \n  - make a sanity check non-fatal\
+    \ \n  - make sure that thread local data are accessible \n  - move gettid to where it belongs \n  - proper handling of null logger \n  - remove potential filename collission in test suite \n  - rename\
+    \ ru.Thread to ru.Future (#95) \n  - remove some debug prints/logs, add assert \n  - simplify radical-stack, make programmatic \n  - support for cprofile in ru.Thread \n  - rename ru.Thread to ru.Future\n\
+    \n\nVersion 0.45 release                                                  2017-02-28\n--------------------------------------------------------------------------------\n\n  - add radical-stack, radical-stack-clone\
+    \ tools\n  - setup fix \n  - silence a warning \n  - Silence empty profile warning \n\n\nVersion 0.44 release                                                  2016-11-01\n--------------------------------------------------------------------------------\n\
+    \n  - remote debugging! \n  - SIGINT is nono in threads \n  - comment on exception types in raise_in_thread \n  - add range matching alg \n  - add condition watcher \n  - add some tracing methods\n\
+    \  - add get_thread_name and get_thread_id \n  - add raise_in_thread \n  - add netifaces dep \n  - hardcode the netiface version until it is fixed upstream. \n  - allow to overwrite profiler name \n\
+    \  - fix double releases \n  - convert atfork monkeypatch exception into warning \n  - make singleton fork-safe \n  - move get_hostip and get_hostname to ru \n  - move profiler from RP to RU \n  - move\
+    \ raise_on functionality from rpu to ru, to support random \n    error triggers for stress testing \n  - make raise_on thread save, get limits from env \n\n\nVersion 0.41.1 release                 \
+    \                               2016-06-02\n--------------------------------------------------------------------------------\n\n  - add fs barrier to debug helper \n  - add get_traceback \n  - clean\
+    \ up counter management \n  - fix a log handler \n  - fix path creation for logfile output \n  - Fix regression on query split. \n  - fix thread inspection problem \n  - include atfork in RU \n  - keep\
+    \ doc in sync with implementation \n  - log version info is now optional \n  - make sig checking conditional \n  - make sure log level is string before calling \"upper()\" \n  - fix split_module\n \
+    \ - monkeypatch python's logging module \n\n\nVersion 0.40 release                                                  2016-02-03\n--------------------------------------------------------------------------------\n\
+    \n  - add an algorithm to create balanced partitions of a space \n  - add ssl support to mongodb_connect \n  - allow fragment parsing in Url class\n  - allow reporter and debug log to coexist if log\
+    \ target is set. \n  - fix default for get in dict mixin \n  - fix type conversion for int, float configurables from env vars \n  - implement reset_id_counters \n\n\nVersion 0.38 release           \
+    \                                       2015-11-06\n--------------------------------------------------------------------------------\n\n  - support install on anaconda\n\n\nVersion 0.37 release    \
+    \                                              2015-10-15\n--------------------------------------------------------------------------------\n\n  - fix reporter log level\n  - several changes to reporter\
+    \ class\n  - align reporter, logger, and logreporter\n\n\nVersion 0.36 release                                                  2015-10-08\n--------------------------------------------------------------------------------\n\
+    \n  - clean up logging (getLogger -> get_logger)\n  - log pid and tid on log creation \n  - fix type conversion on some config data types \n  - make uid generation independent if getpwuid\n  - fix log\
+    \ message for warning about log level \n  - add boolean test for url \n  - add SAGA_VERBOSE backport \n  - fix some more import shadowing \n  - fix layer violation: make logs look nice in RP, finally\n\
+    \  - do not use signals in threads... \n  - rename and install version tool. \n  - fix the debug helper \n\n\nVersion 0.35 release                                                  2015-08-27\n--------------------------------------------------------------------------------\n\
+    \n  - small bugfix release\n\n\nVersion 0.29 release                                                  2015-07-13\n--------------------------------------------------------------------------------\n\n\
+    \  - attempt to avoid sdist naming error during pypi installation\n  - add uuid support, avoid counter reset on reboot\n  - add two convenience methods which support range finding\n  - have multiple\
+    \ threads lease from same pool.  Speed up LM test\n  - make sure that the pull is filled during lease manager testing\n  - make sure json is exported as encoded unicode\n  - make sure we write encoded\
+    \ strings for json\n  - add test for LeaseManager\n\n\nVersion 0.28 release                                                  2015-04-16\n--------------------------------------------------------------------------------\n\
+    \n  - minimize an unlock/release race\n  - resilience against missing git in setup.py\n  - cleaner version string\n  - sync setup.py with recent changes in RP\n  - export range collapsing algorithm\n\
+    \  - fix documentation\n  - fix reporting of type checks when multiple types are valid and optional; fix URL init sig\n  - fix url tests\n  - install sdist, export sdist location\n  - tool rename \n\
+    \  - add version tool \n\n\nVersion 0.8 release                                                   2015-02-24\n--------------------------------------------------------------------------------\n\n  -\
+    \ Preserve case for \"hostnames\" in GO URIs.\n  - Allow # in host part of Globus Online URIs.\n  - preserve trailing slashes on URL paths\n  - move sources into src/\n  - fix version strings.  again.\n\
+    \  - fix id counters to start from 0\n  - fix comment parsing fix in second json read\n\n\nVersion 0.7.11 release                                                2014-12-11\n--------------------------------------------------------------------------------\n\
+    \n  - fixed botched merge from devel\n\n\nVersion 0.7.10 release                                                2014-12-11\n--------------------------------------------------------------------------------\n\
+    \n  - fixed lease manager debug output\n\n\nVersion 0.7.9 release                                                 2014-12-02\n--------------------------------------------------------------------------------\n\
+    \n  - fix to json comment parsing\n  - att flexible pylint util\n  - support append / overwrite mode for log targets \n  - add daemonize class\n  - fix leaking logs\n  - reduce lease manager logging\
+    \ noise \n  - log python version on startup \n  - add reporter class for nice demo output etc\n  - add namespace for object_cache, backward compatible \n  - fix bson/json/timestamp mangling \n  - json\
+    \ support for json writing\n\n\nVersion 0.7.8 release                                                 2014-10-29\n--------------------------------------------------------------------------------\n \n\
+    \  - implemented lease manager (manage finite set of resources with\n    finite lifetime over multiple threads)\n  - implemented DebugHelper class (prints stack traces for all threads\n    on SIGUSR1\n\
+    \  - implement decorator for class method timings\n  - cache configuration settings on logger creation, which\n    significantly speeds up logging over different log objects\n  - remove deepcopy from\
+    \ configuration management (improves\n    performance)\n  - add wildcard expanstion on  dict_merge\n  - make pymongo and nose dependencies optional\n\n\nVersion 0.7.7 release                       \
+    \                          2014-08-27\n--------------------------------------------------------------------------------\n\n  - lease manager which handles resource leases (like, leases ssh connections\
+    \ to saga adaptors)\n  - fixes on deepcopy, logging and config handling \n\n\nVersion 0.7.5 release                                                 2014-07-22\n--------------------------------------------------------------------------------\n\
+    \n  - Some small bug fixes.\n\n\n--------------------------------------------------------------------------------"
+  doc_url: ''
+  dev_url: ''
+
+extra:
+  recipe-maintainers: ''

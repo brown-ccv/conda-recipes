@@ -1,0 +1,48 @@
+{% set name = "cmd2" %}
+{% set version = "0.7.0" %}
+{% set compress_type = "tar.gz" %}
+{% set hash_type = "sha256" %}
+{% set hash = "5ab76a1f07dd5fd1cc3c15ba4080265f33b80c7fd748d71bd69a51d60b30f51a" %}
+{% set build = 0 %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.{{ compress_type }}
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ compress_type }}
+  {{ hash_type }}: {{ hash }}
+
+build:
+  number: {{ build }}
+  script: python setup.py install --single-version-externally-managed --record=record.txt
+
+
+requirements:
+  build:
+    - python
+    - setuptools
+
+  run:
+    - python
+    - pyparsing >=2.0.1
+    - six
+
+test:
+  imports:
+    - cmd2
+
+about:
+  home: https://github.com/python-cmd2/cmd2
+  license_file: LICENSE
+  license: MIT
+  license_family: MIT
+  summary: "Extra features for standard library's cmd module"
+  dev_url: https://github.com/python-cmd2/cmd2
+  doc_url: https://cmd2.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - anguslees
+    - pmlandwehr
